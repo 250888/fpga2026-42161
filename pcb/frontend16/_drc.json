@@ -1,0 +1,1997 @@
+{
+    "$schema": "https://schemas.kicad.org/drc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-10-24T18:03:28",
+    "ignored_checks": [
+        {
+            "description": "Footprint has no courtyard defined",
+            "key": "missing_courtyard"
+        },
+        {
+            "description": "Track endpoint not centered on via",
+            "key": "track_not_centered_on_via"
+        },
+        {
+            "description": "Tuning profile track geometries",
+            "key": "tuning_profile_track_geometries"
+        },
+        {
+            "description": "Footprint doesn't match symbol's footprint filters",
+            "key": "footprint_filters_mismatch"
+        },
+        {
+            "description": "Footprint component type doesn't match footprint pads",
+            "key": "footprint_type_mismatch"
+        },
+        {
+            "description": "Footprint not found in libraries",
+            "key": "lib_footprint_issues"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning",
+        "exclusion"
+    ],
+    "kicad_version": "10.0.7",
+    "schematic_parity": [],
+    "source": "xunji_fe16.kicad_pcb",
+    "unconnected_items": [],
+    "violations": [
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "封装 RU4",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 37.0
+                    },
+                    "uuid": "009ad44e-ad33-5140-a853-0d9e48e8b566"
+                },
+                {
+                    "description": "封装 RU5",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 42.0
+                    },
+                    "uuid": "ee3e5213-041a-599d-a6b9-9245bca9bbbb"
+                }
+            ],
+            "severity": "error",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "封装 RU4",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 37.0
+                    },
+                    "uuid": "009ad44e-ad33-5140-a853-0d9e48e8b566"
+                },
+                {
+                    "description": "封装 RU3",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 32.0
+                    },
+                    "uuid": "f8120fbc-946d-5f25-b6cc-6555e5b97b17"
+                }
+            ],
+            "severity": "error",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "封装 RU9",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 22.0
+                    },
+                    "uuid": "0df60e9b-7b4c-5d2c-9729-20d6424d7ddc"
+                },
+                {
+                    "description": "封装 RU10",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 27.0
+                    },
+                    "uuid": "783ea7be-7a4d-549c-9575-b6f6f644d97c"
+                }
+            ],
+            "severity": "error",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "封装 RU13",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 42.0
+                    },
+                    "uuid": "1d68bb64-6ae0-55f3-bf75-f8df66088189"
+                },
+                {
+                    "description": "封装 RU14",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 47.0
+                    },
+                    "uuid": "b40306f7-3838-5abc-bad6-b80a08debd05"
+                }
+            ],
+            "severity": "error",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "封装 RU13",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 42.0
+                    },
+                    "uuid": "1d68bb64-6ae0-55f3-bf75-f8df66088189"
+                },
+                {
+                    "description": "封装 RU12",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 37.0
+                    },
+                    "uuid": "bd5c5b30-da00-529d-b236-753464288720"
+                }
+            ],
+            "severity": "error",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "封装 RU7",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 52.0
+                    },
+                    "uuid": "4c17977f-a1ce-5431-942c-1a56f34e9574"
+                },
+                {
+                    "description": "封装 RU6",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 47.0
+                    },
+                    "uuid": "b58ae962-b8b0-5a05-9eeb-23f5899f6fcf"
+                }
+            ],
+            "severity": "error",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "封装 RU7",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 52.0
+                    },
+                    "uuid": "4c17977f-a1ce-5431-942c-1a56f34e9574"
+                },
+                {
+                    "description": "封装 RU8",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 57.0
+                    },
+                    "uuid": "c4e43615-df8b-5c25-bf1b-b59b8c4b7831"
+                }
+            ],
+            "severity": "error",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "封装 RU10",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 27.0
+                    },
+                    "uuid": "783ea7be-7a4d-549c-9575-b6f6f644d97c"
+                },
+                {
+                    "description": "封装 RU11",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 32.0
+                    },
+                    "uuid": "a0c9be95-e351-5fea-91c4-8e9d010017a0"
+                }
+            ],
+            "severity": "error",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "封装 RU16",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 57.0
+                    },
+                    "uuid": "7be34078-a561-5777-a0c8-381e907a5034"
+                },
+                {
+                    "description": "封装 RU15",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 52.0
+                    },
+                    "uuid": "eb5423c3-cc06-5051-bf83-fdc7e5dbc0c9"
+                }
+            ],
+            "severity": "error",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "封装 RU11",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 32.0
+                    },
+                    "uuid": "a0c9be95-e351-5fea-91c4-8e9d010017a0"
+                },
+                {
+                    "description": "封装 RU12",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 37.0
+                    },
+                    "uuid": "bd5c5b30-da00-529d-b236-753464288720"
+                }
+            ],
+            "severity": "error",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "封装 RU14",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 47.0
+                    },
+                    "uuid": "b40306f7-3838-5abc-bad6-b80a08debd05"
+                },
+                {
+                    "description": "封装 RU15",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 52.0
+                    },
+                    "uuid": "eb5423c3-cc06-5051-bf83-fdc7e5dbc0c9"
+                }
+            ],
+            "severity": "error",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "封装 RU1",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 22.0
+                    },
+                    "uuid": "b4a7abc9-e517-5713-86ae-7e4175498522"
+                },
+                {
+                    "description": "封装 RU2",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 27.0
+                    },
+                    "uuid": "fbc0b6cb-ff2b-50c1-a6b7-f270903729eb"
+                }
+            ],
+            "severity": "error",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "封装 RU6",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 47.0
+                    },
+                    "uuid": "b58ae962-b8b0-5a05-9eeb-23f5899f6fcf"
+                },
+                {
+                    "description": "封装 RU5",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 42.0
+                    },
+                    "uuid": "ee3e5213-041a-599d-a6b9-9245bca9bbbb"
+                }
+            ],
+            "severity": "error",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "封装 RU3",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 32.0
+                    },
+                    "uuid": "f8120fbc-946d-5f25-b6cc-6555e5b97b17"
+                },
+                {
+                    "description": "封装 RU2",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 27.0
+                    },
+                    "uuid": "fbc0b6cb-ff2b-50c1-a6b7-f270903729eb"
+                }
+            ],
+            "severity": "error",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "F.Silkscreen 上的 PCB 文本 '3V3 ONLY'",
+                    "pos": {
+                        "x": 84.0,
+                        "y": 18.4
+                    },
+                    "uuid": "ca171dd8-ff51-520e-a9ab-7358bdb6c0e5"
+                },
+                {
+                    "description": "JB 的封装文本 (1),",
+                    "pos": {
+                        "x": 87.0,
+                        "y": 18.4
+                    },
+                    "uuid": "dc27ec8b-5fea-5344-a592-ddc2c614c85c"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RP9 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 72.7,
+                        "y": 25.84
+                    },
+                    "uuid": "0b631c32-61a8-56d3-91b9-c609ce721cb6"
+                },
+                {
+                    "description": "RP10 的参考字段",
+                    "pos": {
+                        "x": 74.0,
+                        "y": 25.8
+                    },
+                    "uuid": "a31e0b0a-d98b-5a35-ae24-0b58a3a87d89"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RP13 的参考字段",
+                    "pos": {
+                        "x": 74.0,
+                        "y": 43.8
+                    },
+                    "uuid": "6541f03e-6982-563b-ad18-cf7d174426b4"
+                },
+                {
+                    "description": "RP12 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 72.7,
+                        "y": 43.84
+                    },
+                    "uuid": "f362be32-3338-5d51-9271-2006f700593b"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RP13 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 72.7,
+                        "y": 49.84
+                    },
+                    "uuid": "105e5361-647c-5625-ae62-b4fa1c21ebd2"
+                },
+                {
+                    "description": "RP14 的参考字段",
+                    "pos": {
+                        "x": 74.0,
+                        "y": 49.8
+                    },
+                    "uuid": "1ab9bb59-ad90-5486-9011-0c823315cc93"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RP2 的参考字段",
+                    "pos": {
+                        "x": 68.0,
+                        "y": 25.8
+                    },
+                    "uuid": "11597572-fbfc-50b8-8ad4-48f7e3feb891"
+                },
+                {
+                    "description": "RP1 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 66.7,
+                        "y": 25.84
+                    },
+                    "uuid": "9a4a5b43-cb80-5753-804e-e59985f48b5e"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RP2 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 66.7,
+                        "y": 31.84
+                    },
+                    "uuid": "76f8464f-4323-548a-812a-c2bafec4a9f0"
+                },
+                {
+                    "description": "RP3 的参考字段",
+                    "pos": {
+                        "x": 68.0,
+                        "y": 31.8
+                    },
+                    "uuid": "b6020425-6334-5bc4-a8a6-050ca8384bd2"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RP4 的参考字段",
+                    "pos": {
+                        "x": 68.0,
+                        "y": 37.8
+                    },
+                    "uuid": "888325d8-db6f-54db-8eb3-3be6ec4d2945"
+                },
+                {
+                    "description": "RP3 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 66.7,
+                        "y": 37.84
+                    },
+                    "uuid": "9d0d161f-c5f3-5159-aeac-38f29e2e5f4c"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RP4 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 66.7,
+                        "y": 43.84
+                    },
+                    "uuid": "9e495d0f-dbdc-5da6-abb1-230908966e6e"
+                },
+                {
+                    "description": "RP5 的参考字段",
+                    "pos": {
+                        "x": 68.0,
+                        "y": 43.8
+                    },
+                    "uuid": "f7ed1fe3-f5c9-5d34-a055-77ce8f292dcf"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RP10 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 72.7,
+                        "y": 31.84
+                    },
+                    "uuid": "2ec08b1c-5f32-58ed-bcec-342dad6a8b2a"
+                },
+                {
+                    "description": "RP11 的参考字段",
+                    "pos": {
+                        "x": 74.0,
+                        "y": 31.8
+                    },
+                    "uuid": "edb1c883-5a69-5b2b-9acb-bb9a9894daad"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RP11 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 72.7,
+                        "y": 37.84
+                    },
+                    "uuid": "4873bab5-514c-5545-8b6a-424dcbcdd9f3"
+                },
+                {
+                    "description": "RP12 的参考字段",
+                    "pos": {
+                        "x": 74.0,
+                        "y": 37.8
+                    },
+                    "uuid": "f6dcd21e-1132-5781-8f2a-9056a8a0e7ec"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RS9 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 21.7,
+                        "y": 25.84
+                    },
+                    "uuid": "4c6e013b-f2a3-57a5-bb88-e0a7287900d3"
+                },
+                {
+                    "description": "RS10 的参考字段",
+                    "pos": {
+                        "x": 23.0,
+                        "y": 25.8
+                    },
+                    "uuid": "dca90160-4e06-509c-8a1f-2778747acf38"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RS14 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 21.7,
+                        "y": 55.84
+                    },
+                    "uuid": "9ad43961-7b87-5908-b24e-8a5bb84ad4f4"
+                },
+                {
+                    "description": "RS15 的参考字段",
+                    "pos": {
+                        "x": 23.0,
+                        "y": 55.8
+                    },
+                    "uuid": "ac5fa39b-08e3-5657-afdf-ff389a162e2a"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RS7 的参考字段",
+                    "pos": {
+                        "x": 16.0,
+                        "y": 55.8
+                    },
+                    "uuid": "6919c43a-67ff-5fd3-bb92-53b8a14bad7f"
+                },
+                {
+                    "description": "RS6 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 14.7,
+                        "y": 55.84
+                    },
+                    "uuid": "e63a64db-1dfc-52bb-8d45-886867136a67"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RS8 的参考字段",
+                    "pos": {
+                        "x": 16.0,
+                        "y": 61.8
+                    },
+                    "uuid": "8688d331-f8a0-5cc5-a640-c28894c102d7"
+                },
+                {
+                    "description": "RS7 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 14.7,
+                        "y": 61.84
+                    },
+                    "uuid": "c2787374-d267-54d0-a2c6-59ba61bfd8c0"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RS2 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 14.7,
+                        "y": 31.84
+                    },
+                    "uuid": "18057056-3eba-58cb-873a-e2590e05bf77"
+                },
+                {
+                    "description": "RS3 的参考字段",
+                    "pos": {
+                        "x": 16.0,
+                        "y": 31.8
+                    },
+                    "uuid": "92664035-d8ef-5ffe-9847-b134818f5d69"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RS3 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 14.7,
+                        "y": 37.84
+                    },
+                    "uuid": "63a4be76-fd0a-5c19-89ab-7590839b630f"
+                },
+                {
+                    "description": "RS4 的参考字段",
+                    "pos": {
+                        "x": 16.0,
+                        "y": 37.8
+                    },
+                    "uuid": "8ffaae04-b34d-5af5-8a5b-b7af4a65c5ef"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RS5 的参考字段",
+                    "pos": {
+                        "x": 16.0,
+                        "y": 43.8
+                    },
+                    "uuid": "0d31d4cc-ad31-558e-8bba-477550fcb4e6"
+                },
+                {
+                    "description": "RS4 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 14.7,
+                        "y": 43.84
+                    },
+                    "uuid": "9a11274c-ae0e-5eea-ab36-7e004df23238"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RS6 的参考字段",
+                    "pos": {
+                        "x": 16.0,
+                        "y": 49.8
+                    },
+                    "uuid": "07690aa9-4b92-5787-aa37-74fa6c143bf0"
+                },
+                {
+                    "description": "RS5 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 14.7,
+                        "y": 49.84
+                    },
+                    "uuid": "c4a169e8-5011-5540-8c21-c4ba244d82c1"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RS1 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 14.7,
+                        "y": 25.84
+                    },
+                    "uuid": "8eacdc17-fd65-5a83-87d6-858b57ed25b8"
+                },
+                {
+                    "description": "RS2 的参考字段",
+                    "pos": {
+                        "x": 16.0,
+                        "y": 25.8
+                    },
+                    "uuid": "bc7b283b-a4ff-5e1f-97d2-2e07a755ea44"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RS13 的参考字段",
+                    "pos": {
+                        "x": 23.0,
+                        "y": 43.8
+                    },
+                    "uuid": "a2c4e3a5-f511-574c-a639-a9e64bcae035"
+                },
+                {
+                    "description": "RS12 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 21.7,
+                        "y": 43.84
+                    },
+                    "uuid": "e0e48a83-41d9-5453-b133-cc3d4ce3fb59"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RS14 的参考字段",
+                    "pos": {
+                        "x": 23.0,
+                        "y": 49.8
+                    },
+                    "uuid": "4dc51fa4-d61b-57e4-8b51-14f8793dc691"
+                },
+                {
+                    "description": "RS13 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 21.7,
+                        "y": 49.84
+                    },
+                    "uuid": "933abc31-3af4-500c-8789-4dd02f5f0e60"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RS11 的参考字段",
+                    "pos": {
+                        "x": 23.0,
+                        "y": 31.8
+                    },
+                    "uuid": "89cbac0a-33cf-540a-8ad0-03c4b01f888f"
+                },
+                {
+                    "description": "RS10 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 21.7,
+                        "y": 31.84
+                    },
+                    "uuid": "8a1eed3f-7070-56a8-bbc3-c055f71366a2"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RP6 的参考字段",
+                    "pos": {
+                        "x": 68.0,
+                        "y": 49.8
+                    },
+                    "uuid": "72f25155-4bfd-5ecf-a6a1-97519f8a3158"
+                },
+                {
+                    "description": "RP5 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 66.7,
+                        "y": 49.84
+                    },
+                    "uuid": "c90660af-5f8e-59ff-a139-a3ebb4653ce1"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RP6 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 66.7,
+                        "y": 55.84
+                    },
+                    "uuid": "de8705ee-6d6b-5fb6-8596-76354a2e3fb7"
+                },
+                {
+                    "description": "RP7 的参考字段",
+                    "pos": {
+                        "x": 68.0,
+                        "y": 55.8
+                    },
+                    "uuid": "e76177ac-c388-5835-b55a-2398aca1c125"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RP7 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 66.7,
+                        "y": 61.84
+                    },
+                    "uuid": "00c8c2af-0ad9-57b6-8bd9-7101f89bcef6"
+                },
+                {
+                    "description": "RP8 的参考字段",
+                    "pos": {
+                        "x": 68.0,
+                        "y": 61.8
+                    },
+                    "uuid": "07b07f67-42fd-5015-85a0-e579f03a27d8"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RP14 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 72.7,
+                        "y": 55.84
+                    },
+                    "uuid": "3568d5ad-ea23-5b1d-bb2c-4bbe20d4527a"
+                },
+                {
+                    "description": "RP15 的参考字段",
+                    "pos": {
+                        "x": 74.0,
+                        "y": 55.8
+                    },
+                    "uuid": "780ed285-8547-59be-b297-88443c7de5df"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RP15 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 72.7,
+                        "y": 61.84
+                    },
+                    "uuid": "b719fa40-8231-5adf-8dc6-a6d12cc68d42"
+                },
+                {
+                    "description": "RP16 的参考字段",
+                    "pos": {
+                        "x": 74.0,
+                        "y": 61.8
+                    },
+                    "uuid": "eae1dbcf-9f64-5038-a3c3-ec523ae6c494"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RS11 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 21.7,
+                        "y": 37.84
+                    },
+                    "uuid": "750c24cb-8de9-50d9-ae03-4a1c278b8ff2"
+                },
+                {
+                    "description": "RS12 的参考字段",
+                    "pos": {
+                        "x": 23.0,
+                        "y": 37.8
+                    },
+                    "uuid": "ce9dabfc-a460-5c93-b85d-383f20132b4c"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "RS15 的 线段, 位于 F.Silkscreen",
+                    "pos": {
+                        "x": 21.7,
+                        "y": 61.84
+                    },
+                    "uuid": "83fbfc79-2bb6-5953-a2d3-cfe2fd0a3044"
+                },
+                {
+                    "description": "RS16 的参考字段",
+                    "pos": {
+                        "x": 23.0,
+                        "y": 61.8
+                    },
+                    "uuid": "bf5496b6-f116-5936-bb71-f9f237ec96c9"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RP13 的参考字段",
+                    "pos": {
+                        "x": 74.0,
+                        "y": 43.8
+                    },
+                    "uuid": "6541f03e-6982-563b-ad18-cf7d174426b4"
+                },
+                {
+                    "description": "RP12 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 74.0,
+                        "y": 42.54
+                    },
+                    "uuid": "18d65087-1e8e-5d3c-b1cf-f594bdb447f5"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RP14 的参考字段",
+                    "pos": {
+                        "x": 74.0,
+                        "y": 49.8
+                    },
+                    "uuid": "1ab9bb59-ad90-5486-9011-0c823315cc93"
+                },
+                {
+                    "description": "RP13 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 74.0,
+                        "y": 48.54
+                    },
+                    "uuid": "eb7fb7ed-5368-5502-82c3-239cbdba52f8"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RP2 的参考字段",
+                    "pos": {
+                        "x": 68.0,
+                        "y": 25.8
+                    },
+                    "uuid": "11597572-fbfc-50b8-8ad4-48f7e3feb891"
+                },
+                {
+                    "description": "RP1 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 68.0,
+                        "y": 24.54
+                    },
+                    "uuid": "d6de1767-b63e-5158-8d31-34b56284b774"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RP4 的参考字段",
+                    "pos": {
+                        "x": 68.0,
+                        "y": 37.8
+                    },
+                    "uuid": "888325d8-db6f-54db-8eb3-3be6ec4d2945"
+                },
+                {
+                    "description": "RP3 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 68.0,
+                        "y": 36.54
+                    },
+                    "uuid": "7ada7dda-a858-5c61-82de-42e537b884a0"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RP5 的参考字段",
+                    "pos": {
+                        "x": 68.0,
+                        "y": 43.8
+                    },
+                    "uuid": "f7ed1fe3-f5c9-5d34-a055-77ce8f292dcf"
+                },
+                {
+                    "description": "RP4 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 68.0,
+                        "y": 42.54
+                    },
+                    "uuid": "45e0bf08-61cb-57a6-ac67-b6514cd6f04a"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RP3 的参考字段",
+                    "pos": {
+                        "x": 68.0,
+                        "y": 31.8
+                    },
+                    "uuid": "b6020425-6334-5bc4-a8a6-050ca8384bd2"
+                },
+                {
+                    "description": "RP2 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 68.0,
+                        "y": 30.54
+                    },
+                    "uuid": "bdae34e7-6f18-5f59-837a-e4c1e6545bef"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RP10 的参考字段",
+                    "pos": {
+                        "x": 74.0,
+                        "y": 25.8
+                    },
+                    "uuid": "a31e0b0a-d98b-5a35-ae24-0b58a3a87d89"
+                },
+                {
+                    "description": "RP9 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 74.0,
+                        "y": 24.54
+                    },
+                    "uuid": "af4ba47c-4021-529c-8585-dd979c2d4a0a"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RP11 的参考字段",
+                    "pos": {
+                        "x": 74.0,
+                        "y": 31.8
+                    },
+                    "uuid": "edb1c883-5a69-5b2b-9acb-bb9a9894daad"
+                },
+                {
+                    "description": "RP10 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 74.0,
+                        "y": 30.54
+                    },
+                    "uuid": "12b92384-f5b4-54e1-bb96-589548e56d1d"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RP12 的参考字段",
+                    "pos": {
+                        "x": 74.0,
+                        "y": 37.8
+                    },
+                    "uuid": "f6dcd21e-1132-5781-8f2a-9056a8a0e7ec"
+                },
+                {
+                    "description": "RP11 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 74.0,
+                        "y": 36.54
+                    },
+                    "uuid": "c8820cd8-51af-51f4-9fc9-60b1adea215c"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RS10 的参考字段",
+                    "pos": {
+                        "x": 23.0,
+                        "y": 25.8
+                    },
+                    "uuid": "dca90160-4e06-509c-8a1f-2778747acf38"
+                },
+                {
+                    "description": "RS9 的PTH 焊盘 2 [A8]",
+                    "pos": {
+                        "x": 23.0,
+                        "y": 24.54
+                    },
+                    "uuid": "bf2ac54a-454e-5a9d-b826-0ef270819a9d"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RS7 的参考字段",
+                    "pos": {
+                        "x": 16.0,
+                        "y": 55.8
+                    },
+                    "uuid": "6919c43a-67ff-5fd3-bb92-53b8a14bad7f"
+                },
+                {
+                    "description": "RS6 的PTH 焊盘 2 [A5]",
+                    "pos": {
+                        "x": 16.0,
+                        "y": 54.54
+                    },
+                    "uuid": "e295a1a3-1500-5e27-ab86-a3c20b95ffed"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RS8 的参考字段",
+                    "pos": {
+                        "x": 16.0,
+                        "y": 61.8
+                    },
+                    "uuid": "8688d331-f8a0-5cc5-a640-c28894c102d7"
+                },
+                {
+                    "description": "RS7 的PTH 焊盘 2 [A6]",
+                    "pos": {
+                        "x": 16.0,
+                        "y": 60.54
+                    },
+                    "uuid": "8ec5e2dd-e2ac-58e9-8418-13d537989a1b"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RS4 的参考字段",
+                    "pos": {
+                        "x": 16.0,
+                        "y": 37.8
+                    },
+                    "uuid": "8ffaae04-b34d-5af5-8a5b-b7af4a65c5ef"
+                },
+                {
+                    "description": "RS3 的PTH 焊盘 2 [A2]",
+                    "pos": {
+                        "x": 16.0,
+                        "y": 36.54
+                    },
+                    "uuid": "3e276f9e-b72c-5333-b99b-a0d9974e496a"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RS6 的参考字段",
+                    "pos": {
+                        "x": 16.0,
+                        "y": 49.8
+                    },
+                    "uuid": "07690aa9-4b92-5787-aa37-74fa6c143bf0"
+                },
+                {
+                    "description": "RS5 的PTH 焊盘 2 [A4]",
+                    "pos": {
+                        "x": 16.0,
+                        "y": 48.54
+                    },
+                    "uuid": "1b601fc5-2143-58e6-8d50-7ebca419fc44"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RS5 的参考字段",
+                    "pos": {
+                        "x": 16.0,
+                        "y": 43.8
+                    },
+                    "uuid": "0d31d4cc-ad31-558e-8bba-477550fcb4e6"
+                },
+                {
+                    "description": "RS4 的PTH 焊盘 2 [A3]",
+                    "pos": {
+                        "x": 16.0,
+                        "y": 42.54
+                    },
+                    "uuid": "db25b466-7588-56bf-a7d6-a9fd27b05f76"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RS15 的参考字段",
+                    "pos": {
+                        "x": 23.0,
+                        "y": 55.8
+                    },
+                    "uuid": "ac5fa39b-08e3-5657-afdf-ff389a162e2a"
+                },
+                {
+                    "description": "RS14 的PTH 焊盘 2 [A13]",
+                    "pos": {
+                        "x": 23.0,
+                        "y": 54.54
+                    },
+                    "uuid": "70f7c7b1-7a61-5beb-a92e-33dc286fd893"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RS13 的参考字段",
+                    "pos": {
+                        "x": 23.0,
+                        "y": 43.8
+                    },
+                    "uuid": "a2c4e3a5-f511-574c-a639-a9e64bcae035"
+                },
+                {
+                    "description": "RS12 的PTH 焊盘 2 [A11]",
+                    "pos": {
+                        "x": 23.0,
+                        "y": 42.54
+                    },
+                    "uuid": "36e073f1-163b-5215-aa69-18604aada5aa"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RS14 的参考字段",
+                    "pos": {
+                        "x": 23.0,
+                        "y": 49.8
+                    },
+                    "uuid": "4dc51fa4-d61b-57e4-8b51-14f8793dc691"
+                },
+                {
+                    "description": "RS13 的PTH 焊盘 2 [A12]",
+                    "pos": {
+                        "x": 23.0,
+                        "y": 48.54
+                    },
+                    "uuid": "6fb32e08-59cc-5b0e-889c-32597b50e64e"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RS2 的参考字段",
+                    "pos": {
+                        "x": 16.0,
+                        "y": 25.8
+                    },
+                    "uuid": "bc7b283b-a4ff-5e1f-97d2-2e07a755ea44"
+                },
+                {
+                    "description": "RS1 的PTH 焊盘 2 [A0]",
+                    "pos": {
+                        "x": 16.0,
+                        "y": 24.54
+                    },
+                    "uuid": "e2bc0e6c-9309-57fa-b787-36516033aed2"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RS3 的参考字段",
+                    "pos": {
+                        "x": 16.0,
+                        "y": 31.8
+                    },
+                    "uuid": "92664035-d8ef-5ffe-9847-b134818f5d69"
+                },
+                {
+                    "description": "RS2 的PTH 焊盘 2 [A1]",
+                    "pos": {
+                        "x": 16.0,
+                        "y": 30.54
+                    },
+                    "uuid": "f79eaa0d-0a2c-55d2-b709-eb8780b20113"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RS11 的参考字段",
+                    "pos": {
+                        "x": 23.0,
+                        "y": 31.8
+                    },
+                    "uuid": "89cbac0a-33cf-540a-8ad0-03c4b01f888f"
+                },
+                {
+                    "description": "RS10 的PTH 焊盘 2 [A9]",
+                    "pos": {
+                        "x": 23.0,
+                        "y": 30.54
+                    },
+                    "uuid": "8b267719-ed97-56b0-a186-9f9435d3ba0f"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RU3 的参考字段",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 29.8
+                    },
+                    "uuid": "16a25f59-ffc2-5652-ab15-368295a0e3d0"
+                },
+                {
+                    "description": "RU2 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 29.54
+                    },
+                    "uuid": "6dc1748b-f0b9-5c6c-9256-64f92157542f"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RU2 的参考字段",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 24.8
+                    },
+                    "uuid": "26674e20-1ddc-5992-b827-30871c2b93eb"
+                },
+                {
+                    "description": "RU1 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 24.54
+                    },
+                    "uuid": "f23cedc0-9a97-5660-8f63-0a2bc0f5a2aa"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RU4 的参考字段",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 34.8
+                    },
+                    "uuid": "6df2c9a6-c90a-5f6b-93b6-f28567e409ea"
+                },
+                {
+                    "description": "RU3 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 34.54
+                    },
+                    "uuid": "f7bb64b3-81b7-5b24-9b00-09bb3acb288d"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RU5 的参考字段",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 39.8
+                    },
+                    "uuid": "040085f7-0965-593b-afb9-e5053ba51139"
+                },
+                {
+                    "description": "RU4 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 39.54
+                    },
+                    "uuid": "1f2e2184-ce27-5667-9cdc-85ed8d50cdd7"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RU6 的参考字段",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 44.8
+                    },
+                    "uuid": "a0e2c96d-87a5-5417-87ca-c52c59bd829b"
+                },
+                {
+                    "description": "RU5 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 44.54
+                    },
+                    "uuid": "ff8f29e0-2c08-5504-bcb4-86f8664cd605"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RU10 的参考字段",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 24.8
+                    },
+                    "uuid": "c423b792-cac9-5825-a62c-cfd450ac8d55"
+                },
+                {
+                    "description": "RU9 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 24.54
+                    },
+                    "uuid": "1054483b-a1fe-5f6f-9e4b-7dd8866a2524"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RU11 的参考字段",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 29.8
+                    },
+                    "uuid": "53e97afc-d8c8-53d9-9f71-e008caf6d3de"
+                },
+                {
+                    "description": "RU10 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 29.54
+                    },
+                    "uuid": "8b5209ef-d225-5e46-9b43-f81442310ee3"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RU12 的参考字段",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 34.8
+                    },
+                    "uuid": "47f8cfc6-729b-5cfc-bd1f-6d9e9048b100"
+                },
+                {
+                    "description": "RU11 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 34.54
+                    },
+                    "uuid": "76acb9f4-6311-51f4-aec8-e771173441da"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RU13 的参考字段",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 39.8
+                    },
+                    "uuid": "79140f3f-6c5c-52a1-8c85-239123e6581e"
+                },
+                {
+                    "description": "RU12 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 39.54
+                    },
+                    "uuid": "b1fe307f-8666-503a-81f8-77b4ec99128e"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RU14 的参考字段",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 44.8
+                    },
+                    "uuid": "6c275e7b-fe4a-5cc0-9a23-fcdc89f08519"
+                },
+                {
+                    "description": "RU13 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 44.54
+                    },
+                    "uuid": "d225c6d5-d633-5d07-b9d0-12798b5e2004"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RU7 的参考字段",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 49.8
+                    },
+                    "uuid": "2d81045e-9926-5ee0-9330-3f59f489777d"
+                },
+                {
+                    "description": "RU6 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 49.54
+                    },
+                    "uuid": "85dd5386-b188-5084-8398-5cb713978f12"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RU15 的参考字段",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 49.8
+                    },
+                    "uuid": "ce485d8e-ade1-51ce-90b5-92532d72082c"
+                },
+                {
+                    "description": "RU14 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 49.54
+                    },
+                    "uuid": "f721f73e-397d-5e8d-9767-35c5ac08d95f"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RP6 的参考字段",
+                    "pos": {
+                        "x": 68.0,
+                        "y": 49.8
+                    },
+                    "uuid": "72f25155-4bfd-5ecf-a6a1-97519f8a3158"
+                },
+                {
+                    "description": "RP5 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 68.0,
+                        "y": 48.54
+                    },
+                    "uuid": "ca9efcdd-a7e2-5420-b6d0-12b9295f78b4"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RP7 的参考字段",
+                    "pos": {
+                        "x": 68.0,
+                        "y": 55.8
+                    },
+                    "uuid": "e76177ac-c388-5835-b55a-2398aca1c125"
+                },
+                {
+                    "description": "RP6 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 68.0,
+                        "y": 54.54
+                    },
+                    "uuid": "dbcf2431-3993-5d95-b8f4-cda1c369a116"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RP8 的参考字段",
+                    "pos": {
+                        "x": 68.0,
+                        "y": 61.8
+                    },
+                    "uuid": "07b07f67-42fd-5015-85a0-e579f03a27d8"
+                },
+                {
+                    "description": "RP7 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 68.0,
+                        "y": 60.54
+                    },
+                    "uuid": "8e2d71da-843b-5a69-a2b4-74ee71ce80d3"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RP15 的参考字段",
+                    "pos": {
+                        "x": 74.0,
+                        "y": 55.8
+                    },
+                    "uuid": "780ed285-8547-59be-b297-88443c7de5df"
+                },
+                {
+                    "description": "RP14 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 74.0,
+                        "y": 54.54
+                    },
+                    "uuid": "8d41b282-55f6-5a67-8fb1-57cae2e10cce"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RP16 的参考字段",
+                    "pos": {
+                        "x": 74.0,
+                        "y": 61.8
+                    },
+                    "uuid": "eae1dbcf-9f64-5038-a3c3-ec523ae6c494"
+                },
+                {
+                    "description": "RP15 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 74.0,
+                        "y": 60.54
+                    },
+                    "uuid": "04a4538e-dc4e-5fc2-9eee-1464da469cfe"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RS12 的参考字段",
+                    "pos": {
+                        "x": 23.0,
+                        "y": 37.8
+                    },
+                    "uuid": "ce9dabfc-a460-5c93-b85d-383f20132b4c"
+                },
+                {
+                    "description": "RS11 的PTH 焊盘 2 [A10]",
+                    "pos": {
+                        "x": 23.0,
+                        "y": 36.54
+                    },
+                    "uuid": "9eb70925-fd62-571c-b56e-a589f42ac949"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RU8 的参考字段",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 54.8
+                    },
+                    "uuid": "c15b13b9-87e3-575c-a75e-4a71e802c85b"
+                },
+                {
+                    "description": "RU7 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 41.0,
+                        "y": 54.54
+                    },
+                    "uuid": "ef131380-ad33-5712-a97d-98f18d2d3563"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RS16 的参考字段",
+                    "pos": {
+                        "x": 23.0,
+                        "y": 61.8
+                    },
+                    "uuid": "bf5496b6-f116-5936-bb71-f9f237ec96c9"
+                },
+                {
+                    "description": "RS15 的PTH 焊盘 2 [A14]",
+                    "pos": {
+                        "x": 23.0,
+                        "y": 60.54
+                    },
+                    "uuid": "775f9ad3-a479-50fb-bf02-0bfb4bcb4d0d"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "RU16 的参考字段",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 54.8
+                    },
+                    "uuid": "9ded885e-0a99-5bfc-a01f-89d929fd9a33"
+                },
+                {
+                    "description": "RU15 的PTH 焊盘 2 [VCC3V3]",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 54.54
+                    },
+                    "uuid": "5f3952dc-897e-5d54-a22d-2e467fdb36cc"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        }
+    ]
+}

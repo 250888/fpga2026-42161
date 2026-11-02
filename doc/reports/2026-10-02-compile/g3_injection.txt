@@ -1,0 +1,30 @@
+=== 注入：rtl/xj_top.v 删除全部 endmodule ===
+--- xunji lint (inject) ---
+%Error: rtl\xj_top.v:122:39: syntax error, unexpected end of file
+  122 |     assign led[15:8] = timestamp[15:8];
+      |                                       ^
+        ... See the manual at https://verilator.org/verilator_doc.html?v=5.050 for more assistance.
+%Error: Cannot continue
+        ... This fatal error may be caused by the earlier error(s); resolve those first.
+
+lint_inject_exit=1
+--- xunji sim (inject) ---
+sim/tb_xj_top.v:1: error: timescale directive cannot be inside a module definition.
+sim/tb_xj_top.v:3: error: Module definition tb_xj_top cannot nest into module xj_top.
+sim/tb_xj_top.v:95: syntax error
+I give up.
+
+sim_inject_exit=1
+=== 恢复：git checkout -- rtl/xj_top.v ===
+--- xunji lint (restored) ---
+- V e r i l a t i o n   R e p o r t: Verilator 5.050 2026-07-01 rev vUNKNOWN-built20260702
+- Verilator: Built from 0.200 MB sources in 9 modules, into 0.087 MB in 3 C++ files needing 0.000 MB
+- Verilator: Walltime 0.019 s (elab=0.002, cvt=0.009, bld=0.000); cpu 0.000 s on 1 threads; allocated 17.000 MB
+
+lint_restored_exit=0
+=== git status --short ===
+ M src/xunji/cli.py
+?? build/
+?? doc/reports/2026-10-02-compile/lint_g1.txt
+?? doc/reports/2026-10-02-compile/sim_g2.txt
+?? scripts/lint.vlt

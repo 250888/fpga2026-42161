@@ -1,0 +1,44 @@
+# ===== Python / uv =====
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+
+# ===== Vivado 产物与生成工程（不入库；证据报告放 doc/reports/）=====
+vivado/
+*.jou
+*.log
+.Xil/
+*.wdb
+*.str
+
+# ===== git worktree（superpowers: using-git-worktrees）=====
+.worktrees/
+
+# ===== 本地 git 服务裸仓库 =====
+git_server/
+.superpowers/ 
+
+# ===== 中间产物（三层验证流水线）=====
+build/
+*.f
+*.vvp
+xsim.dir/
+
+# ===== KiCad 本地界面状态（每台机器不同，不入库）=====
+*.kicad_prl
+
+# ===== 调试用临时产物（2026-11-02 收尾，避免 40MB 截图入库）=====
+pcb/scratch/
+doc/.photo_b64.txt
+pcb/frontend16/test51.*
+
+# ===== 视频/大体积媒体（走提交门户，不入库）=====
+*.mp4
+*.mov
+*.avi
+
+# ===== 厂商模板与可重生成的中间图（不入库）=====
+AMD_poster_template*.pptx
+doc/figs/_poster_strip.png

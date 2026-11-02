@@ -1,0 +1,19 @@
+{
+  "board": {
+    "design_settings": {
+      "rule_severities": {
+        "lib_footprint_issues": "ignore"
+      }
+    }
+  },
+  "erc": {
+    "rule_severities": {
+      "lib_symbol_issues": "ignore",
+      "endpoint_off_grid": "ignore"
+    }
+  },
+  "meta": {
+    "filename": "xunji_fe16.kicad_pro",
+    "version": 3
+  }
+}

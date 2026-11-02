@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1760" height="900" viewBox="0 0 1760 900">
+
+<defs>
+  <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3.2"
+          orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L8,3.2 L0,6.4 z" fill="#333333"/>
+  </marker>
+  <marker id="ab" markerWidth="10" markerHeight="10" refX="8" refY="3.2"
+          orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L8,3.2 L0,6.4 z" fill="#1f4e79"/>
+  </marker>
+  <marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="3.2"
+          orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L8,3.2 L0,6.4 z" fill="#8b2e2e"/>
+  </marker>
+  <marker id="ap" markerWidth="10" markerHeight="10" refX="8" refY="3.2"
+          orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L8,3.2 L0,6.4 z" fill="#5b3f8c"/>
+  </marker>
+  <marker id="a4" markerWidth="10" markerHeight="10" refX="8" refY="3.2"
+          orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L8,3.2 L0,6.4 z" fill="#9a6b00"/>
+  </marker>
+  <marker id="s" markerWidth="10" markerHeight="10" refX="1" refY="3.2"
+          orient="auto" markerUnits="strokeWidth">
+    <path d="M8,0 L0,3.2 L8,6.4 z" fill="#333333"/>
+  </marker>
+</defs>
+
+<rect x="0" y="0" width="1760" height="900" rx="8" ry="8" fill="#ffffff" stroke="none" stroke-width="0"/>
+<text x="190" y="112" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="17" fill="#8b2e2e" text-anchor="middle" font-weight="bold"><tspan x="190" dy="0">被测对象</tspan></text>
+<text x="620" y="112" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="17" fill="#1f6f3f" text-anchor="middle" font-weight="bold"><tspan x="620" dy="0">FE-16 前端板</tspan></text>
+<text x="1140" y="112" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="17" fill="#1f4e79" text-anchor="middle" font-weight="bold"><tspan x="1140" dy="0">EGO1 主控</tspan></text>
+<text x="1605" y="112" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="17" fill="#5b3f8c" text-anchor="middle" font-weight="bold"><tspan x="1605" dy="0">PC 端</tspan></text>
+<rect x="60" y="140" width="260" height="470" rx="8" ry="8" fill="#fbeeee" stroke="#8b2e2e" stroke-width="2.0"/>
+<text x="190.0" y="299.0" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="19" fill="#8b2e2e" text-anchor="middle" font-weight="normal"><tspan x="190.0" dy="0">被测线束</tspan><tspan x="190.0" dy="27.55">16 路</tspan><tspan x="190.0" dy="27.55"></tspan><tspan x="190.0" dy="27.55">JA ──→ JB</tspan><tspan x="190.0" dy="27.55">A0–A15   B0–B15</tspan><tspan x="190.0" dy="27.55"></tspan><tspan x="190.0" dy="27.55">（含 CD4066 串入）</tspan></text>
+<rect x="360" y="130" width="520" height="490" rx="14" ry="14" fill="#eff7f1" stroke="#1f6f3f" stroke-width="2.4"/>
+<rect x="383" y="200" width="228" height="236" rx="8" ry="8" fill="#ffffff" stroke="#1f6f3f" stroke-width="1.8"/>
+<text x="497.0" y="247.125" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="15" fill="#1f6f3f" text-anchor="middle" font-weight="bold"><tspan x="497.0" dy="0">A 端激励</tspan><tspan x="497.0" dy="21.75"></tspan><tspan x="497.0" dy="21.75">LVC07 ×3</tspan><tspan x="497.0" dy="21.75">（开漏，非反相）</tspan><tspan x="497.0" dy="21.75">↓</tspan><tspan x="497.0" dy="21.75">RS 330 Ω ×16</tspan><tspan x="497.0" dy="21.75"></tspan><tspan x="497.0" dy="21.75">→ A 节点</tspan></text>
+<rect x="629" y="200" width="228" height="236" rx="8" ry="8" fill="#ffffff" stroke="#1f6f3f" stroke-width="1.8"/>
+<text x="743.0" y="247.125" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="15" fill="#1f6f3f" text-anchor="middle" font-weight="bold"><tspan x="743.0" dy="0">B 端回采</tspan><tspan x="743.0" dy="21.75"></tspan><tspan x="743.0" dy="21.75">← B 节点</tspan><tspan x="743.0" dy="21.75"></tspan><tspan x="743.0" dy="21.75">RP 4.7 kΩ ×16</tspan><tspan x="743.0" dy="21.75">↑</tspan><tspan x="743.0" dy="21.75">LVC14 ×3</tspan><tspan x="743.0" dy="21.75">（施密特反相）</tspan></text>
+<rect x="383" y="462" width="474" height="132" rx="8" ry="8" fill="#ffffff" stroke="#1f6f3f" stroke-width="1.4"/>
+<text x="620.0" y="512.6" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="14" fill="#2b2b2b" text-anchor="middle" font-weight="normal"><tspan x="620.0" dy="0">RU 10 kΩ ×16 输入上拉  ·  去耦 100 nF ×6</tspan><tspan x="620.0" dy="20.3">RCT1 电流断点  ·  JP1/EXT1 外部供电口（默认不插）</tspan><tspan x="620.0" dy="20.3">TP1–TP50 测试点（A / B / b_raw / 3V3 / GND）</tspan></text>
+<rect x="880" y="130" width="520" height="490" rx="14" ry="14" fill="#eef3f9" stroke="#1f4e79" stroke-width="2.6"/>
+<text x="1140" y="168" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="14" fill="#1f4e79" text-anchor="middle" font-weight="normal"><tspan x="1140" dy="0">Artix-7 XC7A35T · 100 MHz 单时钟</tspan></text>
+<rect x="902" y="188" width="476" height="68" rx="8" ry="8" fill="#ffffff" stroke="#1f4e79" stroke-width="1.5"/>
+<text x="1140.0" y="216.75" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="14" fill="#12314f" text-anchor="middle" font-weight="normal"><tspan x="1140.0" dy="0">开漏驱动控制器 drive_controller</tspan><tspan x="1140.0" dy="20.3">按 scan_idx 逐路拉低 a_ctrl_n（其余全 1）</tspan></text>
+<rect x="902" y="272" width="476" height="68" rx="8" ry="8" fill="#ffffff" stroke="#1f4e79" stroke-width="1.5"/>
+<text x="1140.0" y="300.75" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="14" fill="#12314f" text-anchor="middle" font-weight="normal"><tspan x="1140.0" dy="0">拓扑扫描状态机 topology_scanner</tspan><tspan x="1140.0" dy="20.3">IDLE→DRIVE→SETTLE→SAMPLE→DECIDE→RELEASE</tspan></text>
+<rect x="902" y="356" width="476" height="68" rx="8" ry="8" fill="#ffffff" stroke="#1f4e79" stroke-width="1.5"/>
+<text x="1140.0" y="384.75" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="14" fill="#12314f" text-anchor="middle" font-weight="normal"><tspan x="1140.0" dy="0">16×16 连接矩阵 + 位掩码</tspan><tspan x="1140.0" dy="20.3">conn_matrix[256] / stuck[16] / open[16]</tspan></text>
+<rect x="902" y="440" width="476" height="68" rx="8" ry="8" fill="#ffffff" stroke="#1f4e79" stroke-width="1.5"/>
+<text x="1140.0" y="468.75" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="14" fill="#12314f" text-anchor="middle" font-weight="normal"><tspan x="1140.0" dy="0">学习门 learn_gate    ·    比较器 golden_compare</tspan><tspan x="1140.0" dy="20.3">M_ref 锁存          ·     PASS/OPEN/MISWIRE/BRIDGE/ANOMALY</tspan></text>
+<rect x="902" y="524" width="476" height="68" rx="8" ry="8" fill="#ffffff" stroke="#1f4e79" stroke-width="1.5"/>
+<text x="1140.0" y="552.75" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="14" fill="#12314f" text-anchor="middle" font-weight="normal"><tspan x="1140.0" dy="0">UART 帧发送器 uart_packet_tx</tspan><tspan x="1140.0" dy="20.3">触发沿锁存矩阵快照 → 48 B 定长帧</tspan></text>
+<rect x="1520" y="140" width="170" height="470" rx="8" ry="8" fill="#f4f0fa" stroke="#5b3f8c" stroke-width="2.0"/>
+<text x="1605.0" y="282.34999999999997" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="17" fill="#5b3f8c" text-anchor="middle" font-weight="bold"><tspan x="1605.0" dy="0">主机上位机</tspan><tspan x="1605.0" dy="24.65"></tspan><tspan x="1605.0" dy="24.65">Python</tspan><tspan x="1605.0" dy="24.65">CLI</tspan><tspan x="1605.0" dy="24.65">read/sim/lint</tspan><tspan x="1605.0" dy="24.65"></tspan><tspan x="1605.0" dy="24.65">浏览器</tspan><tspan x="1605.0" dy="24.65">单文件</tspan><tspan x="1605.0" dy="24.65">HTML</tspan></text>
+<rect x="60" y="700" width="260" height="140" rx="8" ry="8" fill="#fff7e6" stroke="#9a6b00" stroke-width="2.0"/>
+<text x="190.0" y="753.5" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="15" fill="#9a6b00" text-anchor="middle" font-weight="bold"><tspan x="190.0" dy="0">CD4066 故障源</tspan><tspan x="190.0" dy="21.75">4 × CD4066（32 路开关）</tspan><tspan x="190.0" dy="21.75">Arduino Nano 控制</tspan></text>
+<line x1="320" y1="300" x2="360" y2="300" stroke="#1f4e79" stroke-width="2.2" marker-end="url(#ab)" stroke-linecap="round"/>
+<line x1="360" y1="430" x2="320" y2="430" stroke="#8b2e2e" stroke-width="2.2" marker-end="url(#ar)" stroke-linecap="round"/>
+<rect x="314.28" y="276.6" width="51.44" height="18.6" rx="4" fill="#ffffff" opacity="0.92"/><text x="340" y="288" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="12" fill="#1f4e79" text-anchor="middle" font-weight="normal"><tspan x="340" dy="0">A 激励</tspan></text>
+<rect x="314.28" y="406.6" width="51.44" height="18.6" rx="4" fill="#ffffff" opacity="0.92"/><text x="340" y="418" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="12" fill="#8b2e2e" text-anchor="middle" font-weight="normal"><tspan x="340" dy="0">B 回采</tspan></text>
+<line x1="880" y1="240" x2="832" y2="240" stroke="#1f4e79" stroke-width="2.4" marker-end="url(#ab)" stroke-linecap="round"/>
+<rect x="801.96" y="212.6" width="108.08000000000004" height="18.6" rx="4" fill="#ffffff" opacity="0.92"/><text x="856" y="224" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="12" fill="#1f4e79" text-anchor="middle" font-weight="normal"><tspan x="856" dy="0">a_ctrl_n[15:0]</tspan></text>
+<line x1="832" y1="520" x2="880" y2="520" stroke="#1f4e79" stroke-width="2.4" marker-end="url(#ab)" stroke-linecap="round"/>
+<rect x="812.04" y="528.6" width="87.92000000000002" height="18.6" rx="4" fill="#ffffff" opacity="0.92"/><text x="856" y="540" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="12" fill="#1f4e79" text-anchor="middle" font-weight="normal"><tspan x="856" dy="0">b_raw[15:0]</tspan></text>
+<line x1="1400" y1="320" x2="1520" y2="320" stroke="#5b3f8c" stroke-width="2.4" marker-end="url(#ap)" stroke-linecap="round"/>
+<rect x="1416.7" y="285.55" width="86.60000000000002" height="17.05" rx="4" fill="#ffffff" opacity="0.92"/><text x="1460" y="296" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="11" fill="#5b3f8c" text-anchor="middle" font-weight="normal"><tspan x="1460" dy="0">UART 48 B 帧</tspan></text>
+<rect x="1422.2" y="341.55" width="75.60000000000002" height="17.05" rx="4" fill="#ffffff" opacity="0.92"/><text x="1460" y="352" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="11" fill="#5b3f8c" text-anchor="middle" font-weight="normal"><tspan x="1460" dy="0">115200 bps</tspan></text>
+<line x1="190" y1="700" x2="190" y2="612" stroke="#9a6b00" stroke-width="2.2" stroke-dasharray="7,6" marker-end="url(#a4)" stroke-linecap="round"/>
+<rect x="159.0" y="670.6" width="62.0" height="18.6" rx="4" fill="#ffffff" opacity="0.92"/><text x="190" y="682" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="12" fill="#9a6b00" text-anchor="middle" font-weight="normal"><tspan x="190" dy="0">串入线束</tspan></text>
+<text x="60" y="878" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="13" fill="#5a5a5a" text-anchor="start" font-weight="normal"><tspan x="60" dy="0">说明：FPGA 逐路开漏拉低 A 端，B 端经上拉与施密特反相器回采，仅用 32 根信号线完成 16×16 全连接矩阵重建；CD4066 串入线束用于注入 μs 级瞬态开路。</tspan></text>
+</svg>

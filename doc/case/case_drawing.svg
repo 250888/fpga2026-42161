@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1157" height="848"
+     viewBox="0 0 1157 848">
+<style>
+ .h1 { font:600 15px "Segoe UI","Microsoft YaHei",sans-serif; fill:#dbe3ec; }
+ .lbl { font:600 13px "Segoe UI","Microsoft YaHei",sans-serif; fill:#e6edf5; }
+ .sub { font:11px "Segoe UI","Microsoft YaHei",sans-serif; fill:#8fa3ba; }
+ .dim { font:11px Consolas,monospace; fill:#c9a86b; }
+ .lg  { font:12px "Segoe UI","Microsoft YaHei",sans-serif; fill:#9fb0c4; text-anchor:start; }
+ .openlbl { font:11px "Segoe UI","Microsoft YaHei",sans-serif; fill:#e06c75; }
+ .outer { fill:none; stroke:#8695a8; stroke-width:2; }
+ .cavity { fill:#121821; stroke:#2a3646; stroke-width:1; }
+ .duct { fill:#3a4757; stroke:#8695a8; stroke-width:1; }
+ .cut, .open { fill:#0b0f14; stroke:#e06c75; stroke-width:1.6; stroke-dasharray:6 3; }
+ .tie { fill:#d9534f; }
+ .vent { fill:#0b0f14; stroke:#55627a; stroke-width:1; }
+ .ego { fill:#1b2f4d; stroke:#4f8fd0; stroke-width:1.4; }
+ .rim { fill:none; stroke:#4f8fd0; stroke-width:2.4; }
+ .fe { fill:#1d4d33; stroke:#3fa06a; stroke-width:1.4; }
+ .standoff { fill:#4a5566; stroke:#9fb0c4; stroke-width:1.4; }
+ .pilot { fill:#0b0f14; }
+ .conn { fill:#3a4757; stroke:#8695a8; stroke-width:1; }
+ .tprow { stroke:#c98a4b; stroke-width:3; }
+ .foot { fill:none; stroke:#55627a; stroke-width:1.2; stroke-dasharray:3 3; }
+ .dimline { stroke:#c9a86b; stroke-width:1; }
+</style>
+<rect width="1157" height="748" fill="#0e1319"/>
+<text x="24" y="28" class="h1">FE-16 + EGO1 整机外壳 · 俯视开孔图（mm，1:1 比例）</text>
+<rect x="60.0" y="50.0" width="1036.8" height="648.0" class="outer"/>
+<rect x="70.8" y="60.8" width="1015.2" height="626.4" class="cavity" stroke-dasharray="5 4"/>
+<rect x="70.8" y="129.2" width="1015.2" height="7.2" class="duct"/>
+<rect x="758.4" y="125.6" width="201.6" height="14.4" class="cut"/>
+<rect x="88.8" y="165.2" width="540.0" height="360.0" class="ego" stroke-dasharray="6 4"/>
+<rect x="79.8" y="156.2" width="558.0" height="378.0" class="rim"/>
+<text x="358.8" y="334.4" class="lbl" text-anchor="middle">EGO1 舱位 150×100</text>
+<text x="358.8" y="366.8" class="sub" text-anchor="middle">围边内腔 151×101（单边 0.5 间隙）</text>
+<rect x="686.4" y="165.2" width="345.6" height="345.6" class="fe" stroke-dasharray="6 4"/>
+<text x="859.2" y="287.6" class="lbl" text-anchor="middle">FE-16 96×96</text>
+<circle cx="700.8" cy="179.6" r="12.6" class="standoff"/>
+<circle cx="700.8" cy="179.6" r="4.7" class="pilot"/>
+<text x="700.8" y="155.8" class="dim" text-anchor="middle">(4,4)</text>
+<circle cx="1017.6" cy="179.6" r="12.6" class="standoff"/>
+<circle cx="1017.6" cy="179.6" r="4.7" class="pilot"/>
+<text x="1017.6" y="155.8" class="dim" text-anchor="middle">(92,4)</text>
+<circle cx="700.8" cy="496.4" r="12.6" class="standoff"/>
+<circle cx="700.8" cy="496.4" r="4.7" class="pilot"/>
+<text x="700.8" y="472.6" class="dim" text-anchor="middle">(4,92)</text>
+<circle cx="1017.6" cy="496.4" r="12.6" class="standoff"/>
+<circle cx="1017.6" cy="496.4" r="4.7" class="pilot"/>
+<text x="1017.6" y="472.6" class="dim" text-anchor="middle">(92,92)</text>
+<rect x="781.4" y="188.6" width="155.4" height="9.1" class="conn"/>
+<text x="859.2" y="183.2" class="sub" text-anchor="middle">J5 2×18（朝后）</text>
+<rect x="714.2" y="244.4" width="9.1" height="82.3" class="conn"/>
+<text x="699.8" y="284.0" class="sub" text-anchor="end">JA</text>
+<rect x="985.9" y="244.4" width="9.1" height="82.3" class="conn"/>
+<text x="1009.4" y="284.0" class="sub" text-anchor="start">JB</text>
+<line x1="751.2" y1="442.4" x2="967.2" y2="442.4" class="tprow"/>
+<text x="859.2" y="436.6" class="sub" text-anchor="middle">TP1-16 (A)</text>
+<line x1="751.2" y1="464.0" x2="967.2" y2="464.0" class="tprow"/>
+<text x="859.2" y="458.2" class="sub" text-anchor="middle">TP17-32 (B)</text>
+<rect x="182.4" y="687.2" width="842.4" height="10.8" class="open"/>
+<text x="603.6" y="703.8" class="openlbl" text-anchor="middle">前侧贯通开口（线束/模块线/USB）</text>
+<rect x="276.0" y="687.2" width="14.4" height="10.8" class="tie"/>
+<text x="283.2" y="714.2" class="dim" text-anchor="middle">绑扎孔</text>
+<rect x="600.0" y="687.2" width="14.4" height="10.8" class="tie"/>
+<text x="607.2" y="714.2" class="dim" text-anchor="middle">绑扎孔</text>
+<rect x="924.0" y="687.2" width="14.4" height="10.8" class="tie"/>
+<text x="931.2" y="714.2" class="dim" text-anchor="middle">绑扎孔</text>
+<rect x="60.0" y="237.2" width="10.8" height="28.8" class="vent"/>
+<rect x="60.0" y="316.4" width="10.8" height="28.8" class="vent"/>
+<rect x="60.0" y="395.6" width="10.8" height="28.8" class="vent"/>
+<rect x="60.0" y="474.8" width="10.8" height="28.8" class="vent"/>
+<circle cx="103.2" cy="93.2" r="14.4" class="foot"/>
+<circle cx="1053.6" cy="93.2" r="14.4" class="foot"/>
+<circle cx="103.2" cy="654.8" r="14.4" class="foot"/>
+<circle cx="1053.6" cy="654.8" r="14.4" class="foot"/>
+<line x1="60.0" y1="741.2" x2="1096.8" y2="741.2" class="dimline"/>
+<text x="578.4" y="755.6" class="dim" text-anchor="middle">总宽 288</text>
+<line x1="1140.0" y1="50.0" x2="1140.0" y2="698.0" class="dimline"/>
+<text x="1158.0" y="374.0" class="dim" text-anchor="middle">总深 180</text>
+<line x1="700.8" y1="626.0" x2="1017.6" y2="626.0" class="dimline"/>
+<text x="859.2" y="611.6" class="dim" text-anchor="middle">88.0</text>
+<line x1="1075.2" y1="179.6" x2="1075.2" y2="496.4" class="dimline"/>
+<text x="1057.2" y="338.0" class="dim" text-anchor="end">88.0</text>
+<rect x="60" y="732.0" width="14" height="10" class="outer"/>
+<text x="80" y="741.0" class="lg">外壳外框</text>
+<rect x="60" y="748.0" width="14" height="10" class="cavity"/>
+<text x="80" y="757.0" class="lg">内腔</text>
+<rect x="60" y="764.0" width="14" height="10" class="standoff/pilot"/>
+<text x="80" y="773.0" class="lg">M3 柱 / 底孔 2.6</text>
+<rect x="60" y="780.0" width="14" height="10" class="open"/>
+<text x="80" y="789.0" class="lg">开口</text>
+<rect x="60" y="796.0" width="14" height="10" class="tie"/>
+<text x="80" y="805.0" class="lg">绑扎孔</text>
+<rect x="60" y="812.0" width="14" height="10" class="vent"/>
+<text x="80" y="821.0" class="lg">通风</text>
+</svg>

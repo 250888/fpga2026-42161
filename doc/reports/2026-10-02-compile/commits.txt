@@ -1,0 +1,17 @@
+6b994bf docs: 固化 lint/sim 提交前防线；waiver 占位；镜像地址更新
+1f11613 feat(cli): xsim 终审子命令——sync 复用+三件套直跑（G4）
+d8d3dd3 docs(report): 补 G2 版本行与注入后 status 快照（审查修复）
+20c29e7 docs(report): 重采 G2 正向证据；补 G5 TB 注入反向证据
+e72845a fix(tb): mismatch 走 $fatal 非零退出；DUMP_VCD 宏隔离波形
+a437e78 feat(cli): lint/sim 子命令接线，G1/G2/G3 实测通过
+34ff882 fix(hdl): 超时分支补 stderr；中文用例自声明 UTF-8 编码（审查修复）
+c68ec30 feat(hdl): 子进程封装——UTF-8/超时/退出码（TDD）
+79266b6 test(runners): 红灯——子进程封装用例（TDD step1）
+f31a702 feat(hdl): filelist 生成器——rtl.f/sim.f 双清单（TDD）
+651a6ad test(filelist): 红灯——filelist 生成规则用例（TDD step1）
+ae249b9 chore(toolchain): 安装探针记录 iverilog/verilator 版本与 uv 完好（T0）
+c1ac472 chore: 忽略 SDD 账本目录 .superpowers/
+b4fbbc5 docs(specs): 编译流水线设计与实现计划（双轮独立复审通过）
+c45dd7c docs: AGENTS.md 开发规范（superpowers 技能族）与 README 重构
+f3e702e feat(xunji): UART 帧协议与构建目录镜像 CLI（TDD，15 测试全绿）
+cbdc2e3 chore: 项目 uv 包化重组，源码提升至仓库根

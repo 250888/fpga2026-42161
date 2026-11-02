@@ -1,0 +1,30 @@
+=== 反向注入：锚点条件替换为 1b0（mismatch 必触发）===
+--- xunji sim (inject) ---
+=== tb_xj_top start ===
+t=495000 after start: busy=1 st=2 a=fffe
+conn_matrix = 0010100000010100
+open_flags  = 0000
+expected    = 0010100000010100
+FAIL mismatch
+FATAL: sim/tb_xj_top.v:103: TOPOLOGY MISMATCH
+       Time: 2645000  Scope: tb_xj_top
+
+sim_inject_exit=1
+
+--- 恢复：git checkout -- sim/tb_xj_top.v，删除注入脚本 ---
+--- xunji sim (restored) ---
+=== tb_xj_top start ===
+t=495000 after start: busy=1 st=2 a=fffe
+conn_matrix = 0010100000010100
+open_flags  = 0000
+expected    = 0010100000010100
+PASS
+sim/tb_xj_top.v:105: $finish called at 2645000 (1ps)
+
+sim_restored_exit=0
+
+
+--- 恢复后 git status --short ---
+ M doc/reports/2026-10-02-compile/g5_tb_inject.txt
+ M doc/reports/2026-10-02-compile/sim_g2.txt
+?? build/

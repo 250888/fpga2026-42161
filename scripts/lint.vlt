@@ -1,0 +1,41 @@
+// scripts/lint.vlt — Verilator 豁免（显式可审计，不关 -Wall）
+// 用法示例（被 lint 命令显式携带）：lint_off -rule UNUSED -file "rtl/*.v"
+//
+// 首版豁免（2026-10-02 任务4，verilator 5.050 / -Wall，22 条告警逐条人工审阅）：
+// 全部为位宽/风格/接口留白类告警，均不涉 RTL 功能语义；涉语义的告警不在此豁免。
+//
+// 实测备忘（Windows msys2 verilator 5.050）：
+// - 语句需在 `verilator_config 之后才被识别；注释内容不要以 verilator 一词开头
+//   （会被当作 pragma 注释解析）。
+// - -file 匹配的是文件名字符串整体（非路径子串），实测为相对反斜杠形式
+//   如 rtl\uart_tx.v；分隔符用通配符 ? 兼容 \ 与 / 两种平台写法。
+
+`verilator_config
+
+lint_off -rule WIDTHEXPAND -file "*rtl?uart_tx.v"
+lint_off -rule WIDTHEXPAND -file "*rtl?drive_controller.v"
+// 理由：uart_tx.v:42 `baud_cnt(16b) == DIV-1(参数32b)`、drive_controller.v:25
+//       `i(integer 32b) == scan_idx(4b)` —— 按 LRM 对窄位宽操作数零扩展后比较，
+//       语义正确，属常见参数比较写法，工具仅作风格提示。
+
+lint_off -rule WIDTHTRUNC -file "*rtl?topology_scanner.v"
+// 理由：topology_scanner.v:88 `open_flags[row]`，row 为 4 位下标提取 4 项数组
+//       （索引位宽需求 2 位）。FSM 的 S_NEXT 在 row == N_CH-1 处截止，row 恒在
+//       0..N_CH-1 内；且越界写按 LRM 被忽略，功能安全。
+
+// 2026-10-11 撤销：原 BLKSEQ 豁免（uart_packet_tx 旧 CRC 链阻塞赋值）随 §17
+// 重写失效 —— 新 always 块全部 '<='，BLKSEQ 不再触发，豁免连同过期理由删除。
+
+lint_off -rule UNUSEDSIGNAL -file "*rtl?xunji_core.v"
+lint_off -rule UNUSEDSIGNAL -file "*rtl?uart_packet_tx.v"
+lint_off -rule UNUSEDSIGNAL -file "*rtl?learn_gate.v"
+// 理由：xunji_core 的 uart_rx（接收方向预留）、sw[7:1] / btn[4:1]（仅用 bit0）、
+//       b_filt[15:4]（阶段1 只用低 4 通道）、uart_packet_tx 的 timestamp[63:8]
+//       （只送低 8 位）均为接口留白/位段未用，不是功能缺陷。
+//       learn_gate 只用 matrix_degree 的 all_one 汇总，逐行/列明细（a_eq1/a_gt1/
+//       a_zero/b_eq1/b_gt1/b_zero）不参与判定 —— 共享模块输出集合固定，属接口留白。
+
+lint_off -rule PROCASSINIT -file "*rtl?xj_rst_sync.v"
+// 理由：xj_rst_sync.v `reg [1:0] rst_pipe = 2'b00;` 声明初值且 always 内异步复位
+//       再赋值 —— FPGA GSR 上电初值 + 异步复位双保险的常规写法（V1.9 §4.2 P030
+//       参考实现），工具提示属风格建议。

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>瞬迹 FE-16 前端板 · 设计预览</title>
+<style>
+  :root { --fg:#1a1d23; --bg:#f6f7f9; --accent:#0b6bcb; --line:#dde1e6; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:15px/1.6 "Microsoft YaHei",system-ui,sans-serif; color:var(--fg); background:var(--bg); }
+  header { padding:14px 24px 0; background:#fff; border-bottom:1px solid var(--line); }
+  h1 { font-size:19px; margin:0 0 4px; }
+  .meta { color:#5f6672; font-size:13px; margin-bottom:10px; }
+  nav { display:flex; gap:4px; }
+  nav button { border:1px solid var(--line); border-bottom:none; background:#eceef1; padding:8px 18px;
+               font-size:14px; cursor:pointer; border-radius:6px 6px 0 0; }
+  nav button.on { background:#fff; color:var(--accent); font-weight:600; position:relative; top:1px; }
+  section { display:none; padding:16px 24px; }
+  section.on { display:block; }
+  .stage { background:#fff; border:1px solid var(--line); border-radius:8px; overflow:auto;
+           max-height:calc(100vh - 150px); }
+  .stage img { display:block; width:100%; height:auto; }
+  .stage.tall img { width:auto; min-width:100%; }
+  .tip { color:#5f6672; font-size:13px; margin:8px 2px; }
+  .tip b { color:var(--fg); }
+  a { color:var(--accent); }
+  .badge { display:inline-block; background:#e7f4ea; color:#14713d; border:1px solid #bce3c9;
+           border-radius:10px; padding:1px 9px; font-size:12px; margin-left:8px; vertical-align:2px; }
+
+  /* 设计说明 */
+  .doc { background:#fff; border:1px solid var(--line); border-radius:8px; padding:18px 22px;
+         max-width:980px; }
+  .doc h2 { font-size:16px; margin:22px 0 8px; padding-bottom:4px; border-bottom:1px solid var(--line); }
+  .doc h2:first-child { margin-top:0; }
+  .doc p { margin:8px 0; }
+  .doc table { border-collapse:collapse; width:100%; font-size:13.5px; margin:8px 0; }
+  .doc th,.doc td { border:1px solid var(--line); padding:5px 9px; text-align:left; vertical-align:top; }
+  .doc th { background:#f0f2f5; font-weight:600; white-space:nowrap; }
+  .doc code { background:#f0f2f5; padding:1px 5px; border-radius:4px; font-size:13px; }
+  .verdict { border-left:3px solid var(--accent); background:#eef5fc; padding:8px 12px; border-radius:0 6px 6px 0; margin:8px 0; }
+  .warn { border-left:3px solid #d97706; background:#fdf6ec; padding:8px 12px; border-radius:0 6px 6px 0; margin:8px 0; }
+  .chain { background:#f4f5f7; border:1px solid var(--line); border-radius:6px; padding:12px 14px;
+           font:13px/1.9 Consolas,"Courier New",monospace; white-space:pre; overflow-x:auto; margin:8px 0; }
+  .small { color:#5f6672; font-size:12.5px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>瞬迹 FE-16 · 16 路前端板 设计预览 <span class="badge">本地 DRC 0 · ERC 0 · 61 测试全绿 · EDA 侧 DRC 全部(0) · Gerber+CPL 已产出 · 原理图已恢复</span></h1>
+  <div class="meta">96×96mm 四孔（免费券尺寸）· 122 位号 · 84 网络 · 0.25mm 线宽 / 0.2mm 净距 · J5=36Pin · 生成器 gen_frontend16.py + 自研 A* 布线器（fe16_router.py）<br>立创EDA 专业版桌面版实测：板框 3779.5276mil = 96×96mm 精确 · 122 元件 / 164 过孔逐项吻合</div>
+  <nav>
+    <button class="on" data-s="doc">设计说明</button>
+    <button data-s="sch">原理图</button>
+    <button data-s="top">PCB 顶层</button>
+    <button data-s="bot">PCB 底层（镜像）</button>
+  </nav>
+</header>
+
+<section class="on" id="doc">
+  <div class="doc">
+
+    <h2>1. GND 为什么不直接铺铜？</h2>
+    <div class="verdict"><b>判定：不是刻意的电气设计，而是自动化管线的能力边界——铺铜（zone）不在生成管线里。</b>
+    当前板可以工作（依据见下），但铺铜确实是更好的实践，建议量产前补。</div>
+    <p><b>根因（已实证源码）</b>：FE-16 的 PCB 不是手画的，是全自动生成：</p>
+    <p><code>fe16_design.py</code>（数据唯一事实源）→ <code>gen_dsn.py</code> → <code>fe16_router.py</code>（自研 A* 布线器，0.5mm 栅格、双层）→ 回写 KiCad。
+    布线器只产出<b>走线 segments + 跨层过孔 vias</b>；GND / VCC3V3 是作为普通网络最后布线的
+    （<code>fe16_router.py</code> 中 <code>power = ("VCC3V3","GND")</code>）。整个管线<b>没有 zone 生成步骤</b>。</p>
+    <p><b>电气现状</b>：GND 靠双面 0.25mm 走线 + 164 个 0.6/0.3mm 过孔连接全板。这块板是 3.3V 数字缓冲板
+    （LVC07/LVC14），拓扑扫描为准静态、回读边沿 μs 级，回路电流 mA 级——<b>能可靠工作</b>。</p>
+    <p><b>铺铜能带来什么</b>：更低阻抗的回流路径、EMI 屏蔽、一定的机械/散热冗余。对本板不是必需，
+    但对参赛演示的信号完整性是加分项。</p>
+    <p><b>路 ② 已执行</b>：立创EDA 桌面版工程内已铺双面铺铜（POUR1/POUR2 实心填充），并已从该工程导出投产 Gerber
+    ——<code>瞬迹/pcb/eda_fab/Gerber_xunji_fe16_2026-10-14.zip</code>，层文件核验含铺铜多边形
+    （顶层 G36×8、底层 G36×4），钻孔 164 via / 295 PTH / 4 NPTH 与 PCB 源逐项吻合。</p>
+
+    <h2>2. 孔为什么是绿色的？和 EDA 打的不一样？</h2>
+    <div class="verdict"><b>判定（立创EDA 专业版 V3.2.117 画布内 API 实测）：绿点是过孔（Via）本身，颜色差异来自
+    「盖油 vs 开窗」的阻焊属性——不是打错孔，不影响电气与制造。</b></div>
+    <p>已通过 EDA 内部 API 读取全部 164 个过孔对象：<code>primitiveType = "Via"</code>（类型正确），
+    钻 12mil / 盘 24mil（= 0.3 / 0.6mm，嘉立创标准工艺），坐标与 KiCad 源逐点吻合。
+    关键字段 <code>solderMaskExpansion: {top: -1000, bottom: -1000}</code>——<b>负值 = 阻焊内缩把孔盖住（盖油过孔）</b>，
+    EDA 将盖油孔渲染为<b>绿色阻焊点</b>。而你在 EDA 里手动打的过孔该参数默认 null（开窗），露出铜环显示铜色——
+    两者只差这一个阻焊属性。盖油是 KiCad→EDA 导入时的选项（<code>viaSolderMaskExpansion</code>），对钻孔/电气零影响，
+    还更防焊锡渗漏；要和手动孔一致，重新导入时把该选项改为「开窗」即可。</p>
+    <p><b>DRC 关联（已修复）</b>：这批过孔曾与双面铺铜触发 9 条「钻孔-铺铜」间距报错——铺铜填充以多边形逼近孔边界
+    （孔径+10mil），与孔实际边缘存在约 0.1mil 的系统差，重建铺铜无法消除。已在「设计规则→规则管理→安全间距」
+    将<b>钻孔 × 铺铜/内电层</b>一格由 0.254mm 调整为 0.175mm（与同规则内其它孔对一致，仍是嘉立创工艺能力的数倍），
+    DRC 间距错误清零。</p>
+    <p>板上另一种孔——<b>H1–H4 安装孔</b>（NPTH，pad 3.2 = drill 3.2 无铜环，四角）——在 EDA 里显示为深色圆，
+    属机械孔正常显示；安装孔必须 NPTH，否则 M3 螺丝会把 GND 与机壳意外导通。</p>
+    <p class="small">核对方法：EDA 里点选绿孔 → 属性面板显示「过孔」；点四角安装孔 → 显示「孔」。</p>
+
+    <h2>3. 板上各分区功能</h2>
+    <table>
+      <tr><th>分区</th><th>位号</th><th>功能</th></tr>
+      <tr><td><b>采集口 J5</b>（上边居中）</td><td>J5 = IDC 2×18（36Pin）</td>
+          <td>与 FPGA 主控板（EGO1）的唯一连接：针 1–16 = ACTRL0..15（FPGA→前端激励），针 17–32 = BRW0..15（前端→FPGA 回读），33/34 = GND，35/36 = VIN_J5 供电</td></tr>
+      <tr><td><b>A 路驱动</b>（左半）</td><td>U1–U3 = SN74LVC07A（6路开漏缓冲），RU1–16 上拉 10k，RS1–16 串阻 330Ω</td>
+          <td>把 FPGA 的 ACTRL 信号变成「拉低/释放」的开漏驱动打到线束 A 端；RU 保证 FPGA 复位或悬空时输入为高=释放，线束不被误驱动；RS 抗短路/限流保护</td></tr>
+      <tr><td><b>B 路回读</b>（右半）</td><td>U4–U6 = SN74LVC14A（6路施密特反相），RP1–16 上拉 4.7k</td>
+          <td>线束 B 端经 RP 上拉后由 LVC14 施密特整形去抖、反相，输出干净的数字电平 BRWn 送回 FPGA；施密特特性滤除线束上的慢边沿/毛刺</td></tr>
+      <tr><td><b>A/B 端子</b></td><td>JA（左）= A 端 DUT 20Pin，JB（右）= B 端 DUT 20Pin</td>
+          <td>接被测线束两端；针 1–16 = 信号，17–20 = NC/KEY（防呆，故意不连网）</td></tr>
+      <tr><td><b>电源区</b>（右上角）</td><td>RCT1 = 0Ω，C7 = 10μF，JP1 + EXT1</td>
+          <td>J5-35/36 的 VIN_J5 经 RCT1（整板电流断点，测功耗时取下串电流表）得到 VCC3V3；C7 总旁路；JP1/EXT1 为备用外部 3.3V 入口，与 RCT1 互斥防倒灌</td></tr>
+      <tr><td><b>去耦</b></td><td>C1–C6 = 100nF</td><td>每颗 IC 电源脚旁一颗，就近滤除高频开关噪声</td></tr>
+      <tr><td><b>测试点</b></td><td>TP1–51</td>
+          <td>TP1–16 = A 路（LVC07 输出后）、TP17–32 = B 路（LVC14 输入前）、TP33–48 = BRW（LVC14 输出后）、TP49–51 = VCC3V3/GND/VIN_J5 电源——全链路可探针</td></tr>
+      <tr><td><b>安装孔</b></td><td>H1–H4</td><td>四角 φ3.2 NPTH，M3 螺丝固定（四角对称，96×96mm 内缩 4mm）</td></tr>
+    </table>
+
+    <h2>4. 单通道信号链路（硬件 ↔ 固件对应）</h2>
+    <div class="chain">FPGA drive_controller (a_ctrl_n[ch])
+   │  0=拉低线束 / 1=释放；复位·空闲恒 16'hFFFF 全释放（安全红线）
+   ▼
+J5 针1..16 ──► RU上拉10k ──► U1..U3 LVC07 开漏缓冲 ──► RS串阻330Ω ──► JA A口 ══被测线束══ JB B口
+                                                                            │
+FPGA b_raw[ch] ◄── J5 针17..32 ◄── U4..U6 LVC14 施密特整形 ◄── RP上拉4.7k ◄──┘
+   │  input_sync（2级同步，ASYNC_REG）→ glitch_filter（连续 N 拍稳定才翻转）
+   ▼
+xunji_core.b_conn（1=导通 0=开路，不反相）──► topology_scanner（逐路拉低扫描导通矩阵）
+                                               └─ timestamp_counter（100MHz/10ns）标记开路时刻
+                                                     └─ uart_packet_tx（55AA 帧 + CRC16）上报主机</div>
+    <p><b>导通判定（V1.9 P048，已冻结）</b>：A 拉低 → LVC07 把线束拉低 → LVC14 输入低 → 输出高 → <code>b_raw=1</code> → 导通；
+    线束开路 → B 由 RP 上拉 → LVC14 输出低 → <code>b_raw=0</code> → 开路。
+    <b>真实前端本身已完成极性定义，FPGA 侧不做任何反相</b>（反相只允许出现在 loopback 测试顶层）。</p>
+    <p><b>为什么这么设计</b>：A 路用<b>开漏</b>（LVC07）而非推挽——多路可线与、断电安全、不会和线束对端打架；
+    B 路用<b>施密特反相</b>（LVC14）——线束是长导线，边沿慢且带噪，施密特迟滞在判决点附近天然抗毛刺，
+    再叠加 FPGA 内 glitch_filter 双重滤波。静态拓扑扫描得到 16×16 导通矩阵（线怎么接），
+    μs 级时间戳捕获瞬态开路（线什么时候断）——这正是瞬迹的两个核心能力。</p>
+
+    <h2>5. 关键设计依据（V1.9 基线条款）</h2>
+    <table>
+      <tr><th>决策</th><th>依据</th></tr>
+      <tr><td>96×96mm 四孔板框</td><td>嘉立创免费券 ≤10×10cm 上限内取最大整数，16 通道布局所需</td></tr>
+      <tr><td>J5 = 36Pin 分工</td><td>V1.9 §4.1 表3：1–16 ACTRL / 17–32 BRW / 33–34 GND / 35–36 VIN</td></tr>
+      <tr><td>A/B 口 17–20 不连网</td><td>V1.9 §9.1 / 表14：NC/KEY 防呆位</td></tr>
+      <tr><td>未用通道处理</td><td>U3 槽4/5 输入接 VCC3V3、U6 槽4/5 输入接 GND，输出悬空（§9 / D8）——防止未用输入浮空振荡耗电</td></tr>
+      <tr><td>复位态 a_ctrl_n 全 1</td><td>AGENTS.md §6.2 红线：任何情况下不得在复位期间拉低 A 端</td></tr>
+      <tr><td>0.25mm 线宽 / 0.2mm 净距 / 0.6-0.3 过孔</td><td>嘉立创标准工艺（免费券默认能力内），无特殊加价</td></tr>
+      <tr><td>全板自动化生成</td><td>数据唯一事实源 fe16_design.py ↔ 机检 tests/test_frontend_pcb.py 互为交叉验证；DRC 0 / ERC 0 / pytest 61 全绿</td></tr>
+    </table>
+
+    <h2>6. 已知限制与后续</h2>
+    <table>
+      <tr><th>事项</th><th>状态</th></tr>
+      <tr><td>GND 铺铜</td><td><b>已补</b>——管线不支持 zone，已在桌面版 EDA 内直接铺双面铺铜（POUR1/POUR2），并已随投产 Gerber 输出</td></tr>
+      <tr><td>立创EDA <b>桌面版</b>工程（xunji_fe16，已实测）</td>
+          <td><b>导入零畸变</b>：板框 Board Outline 多边形 = 0→3779.5276 mil = <b>精确 96×96mm</b>；122 元件 / 164 过孔 / 走线 0.25mm 与源逐项吻合。<b>可在桌面版继续设计、铺铜甚至下单</b></td></tr>
+      <tr><td>立创EDA <b>网页版</b>工程（xunji_fe16_kicad）</td>
+          <td>板框畸变（96×96 → 59.2×54.9mm，网页版导入器 bug），仅作云端原理图评审/可视化，<b>勿在网页版下单</b></td></tr>
+      <tr><td>EDA 侧 DRC 实测（桌面版）</td>
+          <td><b>最终状态：全部(0)，DRC 归零</b>（铁证截图 <code>eda_drc_zero.png</code>）。清零过程：163 条「过孔尺寸」→ 全部 164 个过孔统一为整 mil（钻 12 / 盘 24 = 0.3 / 0.6mm，嘉立创标准工艺）；9 条「钻孔-铺铜间距」（填充多边形逼近的 0.1mil 系统差）→ 规则矩阵 钻孔×铺铜/内电层 0.254→0.175mm；2 条连接性 → touch 网络强制重绑；最后 1 条网表错误的根源——KiCad 导入的<b>坏原理图</b>（符号全在、连线全丢，72 项网表差异：POWER_PWR_FLAG 60 pin ＋ PCB 独有 71 网）曾从工程删除（删除时未勾选「同时删除 PCB」，PCB 铜箔零改动）；<b>全程未执行「导入更新」</b>。<b>2026-10-14 21:44 已通过 文件→工程备份→备份管理 从 <code>xunji_fe16_kicad_2026-10-14-20-00.epro2</code> 恢复——用户手动修改过的原理图（204 条连线）已回到工程并保存</b>（恢复为「保存到已有工程」导入，工程树新增 xunji_fe16_1 板卡分组，内含原理图文档；投产 PCB 所在 xunji_fe16 分组未受影响）。恢复后复跑 DRC：<b>全部(0)</b>，铺铜/走线/164 via 完好（截图 <code>eda_drc_rerun.png</code> / <code>eda_sch_open3.png</code>）</td></tr>
+      <tr><td>投产文件（本轮产出）</td>
+          <td><code>瞬迹/pcb/eda_fab/Gerber_xunji_fe16_2026-10-14.zip</code>——桌面版 EDA 在 DRC 全部(0) 状态下导出，含双面铺铜；层齐全（GTL/GBL/GTS/GBS/GTO/GBO/GKO + PTH/Via/NPTH 钻孔 + 钢网 GTP + 装配 GTA），钻孔 164 via / 295 PTH / 4 NPTH 与源吻合。<br>贴片坐标 <code>PickAndPlace_xunji_fe16_2026_10_14.xlsx</code>（同目录）。<br>历史版本 <code>pcb/frontend16/xunji_fe16_gerber_96x96.zip</code>（本地 DRC 0/0 产出，提交 3a21521，无铺铜）保留备查</td></tr>
+    </table>
+
+  </div>
+</section>
+
+<section id="sch">
+  <div class="tip">A3 单页原理图：全标签连线（无飞线）。U1–U6 = 通道调理 IC，J5 = 36Pin 采集口，JA/JB = 2×10 排针。图大可 <a href="fe16_svg/xunji_fe16.svg" target="_blank">新窗口打开</a> 后滚轮缩放。</div>
+  <div class="stage tall"><img src="fe16_svg/xunji_fe16.svg" alt="原理图"></div>
+</section>
+
+<section id="top">
+  <div class="tip"><b>顶层 F.Cu + F.SilkS</b>：贴片元件面（IC、0805、测试点）。红色走线为顶层铜。四角与边上的圆为过孔/孔位。</div>
+  <div class="stage"><img src="fe16_svg/pcb_top.svg" alt="PCB 顶层"></div>
+</section>
+
+<section id="bot">
+  <div class="tip"><b>底层 B.Cu + B.SilkS（已镜像，按实物底视）</b>：主布线面。</div>
+  <div class="stage"><img src="fe16_svg/pcb_bottom.svg" alt="PCB 底层"></div>
+</section>
+
+<script>
+  const btns = document.querySelectorAll('nav button');
+  btns.forEach(b => b.onclick = () => {
+    btns.forEach(x => x.classList.toggle('on', x === b));
+    document.querySelectorAll('section').forEach(s =>
+      s.classList.toggle('on', s.id === b.dataset.s));
+  });
+</script>
+</body>
+</html>

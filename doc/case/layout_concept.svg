@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="447" height="707" viewBox="0 0 447 707">
+<style>
+ .h1 { font:600 15px "Segoe UI","Microsoft YaHei",sans-serif; fill:#dbe3ec; }
+ .lbl { font:600 13px "Segoe UI","Microsoft YaHei",sans-serif; fill:#e6edf5; text-anchor:middle; }
+ .sub { font:11px "Segoe UI","Microsoft YaHei",sans-serif; fill:#8fa3ba; text-anchor:middle; }
+ .dim { font:11px Consolas,monospace; fill:#9fb0c4; text-anchor:middle; }
+ .outer { fill:none; stroke:#6b7a8f; stroke-width:2; }
+ .cavity { fill:#121821; stroke:#2a3646; stroke-width:1; stroke-dasharray:5 3; }
+ .boardEgo { fill:#1b2f4d; stroke:#4f8fd0; stroke-width:1.6; stroke-dasharray:7 4; }
+ .boardFe { fill:#1d4d33; stroke:#3fa06a; stroke-width:1.6; }
+ .conn { fill:#3a4757; stroke:#8695a8; stroke-width:1; }
+ .ribbon { fill:none; stroke:#c98a4b; stroke-width:7; opacity:.75; }
+ .dut { fill:none; stroke:#d9534f; stroke-width:5; opacity:.8; stroke-dasharray:10 5; }
+ .cut { fill:#0b0f14; stroke:#e06c75; stroke-width:1.4; stroke-dasharray:6 3; }
+ .dimline { stroke:#55627a; stroke-width:1; }
+</style>
+<rect width="447" height="707" fill="#0e1319"/>
+<text x="26" y="27" class="h1">瞬迹 · 整机外壳布局（概念图 · mm）</text>
+<rect x="40.0" y="40.0" width="367.4" height="627.0" class="outer"/>
+<rect x="45.5" y="45.5" width="356.4" height="616.0" class="cavity"/>
+<rect x="58.7" y="58.7" width="330.0" height="220.0" class="boardEgo"/>
+<text x="223.7" y="164.7" class="lbl">EGO1（待实测）</text>
+<text x="223.7" y="178.7" class="sub">Artix-7 XC7A35T · Type-C 供电 · UART</text>
+<rect x="118.1" y="331.5" width="211.2" height="211.2" class="boardFe"/>
+<text x="223.7" y="433.1" class="lbl">FE-16  96 × 96</text>
+<text x="223.7" y="447.1" class="sub">16 通道前端 · A/B/回读 三点观测</text>
+<rect x="176.2" y="326.2" width="95.0" height="5.3" class="conn"/>
+<text x="223.7" y="321.6" class="sub">J5 2×18</text>
+<rect x="112.8" y="379.9" width="5.3" height="50.3" class="conn"/>
+<rect x="329.3" y="379.9" width="5.3" height="50.3" class="conn"/>
+<text x="107.1" y="406.3" class="sub" text-anchor="end">JA</text>
+<text x="340.3" y="406.3" class="sub" text-anchor="start">JB</text>
+<path d="M 189.4 331.5 C 189.4 305.1, 197.3 285.3, 197.3 278.7" class="ribbon"/>
+<text x="289.7" y="307.7" class="sub">2×18 排线 · EGO1 J5 → FE-16 J5</text>
+<path d="M 115.9 404.1 C 104.9 631.6, 148.9 600.8, 223.7 600.8 S 298.5 631.6, 331.5 404.1" class="dut"/>
+<text x="223.7" y="616.2" class="sub">DUT 线束回路（1:1 / 拔线 / 交叉 / 短接）</text>
+<rect x="45.5" y="661.5" width="356.4" height="5.5" class="cut"/>
+<text x="223.7" y="675.8" class="dim">前侧开口：DUT 线束引出 + 拍摄取景</text>
+<line x1="40.0" y1="675.0" x2="407.4" y2="675.0" class="dimline"/>
+<text x="223.7" y="681.0" class="dim">外框宽 167.0</text>
+<line x1="415.4" y1="40.0" x2="415.4" y2="667.0" class="dimline"/>
+<text x="422.4" y="353.5" class="dim">外框深 285.0</text>
+</svg>

@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>瞬迹 · 3D 物理接线与测试电路</title>
+<style>
+  :root{
+    --bg:#090b0f; --panel:#11161d; --line:#1d2733; --txt:#d9e0e8; --muted:#7d8a9b;
+    --dim:#53617a; --cu:#c98a4b; --cu2:#e6b877; --cyan:#4cc9c0; --green:#56b870;
+    --mono:"JetBrains Mono",Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--txt);
+    font:15px/1.6 system-ui,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+  .wrap{max-width:1220px;margin:0 auto;padding:0 24px}
+  header{padding:40px 0 18px}
+  .eyebrow{font:600 11px/1 var(--mono);letter-spacing:.22em;color:var(--cu);
+    text-transform:uppercase;margin-bottom:12px}
+  h1{margin:0;font-size:30px;letter-spacing:-.01em}
+  .lead{color:var(--muted);margin:10px 0 0;max-width:760px;font-size:14px}
+
+  .stage{position:relative;margin:22px 0 6px;border:1px solid var(--line);
+    border-radius:14px;overflow:hidden;background:
+      radial-gradient(700px 380px at 50% 20%,#10161e 0%,#0a0e13 70%)}
+  .stage svg{display:block;width:100%;height:auto;touch-action:none;cursor:grab}
+  .stage svg:active{cursor:grabbing}
+  .hint{position:absolute;left:16px;top:12px;font:600 10.5px/1.5 var(--mono);
+    letter-spacing:.08em;color:var(--dim);pointer-events:none}
+  .hint b{color:var(--cu2)}
+  .reset{position:absolute;right:14px;top:12px;font:600 10.5px/1 var(--mono);
+    letter-spacing:.06em;background:var(--panel);color:var(--muted);
+    border:1px solid var(--line);border-radius:7px;padding:8px 12px;cursor:pointer}
+  .reset:hover{color:var(--txt);border-color:var(--dim)}
+
+  .labels{position:absolute;inset:0;pointer-events:none}
+  .lab{position:absolute;transform:translate(-50%,-50%);
+    font:600 10.5px/1.35 var(--mono);letter-spacing:.02em;color:var(--txt);
+    background:rgba(10,14,19,.82);border:1px solid var(--line);border-radius:6px;
+    padding:4px 7px;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.4)}
+  .lab small{display:block;font-weight:400;color:var(--muted);font-size:9.5px;letter-spacing:.02em}
+  .lab.k{color:var(--cu2);border-color:rgba(201,138,75,.45)}
+  .lab.c{color:var(--cyan);border-color:rgba(76,201,192,.4)}
+  .lab.s{color:var(--green);border-color:rgba(86,184,112,.4)}
+
+  .legend{display:grid;grid-template-columns:1.15fr 1fr;gap:16px;margin:20px 0 10px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+  .card h2{margin:0 0 12px;font-size:12px;letter-spacing:.16em;color:var(--dim);
+    font-family:var(--mono);text-transform:uppercase}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  td{padding:7px 0;border-bottom:1px solid rgba(29,39,51,.7);vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  td:first-child{color:var(--cu2);font-family:var(--mono);font-size:11.5px;width:34%;
+    padding-right:12px}
+  td:last-child{color:var(--muted)}
+  ul{margin:0;padding-left:18px;color:var(--muted);font-size:12.5px}
+  li{margin:7px 0}
+  li b{color:var(--txt);font-weight:600}
+  code{font-family:var(--mono);color:var(--cu2);font-size:11.5px}
+  footer{padding:26px 0 50px;color:var(--dim);font:11.5px/1.7 var(--mono)}
+  @media(max-width:900px){.legend{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">瞬迹 / XunJi · Test Bench</div>
+    <h1>3D 物理接线与测试电路</h1>
+    <p class="lead">从左到右：EGO1 主控 → 2×18 排线 → FE-16 前端板 → 被测线束（串 CD4066 故障源）→ 回板。
+      示波器三只探头分别夹在驱动 / 线束 / 整形回读三个测试点上。拖动可旋转。</p>
+  </header>
+
+  <div class="stage" id="stage">
+    <svg id="svg" viewBox="0 0 1200 620" preserveAspectRatio="xMidYMid meet">
+      <g id="world"></g>
+    </svg>
+    <div class="hint"><b>拖动</b> 旋转 · <b>滚轮</b> 缩放</div>
+    <button class="reset" id="reset">重置视角</button>
+    <div class="labels" id="labels"></div>
+  </div>
+
+  <div class="legend">
+    <div class="card">
+      <h2>连接关系</h2>
+      <table>
+        <tr><td>EGO1 J5 ↔ FE-16 J5</td><td>2×18 排线，1:1 直连；1–16 驱动、17–32 回读、33/34 地、35/36 3.3V（板子供电也走这里）</td></tr>
+        <tr><td>FE-16 JA</td><td>被测线束 A 端（20P，1–16 信号）</td></tr>
+        <tr><td>FE-16 JB</td><td>被测线束 B 端（20P，1–16 信号）</td></tr>
+        <tr><td>线束中间</td><td>CD4066 四路模拟开关 ×4，串入 16 路，µs 级开路注入</td></tr>
+        <tr><td>脉冲源</td><td>驱动 CD4066 控制脚，产生可调宽度的断开脉冲</td></tr>
+        <tr><td>示波器 CH1/2/3</td><td>三点观测：TP(1+n) 驱动 → TP(17+n) 线束 → TP(33+n) 整形回读</td></tr>
+        <tr><td>USB</td><td>EGO1 供电 + 烧录 + 串口</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h2>测试电路要点</h2>
+      <ul>
+        <li><b>供电只有一路</b>：EGO1 经 J5 的 35/36 给 FE-16 供 3.3V，不需要第二电源。</li>
+        <li><b>探头地</b>先接 TP50（GND），再夹信号点，否则共地噪声会淹掉 µs 脉冲。</li>
+        <li><b>三点同步</b>：示波器用同一触发源（驱动沿），才能对齐"驱动—线束—回读"的时序。</li>
+        <li><b>CD4066 串在</b>线束与 JA/JB 之间，控制脚由脉冲源驱动；断开时线束真正悬空，等效开路。</li>
+        <li><b>先静态后动态</b>：先用参考线束跑通 PASS，再接故障模块做 µs 断线。</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    示意图按真实布局比例绘制（EGO1 150×110mm / FE-16 96×96mm），非精确机械图。
+  </footer>
+</div>
+
+<script>
+(function(){
+  const svg = document.getElementById('svg');
+  const g   = document.getElementById('world');
+  const stage = document.getElementById('stage');
+  const labelsBox = document.getElementById('labels');
+
+  // ---------- 3D 数学 ----------
+  const sub=(a,b)=>[a[0]-b[0],a[1]-b[1],a[2]-b[2]];
+  const cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
+  const dot=(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2];
+  const norm=a=>{const l=Math.hypot(a[0],a[1],a[2])||1;return [a[0]/l,a[1]/l,a[2]/l];};
+  const shade=(c,f)=>'rgb('+c.map(v=>Math.max(0,Math.min(255,Math.round(v*f)))).join(',')+')';
+
+  const LIGHT = norm([0.42,-0.30,0.86]);
+  const CX = 600, CY = 300;
+  let az = 0.62, el = 0.55, zoom = 1.0;
+  const BASE_SCALE = 2.72;
+
+  function proj(p){
+    const ca=Math.cos(az), sa=Math.sin(az);
+    const X = p[0]*ca - p[1]*sa;
+    const Y = p[0]*sa + p[1]*ca;
+    const s = BASE_SCALE*zoom;
+    return {
+      x: CX + X*s,
+      y: CY - (Y*Math.sin(el) - p[2]*Math.cos(el))*s,
+      d: Y*Math.cos(el) + p[2]*Math.sin(el)
+    };
+  }
+
+  // ---------- 图元 ----------
+  const PRIM = [];
+  function addFace(pts, rgb, opt){
+    const n = norm(cross(sub(pts[1],pts[0]), sub(pts[2],pts[0])));
+    const sh = 0.52 + 0.48*Math.abs(dot(n, LIGHT));
+    PRIM.push({t:'f', pts, fill: shade(rgb, sh),
+               stroke: shade(rgb, sh*0.62), w: opt&&opt.w||0.6});
+  }
+  function box(c, s, rgb, opt){
+    const [x,y,z]=c, [hx,hy,hz]=[s[0]/2,s[1]/2,s[2]/2];
+    const v=[
+      [x-hx,y-hy,z-hz],[x+hx,y-hy,z-hz],[x+hx,y+hy,z-hz],[x-hx,y+hy,z-hz],
+      [x-hx,y-hy,z+hz],[x+hx,y-hy,z+hz],[x+hx,y+hy,z+hz],[x-hx,y+hy,z+hz]];
+    const F=[[0,1,2,3],[7,6,5,4],[0,4,5,1],[1,5,6,2],[2,6,7,3],[3,7,4,0]];
+    for(const f of F) addFace(f.map(i=>v[i]), rgb, opt);
+  }
+  function line(pts, color, w, opts){
+    PRIM.push({t:'l', pts, stroke:color, w:w||2, dash:opts&&opts.dash});
+  }
+  // 扁平排线：沿路径偏移出 4 条平行线
+  function ribbon(pts, colors, w, spread){
+    const N = colors.length;
+    for(let i=0;i<N;i++){
+      const off = (i-(N-1)/2)*spread;
+      const q = pts.map((p,k)=>{
+        // 用路径切线的法向做水平偏移（简化为 +z 方向分层，视觉上像排线）
+        return [p[0], p[1] + off*0.0, p[2] + off];
+      });
+      line(q, colors[i], w);
+    }
+  }
+
+  // ---------- 场景 ----------
+  // 地面网格
+  for(let x=-240;x<=260;x+=40) line([[x,-150,-1],[x,110,-1]], 'rgba(120,150,190,.07)', 1);
+  for(let y=-150;y<=110;y+=40) line([[-240,y,-1],[260,y,-1]], 'rgba(120,150,190,.07)', 1);
+
+  // === EGO1 ===
+  box([-95,0,1.5],[150,110,3],[34,120,64]);                 // 板
+  box([-95,10,4.2],[26,26,1.6],[46,46,52]);                  // FPGA
+  box([-50,32,4.6],[46,6,2.6],[52,52,58]);                   // J5 2×18
+  box([-168,0,4.2],[9,11,2.2],[150,150,158]);                // USB
+  for(let i=0;i<4;i++) box([-120+i*14,-48,3.4],[3,3,0.8],[210,180,90]); // LED
+
+  // === FE-16 ===
+  box([55,0,0.8],[96,96,1.6],[34,44,60]);                    // 板
+  const lx = v => 55 + (v-48);            // 设计坐标 → 世界
+  const ly = v => (v-48);
+  const IC = [[36,30],[36,62],[44,67],[60,30],[60,62],[52,67]];
+  for(const [a,b] of IC) box([lx(a),ly(b),2.4],[9,13,1.6],[52,52,58]);
+  box([lx(48.5),ly(7.75),2.6],[44,4,2.0],[54,54,60]);        // J5
+  box([lx(9),ly(33.5),2.6],[4,23,2.0],[54,54,60]);           // JA
+  box([lx(87),ly(33.5),2.6],[4,23,2.0],[54,54,60]);          // JB
+  // 测试点两排
+  box([lx(48),ly(77),1.9],[60,2.2,0.9],[120,110,90]);
+  box([lx(48),ly(83),1.9],[60,2.2,0.9],[120,110,90]);
+  // 电阻列（简化成 6 条窄块）
+  for(const xx of [16,23,41,47,68,74]) box([lx(xx),ly(40),2.6],[2.4,40,2.2],[150,120,90]);
+
+  // === 2×18 排线 EGO1↔FE-16 ===
+  const ribbonPath = [
+    [-40,34,5.5],[-22,44,8],[0,28,10],[26,-6,10],[44,-30,8],[55,-38,4]
+  ];
+  ribbon(ribbonPath, ['#b03a2e','#d08a2b','#c9c24a','#3f7d4a'], 5.5, 2.6);
+  line(ribbonPath, 'rgba(255,255,255,.18)', 1.2);
+
+  // === 被测线束：JA → 故障模块 → JB ===
+  const h1 = [[lx(9),ly(33.5),4.4],[lx(6),ly(55),3.2],[24,-62,2.6],[36,-78,4.6]];
+  const h2 = [[74,-78,4.6],[86,-62,2.6],[lx(101),ly(55),3.2],[lx(87),ly(33.5),4.4]];
+  ribbon(h1, ['#8a94a6','#9aa4b6','#aab4c6'], 2.0, 1.6);
+  ribbon(h2, ['#8a94a6','#9aa4b6','#aab4c6'], 2.0, 1.6);
+
+  // === CD4066 故障源 ===
+  box([55,-80,1.5],[44,24,3],[42,118,72]);
+  box([55,-80,4.2],[14,9,1.4],[46,46,52]);                    // 芯片
+  for(let i=0;i<4;i++) box([45+i*7,-92,3.2],[1.6,4,1.6],[200,170,90]); // 控制脚
+
+  // === 脉冲源（Arduino） ===
+  box([55,-118,3],[30,20,6],[38,70,140]);
+  box([55,-118,6.4],[16,8,1.2],[52,52,58]);
+  for(let i=0;i<4;i++) line([[45+i*7,-104,3.2],[45+i*7,-92,3.2]], '#d9a441', 2);
+
+  // === 示波器（屏幕朝 +Y＝面向操作者；探头从左侧去板子）===
+  box([198,26,0],[76,64,56],[72,76,84]);                      // 机身
+  box([198,58.6,30],[56,1.6,34],[92,96,106]);                 // 屏幕边框（+Y 面）
+  box([198,59.4,30],[48,1.0,26],[10,14,20]);                  // 屏幕
+  // 屏幕波形
+  const scr = [];
+  for(let i=0;i<=32;i++){
+    const x=177+i*1.31;
+    const v = (i>11&&i<15)?-8:(i>15?4:9);
+    scr.push([x,59.9,30+v*0.6]);
+  }
+  line(scr, '#4cc9c0', 2.2);
+  for(let i=0;i<=4;i++) line([[177+i*10.5,59.9,18],[177+i*10.5,59.9,42]],'rgba(76,201,192,.12)',1);
+  for(let i=0;i<=3;i++) line([[177,59.9,18+i*8],[219,59.9,18+i*8]],'rgba(76,201,192,.12)',1);
+  // 三只探头：示波器左侧 → FE-16 测试点
+  const probes = [
+    [[161,20,30],[110,-30,12],[40,-6,4],[lx(18),ly(77),2.4]],
+    [[161,26,34],[116,-22,14],[60,-10,4],[lx(28),ly(77),2.4]],
+    [[161,32,38],[122,-12,18],[80,-14,4],[lx(38),ly(83),2.4]]
+  ];
+  const pcol = ['#4cc9c0','#e6b877','#d8635f'];
+  probes.forEach((p,i)=>{
+    line(p, pcol[i], 2.6);
+    // 探头夹
+    const e=p[p.length-1];
+    box([e[0],e[1],e[2]+2],[3,3,3],[210,210,210]);
+  });
+
+  // === USB 线 ===
+  line([[-172,0,4.4],[-200,-6,5.5],[-228,-12,5.5]], '#5a6478', 3.2);
+
+  // ---------- 标签 ----------
+  const LABELS = [
+    {p:[-118,-58,6], t:'EGO1 · Artix-7', s:'a_ctrl_n / b_raw 主控', c:'k'},
+    {p:[55,76,4],    t:'FE-16 前端板',   s:'96×96mm · 16 路', c:'k'},
+    {p:[2,46,24],    t:'2×18 排线',      s:'供电 + 16 驱动/回读', c:'c'},
+    {p:[-22,-84,6],  t:'被测线束',       s:'JA → JB · 16 芯', c:'k'},
+    {p:[98,-70,10],  t:'CD4066 故障源',  s:'µs 级开路注入', c:'s'},
+    {p:[55,-144,8],  t:'脉冲源',         s:'控制断开宽度', c:'s'},
+    {p:[198,64,66],  t:'示波器',         s:'三点观测', c:'c'},
+    {p:[-228,-14,10],t:'USB',            s:'供电/烧录/串口', c:'c'}
+  ];
+  const labEls = LABELS.map(L=>{
+    const d = document.createElement('div');
+    d.className = 'lab ' + (L.c||'');
+    d.innerHTML = L.t + '<small>' + L.s + '</small>';
+    labelsBox.appendChild(d);
+    return d;
+  });
+
+  // ---------- 渲染 ----------
+  function render(){
+    const items = PRIM.map(p=>{
+      const pr = p.pts.map(proj);
+      let d = 0; for(const q of pr) d += q.d; d /= pr.length;
+      return {p, pr, d};
+    }).sort((a,b)=>a.d - b.d);
+
+    let s = '';
+    for(const it of items){
+      const pts = it.pr.map(q=>q.x.toFixed(1)+','+q.y.toFixed(1)).join(' ');
+      if(it.p.t==='f'){
+        s += '<polygon points="'+pts+'" fill="'+it.p.fill+'" stroke="'+it.p.stroke+
+             '" stroke-width="'+it.p.w+'"/>';
+      }else{
+        s += '<polyline points="'+pts+'" fill="none" stroke="'+it.p.stroke+
+             '" stroke-width="'+it.p.w+'" stroke-linecap="round" stroke-linejoin="round"'+
+             (it.p.dash?' stroke-dasharray="'+it.p.dash+'"':'')+'/>';
+      }
+    }
+    g.innerHTML = s;
+
+    // 标签跟随
+    const rect = stage.getBoundingClientRect();
+    const vb = svg.viewBox.baseVal;
+    LABELS.forEach((L,i)=>{
+      const q = proj(L.p);
+      labEls[i].style.left = (q.x / vb.width * 100) + '%';
+      labEls[i].style.top  = (q.y / vb.height * 100) + '%';
+    });
+  }
+
+  // ---------- 交互 ----------
+  let drag = null;
+  svg.addEventListener('pointerdown', e=>{
+    drag = {x:e.clientX, y:e.clientY, az, el};
+    svg.setPointerCapture(e.pointerId);
+  });
+  svg.addEventListener('pointermove', e=>{
+    if(!drag) return;
+    az = drag.az - (e.clientX - drag.x) * 0.008;
+    el = Math.max(0.12, Math.min(1.35, drag.el + (e.clientY - drag.y) * 0.006));
+    render();
+  });
+  const end = ()=>{ drag = null; };
+  svg.addEventListener('pointerup', end);
+  svg.addEventListener('pointercancel', end);
+  svg.addEventListener('wheel', e=>{
+    e.preventDefault();
+    zoom = Math.max(0.6, Math.min(1.9, zoom * (e.deltaY > 0 ? 0.94 : 1.06)));
+    render();
+  }, {passive:false});
+
+  document.getElementById('reset').addEventListener('click', ()=>{
+    az = 0.62; el = 0.55; zoom = 1.0; render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

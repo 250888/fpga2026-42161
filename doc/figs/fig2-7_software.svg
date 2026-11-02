@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1640" height="900" viewBox="0 0 1640 900">
+
+<defs>
+  <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3.2"
+          orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L8,3.2 L0,6.4 z" fill="#333333"/>
+  </marker>
+  <marker id="ab" markerWidth="10" markerHeight="10" refX="8" refY="3.2"
+          orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L8,3.2 L0,6.4 z" fill="#1f4e79"/>
+  </marker>
+  <marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="3.2"
+          orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L8,3.2 L0,6.4 z" fill="#8b2e2e"/>
+  </marker>
+  <marker id="ap" markerWidth="10" markerHeight="10" refX="8" refY="3.2"
+          orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L8,3.2 L0,6.4 z" fill="#5b3f8c"/>
+  </marker>
+  <marker id="a4" markerWidth="10" markerHeight="10" refX="8" refY="3.2"
+          orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L8,3.2 L0,6.4 z" fill="#9a6b00"/>
+  </marker>
+  <marker id="s" markerWidth="10" markerHeight="10" refX="1" refY="3.2"
+          orient="auto" markerUnits="strokeWidth">
+    <path d="M8,0 L0,3.2 L8,6.4 z" fill="#333333"/>
+  </marker>
+</defs>
+
+<rect x="0" y="0" width="1640" height="900" rx="8" ry="8" fill="#ffffff" stroke="none" stroke-width="0"/>
+<rect x="40" y="84" width="1560" height="232" rx="12" ry="12" fill="#eef3f9" stroke="#1f4e79" stroke-width="2.2"/>
+<text x="64" y="118" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="17" fill="#1f4e79" text-anchor="start" font-weight="bold"><tspan x="64" dy="0">第一层  FPGA RTL（Verilog-2001 · 100 MHz 单时钟 · clock-enable 节拍）</tspan></text>
+<rect x="64" y="146" width="232" height="148" rx="8" ry="8" fill="#ffffff" stroke="#1f4e79" stroke-width="1.5"/>
+<text x="180.0" y="191.25" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="15" fill="#12314f" text-anchor="middle" font-weight="bold"><tspan x="180.0" dy="0">drive_controller</tspan></text>
+<text x="180.0" y="268" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="13" fill="#1f6f3f" text-anchor="middle" font-weight="normal"><tspan x="180.0" dy="0">开漏驱动</tspan></text>
+<rect x="320" y="146" width="232" height="148" rx="8" ry="8" fill="#ffffff" stroke="#1f4e79" stroke-width="1.5"/>
+<text x="436.0" y="191.25" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="15" fill="#12314f" text-anchor="middle" font-weight="bold"><tspan x="436.0" dy="0">topology_scanner</tspan></text>
+<text x="436.0" y="268" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="13" fill="#1f6f3f" text-anchor="middle" font-weight="normal"><tspan x="436.0" dy="0">扫描状态机</tspan></text>
+<rect x="576" y="146" width="232" height="148" rx="8" ry="8" fill="#ffffff" stroke="#1f4e79" stroke-width="1.5"/>
+<text x="692.0" y="180.375" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="15" fill="#12314f" text-anchor="middle" font-weight="bold"><tspan x="692.0" dy="0">glitch_filter</tspan><tspan x="692.0" dy="21.75">input_sync</tspan></text>
+<text x="692.0" y="268" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="13" fill="#1f6f3f" text-anchor="middle" font-weight="normal"><tspan x="692.0" dy="0">三级滤波</tspan></text>
+<rect x="832" y="146" width="232" height="148" rx="8" ry="8" fill="#ffffff" stroke="#1f4e79" stroke-width="1.5"/>
+<text x="948.0" y="180.375" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="15" fill="#12314f" text-anchor="middle" font-weight="bold"><tspan x="948.0" dy="0">matrix_degree</tspan><tspan x="948.0" dy="21.75">golden_compare</tspan></text>
+<text x="948.0" y="268" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="13" fill="#1f6f3f" text-anchor="middle" font-weight="normal"><tspan x="948.0" dy="0">度统计与分类</tspan></text>
+<rect x="1088" y="146" width="232" height="148" rx="8" ry="8" fill="#ffffff" stroke="#1f4e79" stroke-width="1.5"/>
+<text x="1204.0" y="191.25" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="15" fill="#12314f" text-anchor="middle" font-weight="bold"><tspan x="1204.0" dy="0">learn_gate</tspan></text>
+<text x="1204.0" y="268" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="13" fill="#1f6f3f" text-anchor="middle" font-weight="normal"><tspan x="1204.0" dy="0">参考矩阵锁存</tspan></text>
+<rect x="1344" y="146" width="232" height="148" rx="8" ry="8" fill="#ffffff" stroke="#1f4e79" stroke-width="1.5"/>
+<text x="1460.0" y="191.25" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="15" fill="#12314f" text-anchor="middle" font-weight="bold"><tspan x="1460.0" dy="0">uart_packet_tx</tspan></text>
+<text x="1460.0" y="268" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="13" fill="#1f6f3f" text-anchor="middle" font-weight="normal"><tspan x="1460.0" dy="0">48 B 帧组帧</tspan></text>
+<rect x="200" y="344" width="1240" height="96" rx="10" ry="10" fill="#fff8e1" stroke="#b8860b" stroke-width="2.6"/>
+<text x="820" y="379.6" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="16" fill="#7a5a00" text-anchor="middle" font-weight="bold"><tspan x="820" dy="0">唯一契约：48 字节定长帧  SOF 55AA | Ver | Type | Len | Seq | Payload(38 B) | CRC-16/CCITT-FALSE</tspan></text>
+<text x="820" y="418" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="14" fill="#7a5a00" text-anchor="middle" font-weight="normal"><tspan x="820" dy="0">两侧各自持有独立的黄金帧回归用例，任何一侧单方面改动都会被回归拦截</tspan></text>
+<rect x="40" y="470" width="1560" height="178" rx="12" ry="12" fill="#eff7f1" stroke="#1f6f3f" stroke-width="2.2"/>
+<text x="64" y="504" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="17" fill="#1f6f3f" text-anchor="start" font-weight="bold"><tspan x="64" dy="0">第二层  主机 Python 包 xunji（uv 管理 · pytest 84 项回归 · lint 0）</tspan></text>
+<rect x="64" y="528" width="360" height="100" rx="8" ry="8" fill="#ffffff" stroke="#1f6f3f" stroke-width="1.5"/>
+<text x="244.0" y="566" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="16" fill="#14472a" text-anchor="middle" font-weight="bold"><tspan x="244.0" dy="0">protocol.py</tspan></text>
+<text x="244.0" y="608.55" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="13" fill="#5a5a5a" text-anchor="middle" font-weight="normal"><tspan x="244.0" dy="0">帧编解码 / CRC16</tspan></text>
+<rect x="448" y="528" width="360" height="100" rx="8" ry="8" fill="#ffffff" stroke="#1f6f3f" stroke-width="1.5"/>
+<text x="628.0" y="566" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="16" fill="#14472a" text-anchor="middle" font-weight="bold"><tspan x="628.0" dy="0">cli.py · read</tspan></text>
+<text x="628.0" y="599.125" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="13" fill="#5a5a5a" text-anchor="middle" font-weight="normal"><tspan x="628.0" dy="0">SOF 搜索 · 定长切帧</tspan><tspan x="628.0" dy="18.849999999999998">CRC 校验 · 矩阵展开</tspan></text>
+<rect x="832" y="528" width="360" height="100" rx="8" ry="8" fill="#ffffff" stroke="#1f6f3f" stroke-width="1.5"/>
+<text x="1012.0" y="566" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="16" fill="#14472a" text-anchor="middle" font-weight="bold"><tspan x="1012.0" dy="0">cli.py · sim</tspan></text>
+<text x="1012.0" y="599.125" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="13" fill="#5a5a5a" text-anchor="middle" font-weight="normal"><tspan x="1012.0" dy="0">驱动 iverilog</tspan><tspan x="1012.0" dy="18.849999999999998">跑 6 个 testbench</tspan></text>
+<rect x="1216" y="528" width="360" height="100" rx="8" ry="8" fill="#ffffff" stroke="#1f6f3f" stroke-width="1.5"/>
+<text x="1396.0" y="566" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="16" fill="#14472a" text-anchor="middle" font-weight="bold"><tspan x="1396.0" dy="0">cli.py · lint</tspan></text>
+<text x="1396.0" y="608.55" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="13" fill="#5a5a5a" text-anchor="middle" font-weight="normal"><tspan x="1396.0" dy="0">RTL 风格检查</tspan></text>
+<rect x="40" y="688" width="1560" height="168" rx="12" ry="12" fill="#f4f0fa" stroke="#5b3f8c" stroke-width="2.2"/>
+<text x="64" y="722" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="17" fill="#5b3f8c" text-anchor="start" font-weight="bold"><tspan x="64" dy="0">第三层  浏览器上位机（单文件 HTML · 零安装 · Web Serial 直连 · 断线看门狗）</tspan></text>
+<rect x="64" y="744" width="360" height="92" rx="8" ry="8" fill="#ffffff" stroke="#5b3f8c" stroke-width="1.5"/>
+<text x="244.0" y="778" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="15" fill="#3b2765" text-anchor="middle" font-weight="bold"><tspan x="244.0" dy="0">串口适配层</tspan></text>
+<text x="244.0" y="812" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="13" fill="#5a5a5a" text-anchor="middle" font-weight="normal"><tspan x="244.0" dy="0">Web Serial / 自动重连</tspan></text>
+<rect x="448" y="744" width="360" height="92" rx="8" ry="8" fill="#ffffff" stroke="#5b3f8c" stroke-width="1.5"/>
+<text x="628.0" y="778" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="15" fill="#3b2765" text-anchor="middle" font-weight="bold"><tspan x="628.0" dy="0">16 路状态灯 + 矩阵网格</tspan></text>
+<text x="628.0" y="812" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="13" fill="#5a5a5a" text-anchor="middle" font-weight="normal"><tspan x="628.0" dy="0">非对角高亮</tspan></text>
+<rect x="832" y="744" width="360" height="92" rx="8" ry="8" fill="#ffffff" stroke="#5b3f8c" stroke-width="1.5"/>
+<text x="1012.0" y="778" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="15" fill="#3b2765" text-anchor="middle" font-weight="bold"><tspan x="1012.0" dy="0">判定码面板</tspan></text>
+<text x="1012.0" y="812" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="13" fill="#5a5a5a" text-anchor="middle" font-weight="normal"><tspan x="1012.0" dy="0">cls / open / stuck</tspan></text>
+<rect x="1216" y="744" width="360" height="92" rx="8" ry="8" fill="#ffffff" stroke="#5b3f8c" stroke-width="1.5"/>
+<text x="1396.0" y="778" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="15" fill="#3b2765" text-anchor="middle" font-weight="bold"><tspan x="1396.0" dy="0">实时连接数 + µs 面板</tspan></text>
+<text x="1396.0" y="812" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="13" fill="#5a5a5a" text-anchor="middle" font-weight="normal"><tspan x="1396.0" dy="0">历史条 / 瞬态捕获</tspan></text>
+<line x1="820" y1="316" x2="820" y2="344" stroke="#b8860b" stroke-width="2.4" marker-end="url(#a)" stroke-linecap="round"/>
+<line x1="820" y1="440" x2="820" y2="470" stroke="#b8860b" stroke-width="2.4" marker-end="url(#a)" stroke-linecap="round"/>
+<line x1="820" y1="648" x2="820" y2="688" stroke="#5b3f8c" stroke-width="2.2" marker-end="url(#ap)" stroke-linecap="round"/>
+<rect x="859.26" y="319.65" width="169.48000000000008" height="20.150000000000002" rx="4" fill="#ffffff" opacity="0.92"/><text x="944" y="332" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="13" fill="#7a5a00" text-anchor="middle" font-weight="normal"><tspan x="944" dy="0">48 B 帧（UART 115200）</tspan></text>
+<rect x="885.0" y="445.65" width="118.0" height="20.150000000000002" rx="4" fill="#ffffff" opacity="0.92"/><text x="944" y="458" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="13" fill="#7a5a00" text-anchor="middle" font-weight="normal"><tspan x="944" dy="0">解码后结构化字段</tspan></text>
+<rect x="872.52" y="657.65" width="142.96000000000004" height="20.150000000000002" rx="4" fill="#ffffff" opacity="0.92"/><text x="944" y="670" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="13" fill="#5b3f8c" text-anchor="middle" font-weight="normal"><tspan x="944" dy="0">事件回调 / DOM 更新</tspan></text>
+<text x="40" y="884" font-family="Microsoft YaHei, SimHei, Noto Sans CJK SC, sans-serif" font-size="13" fill="#5a5a5a" text-anchor="start" font-weight="normal"><tspan x="40" dy="0">说明：RTL 与主机之间只通过冻结的 48 字节帧结构耦合，彼此可独立开发与回归；上位机为零依赖单文件，现场免安装。</tspan></text>
+</svg>

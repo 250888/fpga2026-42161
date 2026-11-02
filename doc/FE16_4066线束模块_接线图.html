@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FE-16 · CD4066 动态线束模块接线图</title>
+<style>
+  :root{
+    --bg:#090b0f; --panel:#11161d; --line:#1d2733; --txt:#d9e0e8; --muted:#7d8a9b;
+    --dim:#53617a; --cu:#c98a4b; --cu2:#e6b877; --cyan:#4cc9c0; --green:#56b870;
+    --red:#d8635f; --amber:#d9a441;
+    --mono:"JetBrains Mono",Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--txt);
+    font:15px/1.6 system-ui,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  header{padding:40px 0 16px}
+  .eyebrow{font:600 11px/1 var(--mono);letter-spacing:.22em;color:var(--cu);
+    text-transform:uppercase;margin-bottom:12px}
+  h1{margin:0;font-size:28px;letter-spacing:-.01em}
+  .lead{color:var(--muted);margin:10px 0 0;max-width:780px;font-size:14px}
+
+  section{padding:34px 0;border-top:1px solid var(--line)}
+  h2{font-size:19px;margin:0 0 14px}
+  .kicker{font:600 10.5px/1 var(--mono);letter-spacing:.18em;color:var(--dim);
+    text-transform:uppercase;margin-bottom:8px}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+  .svgbox{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:10px;overflow-x:auto}
+  .svgbox svg{display:block;width:100%;height:auto;min-width:760px}
+
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th,td{padding:7px 9px;border-bottom:1px solid rgba(29,39,51,.8);text-align:left;
+    vertical-align:top}
+  th{font:600 10.5px/1.3 var(--mono);letter-spacing:.06em;color:var(--dim);
+    text-transform:uppercase;white-space:nowrap}
+  td.mono{font-family:var(--mono);font-size:11.5px;white-space:nowrap}
+  tr:hover td{background:rgba(201,138,75,.04)}
+  .hl{color:var(--cu2)}
+  .c1{color:#e6b877}.c2{color:#7fb2e6}.c3{color:#8fd28f}.c4{color:#d79ad7}
+
+  ul{margin:0;padding-left:18px;color:var(--muted);font-size:13px}
+  li{margin:8px 0}
+  li b{color:var(--txt)}
+  code{font-family:var(--mono);color:var(--cu2);font-size:12px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .note{font-size:12.5px;color:var(--muted);margin-top:12px}
+  .warn{border-left:3px solid var(--amber);padding:10px 14px;background:rgba(217,164,65,.06);
+    border-radius:0 8px 8px 0;font-size:12.5px;color:var(--muted);margin-top:14px}
+  .warn b{color:var(--amber)}
+  footer{padding:28px 0 56px;color:var(--dim);font:11.5px/1.7 var(--mono)}
+  @media(max-width:860px){.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">瞬迹 / XunJi · 4066 Harness Module</div>
+    <h1>CD4066 动态线束模块 · 接线图</h1>
+    <p class="lead">用途：插在 FE-16 的 <b>JA</b> 与 <b>JB</b>（都是 2×10 母座）之间，把 16 路信号各串一个 CD4066 模拟开关，
+      由脉冲源驱动控制脚，在 µs 级把指定通道断开。JA/JB 是<b>孔</b>，所以模块两端都用 <b>2×10 公头</b>。</p>
+  </header>
+
+  <section>
+    <div class="kicker">01 / 拓扑</div>
+    <h2>16 路串接总图</h2>
+    <div class="svgbox">
+      <svg id="dg" viewBox="0 0 1120 900" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+    <p class="note">每一路：<span class="hl">JA 公头 pin(i) → 某颗 4066 的一个开关 → JB 公头 pin(i)</span>。
+      4066 是双向开关，两个信号脚可互换。JA/JB 的 17–20 是 NC，不用接。</p>
+  </section>
+
+  <section>
+    <div class="kicker">02 / 引脚表</div>
+    <h2>哪一针接哪只脚（照表焊）</h2>
+    <div class="card" style="padding:6px 10px;overflow-x:auto">
+      <table>
+        <thead>
+          <tr><th>通道</th><th>JA 针</th><th>JB 针</th><th>芯片</th><th>开关</th>
+              <th>信号脚（两端）</th><th>控制脚</th></tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <div class="warn">
+      <b>CD4066 脚位（DIP-14）</b>：1/2=SW1、3/4=SW2、8/9=SW3、10/11=SW4；
+      控制脚 SW1=13、SW2=5、SW3=6、SW4=12；<b>14=VDD、7=VSS(GND)</b>。
+      四颗芯片的 14 脚都接电源、7 脚都接地。
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">03 / 控制</div>
+    <h2>控制线怎么并</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3 style="margin:0 0 10px;font-size:12px;letter-spacing:.14em;color:var(--dim);
+          font-family:var(--mono)">方案 A · 4 根（推荐，演示够用）</h3>
+        <div class="svgbox" style="background:transparent;border:0;padding:0">
+          <svg id="ctrlA" viewBox="0 0 520 300"></svg>
+        </div>
+        <p class="note">每颗芯片把 <b>13/5/6/12 并成一根</b>：<br>
+          CTRL_U1 高 → ch0–3 断；CTRL_U2 → ch4–7；CTRL_U3 → ch8–11；CTRL_U4 → ch12–15。<br>
+          4 根同时高 → 16 路全断。</p>
+      </div>
+      <div class="card">
+        <h3 style="margin:0 0 10px;font-size:12px;letter-spacing:.14em;color:var(--dim);
+          font-family:var(--mono)">方案 B · 16 根（单根精确断）</h3>
+        <div class="svgbox" style="background:transparent;border:0;padding:0">
+          <svg id="ctrlB" viewBox="0 0 520 300"></svg>
+        </div>
+        <p class="note">16 个控制脚各引一根，可精确开任意 1 路。需要 16 个 GPIO
+          （Arduino Mega / 两片 74HC595），接线量大但演示最像"某一根线断了"。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">04 / 电源</div>
+    <h2>供电与共地</h2>
+    <div class="card">
+      <ul>
+        <li><b>4066 用 5V 供电</b>（从脉冲源/Arduino 的 5V 取），<b>VSS 必须与 FE-16 共地</b>（接 FE-16 的 TP50 / J5 的 33、34）。</li>
+        <li>信号线是 FE-16 的 3.3V，在 0–5V 范围内，4066 照常通过，不需要电平转换。</li>
+        <li><b>控制脚高电平 ≥ 3.5V</b>（5V 供电时 0.7×VDD）；Arduino 5V 输出直接够。</li>
+        <li>如果坚持用 3.3V 供电：控制脚也必须 3.3V 逻辑（阈值 2.3V），别用 5V 去驱 3.3V 供电的 4066。</li>
+        <li>整板电流 µA–mA 级，不需要额外电源。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">05 / 焊接与自检</div>
+    <h2>焊完怎么验</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3 style="margin:0 0 10px;font-size:12px;letter-spacing:.14em;color:var(--dim);
+          font-family:var(--mono)">顺序</h3>
+        <ul>
+          <li>先焊 <b>4 个 DIP-14 插座</b>，芯片最后插（别直接焊芯片，坏了不好换）。</li>
+          <li>焊两个 2×10 公头（P1 对 JA、P2 对 JB），<b>pin1 方向一致</b>。</li>
+          <li>按表逐路飞线：P1.i → 开关 a 脚，开关 b 脚 → P2.i。共 32 根短线。</li>
+          <li>并控制线（方案 A 每芯片 4 脚并 1 根），引出到 4P 排针。</li>
+          <li>VDD/VSS 用 2P 排针引出。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="margin:0 0 10px;font-size:12px;letter-spacing:.14em;color:var(--dim);
+          font-family:var(--mono)">不用上电就能验</h3>
+        <ul>
+          <li><b>控制脚接 3.3V/5V</b>：万用表蜂鸣档测 <code>P1.i ↔ P2.i</code>，16 路都该通。</li>
+          <li><b>控制脚接 GND</b>：16 路都该断（不响）。</li>
+          <li>哪一路不对，就查那一路的开关脚或飞线。</li>
+          <li>再用示波器确认：控制脉冲宽度 → 线束断开宽度一致（如 10µs）。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="warn">
+      <b>别用它测接触电阻</b>：4066 导通电阻约 50–200Ω，会叠加在线束上。
+      它只负责"通/断"和"何时断"，不负责测阻值。
+    </div>
+  </section>
+
+  <footer>
+    按 CD4066B（DIP-14）标准脚位绘制 · 与 FE-16 的 JA/JB（2×10 母座，1–16 信号）对应。
+  </footer>
+</div>
+
+<script>
+(function(){
+  const N = 16, TOP = 78, ROW = 48;
+  const PAIRS = [[1,2],[3,4],[8,9],[10,11]];
+  const CTRL  = [13,5,6,12];
+  const svg = document.getElementById('dg');
+  let s = '';
+
+  // 标题
+  s += '<text x="14" y="30" fill="#7d8a9b" font-size="11" font-family="monospace" letter-spacing="1.5">P1 · JA（2×10 公头，插 FE-16 的 JA 母座）</text>';
+  s += '<text x="1010" y="30" fill="#7d8a9b" font-size="11" font-family="monospace" letter-spacing="1.5" text-anchor="end">P2 · JB（2×10 公头）</text>';
+
+  // 分组底色
+  for(let g=0; g<4; g++){
+    const y0 = TOP + g*4*ROW - 22;
+    s += '<rect x="0" y="'+y0+'" width="1120" height="'+(4*ROW)+'" rx="8" fill="'
+       + (g%2 ? 'rgba(120,150,190,.03)' : 'rgba(120,150,190,.055)') + '"/>';
+    s += '<text x="10" y="'+(y0+15)+'" fill="#53617a" font-size="10" font-family="monospace">U'+(g+1)+'</text>';
+  }
+
+  for(let ch=0; ch<N; ch++){
+    const y = TOP + ch*ROW;
+    const u = Math.floor(ch/4)+1, sw = ch%4+1;
+    const [a,b] = PAIRS[ch%4], c = CTRL[ch%4];
+
+    // 左针
+    s += '<text x="26" y="'+(y+4)+'" fill="#d9e0e8" font-size="11.5" font-family="monospace">JA.'+(ch+1)+'</text>';
+    s += '<line x1="74" y1="'+y+'" x2="392" y2="'+y+'" stroke="#4cc9c0" stroke-width="1.6"/>';
+    s += '<circle cx="392" cy="'+y+'" r="3.2" fill="#4cc9c0"/>';
+
+    // 开关体
+    s += '<rect x="400" y="'+(y-9)+'" width="60" height="18" rx="4" fill="#161d26" stroke="#3a4757" stroke-width="1"/>';
+    s += '<line x1="408" y1="'+(y+5)+'" x2="452" y2="'+(y-5)+'" stroke="#e6b877" stroke-width="2"/>';
+    s += '<circle cx="468" cy="'+y+'" r="3.2" fill="#4cc9c0"/>';
+    s += '<line x1="468" y1="'+y+'" x2="1010" y2="'+y+'" stroke="#4cc9c0" stroke-width="1.6"/>';
+
+    // 引脚标注
+    s += '<text x="430" y="'+(y-14)+'" fill="#e6b877" font-size="9.5" font-family="monospace" text-anchor="middle">U'+u+' · '+a+'↔'+b+'</text>';
+    // 控制脚
+    s += '<line x1="430" y1="'+(y+9)+'" x2="430" y2="'+(y+20)+'" stroke="#d9a441" stroke-width="1.3"/>';
+    s += '<text x="440" y="'+(y+24)+'" fill="#d9a441" font-size="9.5" font-family="monospace">C'+c+'</text>';
+
+    // 右针
+    s += '<text x="1020" y="'+(y+4)+'" fill="#d9e0e8" font-size="11.5" font-family="monospace">JB.'+(ch+1)+'</text>';
+  }
+
+  // 底部控制汇线说明
+  s += '<line x1="20" y1="'+(TOP+16*ROW+10)+'" x2="1100" y2="'+(TOP+16*ROW+10)+'" stroke="#1d2733"/>';
+  s += '<text x="20" y="'+(TOP+16*ROW+32)+'" fill="#53617a" font-size="10.5" font-family="monospace">控制脚 C13/C5/C6/C12 各自接法见方案 A（4 根并）或方案 B（16 根独立）；0=断开，1=导通。</text>';
+
+  svg.innerHTML = s;
+
+  // ---------- 控制方案 A ----------
+  (function(){
+    const el = document.getElementById('ctrlA');
+    let t = '';
+    const names = ['CTRL_U1','CTRL_U2','CTRL_U3','CTRL_U4'];
+    names.forEach((n,i)=>{
+      const y = 40 + i*62;
+      t += '<text x="8" y="'+(y+4)+'" fill="#e6b877" font-size="10.5" font-family="monospace">'+n+'</text>';
+      t += '<line x1="82" y1="'+y+'" x2="290" y2="'+y+'" stroke="#d9a441" stroke-width="1.6"/>';
+      // 芯片框
+      t += '<rect x="300" y="'+(y-16)+'" width="150" height="32" rx="5" fill="#161d26" stroke="#3a4757"/>';
+      t += '<text x="375" y="'+(y+4)+'" fill="#d9e0e8" font-size="11" font-family="monospace" text-anchor="middle">U'+(i+1)+'</text>';
+      t += '<line x1="450" y1="'+y+'" x2="470" y2="'+y+'" stroke="#d9a441" stroke-width="1.6"/>';
+      t += '<text x="476" y="'+(y+4)+'" fill="#53617a" font-size="9.5" font-family="monospace">13/5/6/12 并</text>';
+      t += '<circle cx="290" cy="'+y+'" r="2.8" fill="#d9a441"/>';
+    });
+    el.innerHTML = t;
+  })();
+
+  // ---------- 控制方案 B ----------
+  (function(){
+    const el = document.getElementById('ctrlB');
+    let t = '';
+    for(let i=0;i<16;i++){
+      const x = 30 + (i%8)*60, y = 60 + Math.floor(i/8)*90;
+      t += '<line x1="'+x+'" y1="'+(y+30)+'" x2="'+x+'" y2="'+(y+62)+'" stroke="#7d8a9b" stroke-width="1.2"/>';
+      t += '<rect x="'+(x-13)+'" y="'+(y+62)+'" width="26" height="20" rx="4" fill="#161d26" stroke="#3a4757"/>';
+      t += '<text x="'+x+'" y="'+(y+76)+'" fill="#d9e0e8" font-size="8.5" font-family="monospace" text-anchor="middle">U'+(Math.floor(i/4)+1)+'</text>';
+      t += '<text x="'+x+'" y="'+(y+22)+'" fill="#4cc9c0" font-size="8.5" font-family="monospace" text-anchor="middle">CH'+(i+1)+'</text>';
+      t += '<circle cx="'+x+'" cy="'+(y+30)+'" r="2.4" fill="#4cc9c0"/>';
+    }
+    t += '<text x="30" y="270" fill="#53617a" font-size="10" font-family="monospace">16 根控制线 → 脉冲源 16 个 IO（或两片 74HC595）</text>';
+    el.innerHTML = t;
+  })();
+
+  // ---------- 引脚表 ----------
+  const tb = document.getElementById('tbody');
+  let rows = '';
+  for(let ch=0; ch<16; ch++){
+    const [a,b] = PAIRS[ch%4], c = CTRL[ch%4];
+    const u = Math.floor(ch/4)+1;
+    rows += '<tr>'
+      + '<td class="mono">ch'+ch+'</td>'
+      + '<td class="mono">JA.'+(ch+1)+'</td>'
+      + '<td class="mono">JB.'+(ch+1)+'</td>'
+      + '<td class="mono">U'+u+'</td>'
+      + '<td class="mono">SW'+(ch%4+1)+'</td>'
+      + '<td class="mono hl">'+a+' ↔ '+b+'</td>'
+      + '<td class="mono">'+c+'</td>'
+      + '</tr>';
+  }
+  tb.innerHTML = rows;
+})();
+</script>
+</body>
+</html>

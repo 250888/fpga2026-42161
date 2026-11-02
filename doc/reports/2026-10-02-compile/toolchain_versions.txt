@@ -1,0 +1,40 @@
+Icarus Verilog version 13.0 (stable) (v13_0)
+
+Copyright (c) 2000-2026 Stephen Williams (steve@icarus.com)
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License along
+  with this program; if not, write to the Free Software Foundation, Inc.,
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+
+Icarus Verilog Preprocessor version 13.0 (stable) (v13_0)
+
+Copyright (c) 1999-2026 Stephen Williams (steve@icarus.com)
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License along
+  with this program; if not, write to the Free Software Foundation, Inc.,
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+Unable to get version from "D:\msys64\ucrt64\lib\ivl\ivl -V -C"C:\Users\38074\AppData\Local\Temp\ivrlh4393" -C"D:\msys64\ucrt64\lib\ivl\vvp.conf""
+Verilator 5.050 2026-07-01 rev vUNKNOWN-built20260702
+mingw-w64-ucrt-x86_64-iverilog 1~13.0-2
+mingw-w64-ucrt-x86_64-verilator 5.050-1
+uv 0.12.20 (2274b80d6 2026-09-28 x86_64-pc-windows-gnu)

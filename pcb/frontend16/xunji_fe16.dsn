@@ -1,0 +1,925 @@
+(pcb fe16
+  (parser
+    (string_quote ")
+    (space_in_quoted_tokens on)
+    (host_cad "gen_dsn")
+    (host_version "1.0"))
+  (resolution um 10)
+  (unit um)
+  (structure
+    (layer F.Cu (type signal))
+    (layer B.Cu (type signal))
+    (boundary (path pcb 0 0 96000 96000 96000 96000 0 0 0 0 96000))
+    (via "Via[0-1]_600:300_um")
+    (rule
+      (width 250)
+      (clearance 270)))
+  (placement
+  (component C1
+    (place C1 36000 72500 front 0))
+  (component C2
+    (place C2 36000 27500 front 0))
+  (component C3
+    (place C3 44000 22000 front 0))
+  (component C4
+    (place C4 60000 72500 front 0))
+  (component C5
+    (place C5 60000 27500 front 0))
+  (component C6
+    (place C6 52000 22000 front 0))
+  (component C7
+    (place C7 77000 85500 front 0))
+  (component EXT1
+    (place EXT1 84000 82500 front 0))
+  (component H1
+    (place H1 4000 92000 front 0))
+  (component H2
+    (place H2 92000 92000 front 0))
+  (component H3
+    (place H3 4000 4000 front 0))
+  (component H4
+    (place H4 92000 4000 front 0))
+  (component J5
+    (place J5 26400 89500 front 0))
+  (component JA
+    (place JA 10270 74000 front 270))
+  (component JB
+    (place JB 85730 74000 front 270))
+  (component JP1
+    (place JP1 84000 89500 front 0))
+  (component RCT1
+    (place RCT1 91000 76000 front 0))
+  (component RP1
+    (place RP1 68000 74000 front 0))
+  (component RP10
+    (place RP10 74000 68000 front 0))
+  (component RP11
+    (place RP11 74000 62000 front 0))
+  (component RP12
+    (place RP12 74000 56000 front 0))
+  (component RP13
+    (place RP13 74000 50000 front 0))
+  (component RP14
+    (place RP14 74000 44000 front 0))
+  (component RP15
+    (place RP15 74000 38000 front 0))
+  (component RP16
+    (place RP16 74000 32000 front 0))
+  (component RP2
+    (place RP2 68000 68000 front 0))
+  (component RP3
+    (place RP3 68000 62000 front 0))
+  (component RP4
+    (place RP4 68000 56000 front 0))
+  (component RP5
+    (place RP5 68000 50000 front 0))
+  (component RP6
+    (place RP6 68000 44000 front 0))
+  (component RP7
+    (place RP7 68000 38000 front 0))
+  (component RP8
+    (place RP8 68000 32000 front 0))
+  (component RP9
+    (place RP9 74000 74000 front 0))
+  (component RS1
+    (place RS1 16000 74000 front 0))
+  (component RS10
+    (place RS10 23000 68000 front 0))
+  (component RS11
+    (place RS11 23000 62000 front 0))
+  (component RS12
+    (place RS12 23000 56000 front 0))
+  (component RS13
+    (place RS13 23000 50000 front 0))
+  (component RS14
+    (place RS14 23000 44000 front 0))
+  (component RS15
+    (place RS15 23000 38000 front 0))
+  (component RS16
+    (place RS16 23000 32000 front 0))
+  (component RS2
+    (place RS2 16000 68000 front 0))
+  (component RS3
+    (place RS3 16000 62000 front 0))
+  (component RS4
+    (place RS4 16000 56000 front 0))
+  (component RS5
+    (place RS5 16000 50000 front 0))
+  (component RS6
+    (place RS6 16000 44000 front 0))
+  (component RS7
+    (place RS7 16000 38000 front 0))
+  (component RS8
+    (place RS8 16000 32000 front 0))
+  (component RS9
+    (place RS9 23000 74000 front 0))
+  (component RU1
+    (place RU1 41000 74000 front 0))
+  (component RU10
+    (place RU10 47000 69000 front 0))
+  (component RU11
+    (place RU11 47000 64000 front 0))
+  (component RU12
+    (place RU12 47000 59000 front 0))
+  (component RU13
+    (place RU13 47000 54000 front 0))
+  (component RU14
+    (place RU14 47000 49000 front 0))
+  (component RU15
+    (place RU15 47000 44000 front 0))
+  (component RU16
+    (place RU16 47000 39000 front 0))
+  (component RU2
+    (place RU2 41000 69000 front 0))
+  (component RU3
+    (place RU3 41000 64000 front 0))
+  (component RU4
+    (place RU4 41000 59000 front 0))
+  (component RU5
+    (place RU5 41000 54000 front 0))
+  (component RU6
+    (place RU6 41000 49000 front 0))
+  (component RU7
+    (place RU7 41000 44000 front 0))
+  (component RU8
+    (place RU8 41000 39000 front 0))
+  (component RU9
+    (place RU9 47000 74000 front 0))
+  (component TP1
+    (place TP1 18000 19000 front 0))
+  (component TP10
+    (place TP10 54000 19000 front 0))
+  (component TP11
+    (place TP11 58000 19000 front 0))
+  (component TP12
+    (place TP12 62000 19000 front 0))
+  (component TP13
+    (place TP13 66000 19000 front 0))
+  (component TP14
+    (place TP14 70000 19000 front 0))
+  (component TP15
+    (place TP15 74000 19000 front 0))
+  (component TP16
+    (place TP16 78000 19000 front 0))
+  (component TP17
+    (place TP17 36000 13000 front 0))
+  (component TP18
+    (place TP18 38900 13000 front 0))
+  (component TP19
+    (place TP19 41800 13000 front 0))
+  (component TP2
+    (place TP2 22000 19000 front 0))
+  (component TP20
+    (place TP20 44700 13000 front 0))
+  (component TP21
+    (place TP21 47600 13000 front 0))
+  (component TP22
+    (place TP22 50500 13000 front 0))
+  (component TP23
+    (place TP23 53400 13000 front 0))
+  (component TP24
+    (place TP24 56300 13000 front 0))
+  (component TP25
+    (place TP25 59200 13000 front 0))
+  (component TP26
+    (place TP26 62100 13000 front 0))
+  (component TP27
+    (place TP27 65000 13000 front 0))
+  (component TP28
+    (place TP28 67900 13000 front 0))
+  (component TP29
+    (place TP29 70800 13000 front 0))
+  (component TP3
+    (place TP3 26000 19000 front 0))
+  (component TP30
+    (place TP30 73700 13000 front 0))
+  (component TP31
+    (place TP31 76600 13000 front 0))
+  (component TP32
+    (place TP32 79500 13000 front 0))
+  (component TP33
+    (place TP33 32000 79000 front 0))
+  (component TP34
+    (place TP34 34100 79000 front 0))
+  (component TP35
+    (place TP35 36200 79000 front 0))
+  (component TP36
+    (place TP36 38300 79000 front 0))
+  (component TP37
+    (place TP37 40400 79000 front 0))
+  (component TP38
+    (place TP38 42500 79000 front 0))
+  (component TP39
+    (place TP39 44600 79000 front 0))
+  (component TP4
+    (place TP4 30000 19000 front 0))
+  (component TP40
+    (place TP40 46700 79000 front 0))
+  (component TP41
+    (place TP41 48800 79000 front 0))
+  (component TP42
+    (place TP42 50900 79000 front 0))
+  (component TP43
+    (place TP43 53000 79000 front 0))
+  (component TP44
+    (place TP44 55100 79000 front 0))
+  (component TP45
+    (place TP45 57200 79000 front 0))
+  (component TP46
+    (place TP46 59300 79000 front 0))
+  (component TP47
+    (place TP47 61400 79000 front 0))
+  (component TP48
+    (place TP48 63500 79000 front 0))
+  (component TP49
+    (place TP49 16000 79000 front 0))
+  (component TP5
+    (place TP5 34000 19000 front 0))
+  (component TP50
+    (place TP50 21000 79000 front 0))
+  (component TP51
+    (place TP51 26000 79000 front 0))
+  (component TP6
+    (place TP6 38000 19000 front 0))
+  (component TP7
+    (place TP7 42000 19000 front 0))
+  (component TP8
+    (place TP8 46000 19000 front 0))
+  (component TP9
+    (place TP9 50000 19000 front 0))
+  (component U1
+    (place U1 36000 66000 front 0))
+  (component U2
+    (place U2 36000 34000 front 0))
+  (component U3
+    (place U3 44000 29000 front 0))
+  (component U4
+    (place U4 60000 66000 front 0))
+  (component U5
+    (place U5 60000 34000 front 0))
+  (component U6
+    (place U6 52000 29000 front 0)))
+  (library
+  (padstack PS_IDC14
+    (shape (circle F.Cu 1400))
+    (shape (circle B.Cu 1400))
+    (attach off))
+  (padstack PS_IDC14_P1
+    (shape (rect F.Cu -700 -700 700 700))
+    (shape (rect B.Cu -700 -700 700 700))
+    (attach off))
+  (padstack PS_TP14
+    (shape (circle F.Cu 1400))
+    (shape (circle B.Cu 1400))
+    (attach off))
+  (padstack PS_HDR17
+    (shape (circle F.Cu 1700))
+    (shape (circle B.Cu 1700))
+    (attach off))
+  (padstack PS_HDR17_P1
+    (shape (rect F.Cu -850 -850 850 850))
+    (shape (rect B.Cu -850 -850 850 850))
+    (attach off))
+  (padstack PS_MH32
+    (shape (circle F.Cu 3200))
+    (shape (circle B.Cu 3200))
+    (attach off))
+  (padstack PS_R0805
+    (shape (rect F.Cu -550 -700 550 700))
+    (attach off))
+  (padstack PS_RTH
+    (shape (circle F.Cu 1600))
+    (shape (circle B.Cu 1600))
+    (attach off))
+  (padstack PS_SOIC14
+    (shape (rect F.Cu -750 -300 750 300))
+    (attach off))
+  (padstack "Via[0-1]_600:300_um"
+    (shape (circle F.Cu 600))
+    (shape (circle B.Cu 600))
+    (attach off))
+  (image C1
+    (pin PS_R0805 1 -950 0)
+    (pin PS_R0805 2 950 0))
+  (image C2
+    (pin PS_R0805 1 -950 0)
+    (pin PS_R0805 2 950 0))
+  (image C3
+    (pin PS_R0805 1 -950 0)
+    (pin PS_R0805 2 950 0))
+  (image C4
+    (pin PS_R0805 1 -950 0)
+    (pin PS_R0805 2 950 0))
+  (image C5
+    (pin PS_R0805 1 -950 0)
+    (pin PS_R0805 2 950 0))
+  (image C6
+    (pin PS_R0805 1 -950 0)
+    (pin PS_R0805 2 950 0))
+  (image C7
+    (pin PS_R0805 1 -950 0)
+    (pin PS_R0805 2 950 0))
+  (image EXT1
+    (pin PS_HDR17_P1 1 0 0)
+    (pin PS_HDR17 2 0 -2540))
+  (image H1
+    (pin PS_MH32 1 0 0))
+  (image H2
+    (pin PS_MH32 1 0 0))
+  (image H3
+    (pin PS_MH32 1 0 0))
+  (image H4
+    (pin PS_MH32 1 0 0))
+  (image J5
+    (pin PS_IDC14_P1 1 0 0)
+    (pin PS_IDC14 2 0 -2540)
+    (pin PS_IDC14 3 2540 0)
+    (pin PS_IDC14 4 2540 -2540)
+    (pin PS_IDC14 5 5080 0)
+    (pin PS_IDC14 6 5080 -2540)
+    (pin PS_IDC14 7 7620 0)
+    (pin PS_IDC14 8 7620 -2540)
+    (pin PS_IDC14 9 10160 0)
+    (pin PS_IDC14 10 10160 -2540)
+    (pin PS_IDC14 11 12700 0)
+    (pin PS_IDC14 12 12700 -2540)
+    (pin PS_IDC14 13 15240 0)
+    (pin PS_IDC14 14 15240 -2540)
+    (pin PS_IDC14 15 17780 0)
+    (pin PS_IDC14 16 17780 -2540)
+    (pin PS_IDC14 17 20320 0)
+    (pin PS_IDC14 18 20320 -2540)
+    (pin PS_IDC14 19 22860 0)
+    (pin PS_IDC14 20 22860 -2540)
+    (pin PS_IDC14 21 25400 0)
+    (pin PS_IDC14 22 25400 -2540)
+    (pin PS_IDC14 23 27940 0)
+    (pin PS_IDC14 24 27940 -2540)
+    (pin PS_IDC14 25 30480 0)
+    (pin PS_IDC14 26 30480 -2540)
+    (pin PS_IDC14 27 33020 0)
+    (pin PS_IDC14 28 33020 -2540)
+    (pin PS_IDC14 29 35560 0)
+    (pin PS_IDC14 30 35560 -2540)
+    (pin PS_IDC14 31 38100 0)
+    (pin PS_IDC14 32 38100 -2540)
+    (pin PS_IDC14 33 40640 0)
+    (pin PS_IDC14 34 40640 -2540)
+    (pin PS_IDC14 35 43180 0)
+    (pin PS_IDC14 36 43180 -2540))
+  (image JA
+    (pin PS_IDC14_P1 1 0 0)
+    (pin PS_IDC14 2 0 -2540)
+    (pin PS_IDC14 3 2540 0)
+    (pin PS_IDC14 4 2540 -2540)
+    (pin PS_IDC14 5 5080 0)
+    (pin PS_IDC14 6 5080 -2540)
+    (pin PS_IDC14 7 7620 0)
+    (pin PS_IDC14 8 7620 -2540)
+    (pin PS_IDC14 9 10160 0)
+    (pin PS_IDC14 10 10160 -2540)
+    (pin PS_IDC14 11 12700 0)
+    (pin PS_IDC14 12 12700 -2540)
+    (pin PS_IDC14 13 15240 0)
+    (pin PS_IDC14 14 15240 -2540)
+    (pin PS_IDC14 15 17780 0)
+    (pin PS_IDC14 16 17780 -2540)
+    (pin PS_IDC14 17 20320 0)
+    (pin PS_IDC14 18 20320 -2540)
+    (pin PS_IDC14 19 22860 0)
+    (pin PS_IDC14 20 22860 -2540))
+  (image JB
+    (pin PS_IDC14_P1 1 0 0)
+    (pin PS_IDC14 2 0 -2540)
+    (pin PS_IDC14 3 2540 0)
+    (pin PS_IDC14 4 2540 -2540)
+    (pin PS_IDC14 5 5080 0)
+    (pin PS_IDC14 6 5080 -2540)
+    (pin PS_IDC14 7 7620 0)
+    (pin PS_IDC14 8 7620 -2540)
+    (pin PS_IDC14 9 10160 0)
+    (pin PS_IDC14 10 10160 -2540)
+    (pin PS_IDC14 11 12700 0)
+    (pin PS_IDC14 12 12700 -2540)
+    (pin PS_IDC14 13 15240 0)
+    (pin PS_IDC14 14 15240 -2540)
+    (pin PS_IDC14 15 17780 0)
+    (pin PS_IDC14 16 17780 -2540)
+    (pin PS_IDC14 17 20320 0)
+    (pin PS_IDC14 18 20320 -2540)
+    (pin PS_IDC14 19 22860 0)
+    (pin PS_IDC14 20 22860 -2540))
+  (image JP1
+    (pin PS_HDR17_P1 1 0 0)
+    (pin PS_HDR17 2 0 -2540))
+  (image RCT1
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RP1
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RP10
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RP11
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RP12
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RP13
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RP14
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RP15
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RP16
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RP2
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RP3
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RP4
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RP5
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RP6
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RP7
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RP8
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RP9
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RS1
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RS10
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RS11
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RS12
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RS13
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RS14
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RS15
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RS16
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RS2
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RS3
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RS4
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RS5
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RS6
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RS7
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RS8
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RS9
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RU1
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RU10
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RU11
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RU12
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RU13
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RU14
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RU15
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RU16
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RU2
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RU3
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RU4
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RU5
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RU6
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RU7
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RU8
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image RU9
+    (pin PS_RTH 1 0 0)
+    (pin PS_RTH 2 0 -2540))
+  (image TP1
+    (pin PS_TP14 1 0 0))
+  (image TP10
+    (pin PS_TP14 1 0 0))
+  (image TP11
+    (pin PS_TP14 1 0 0))
+  (image TP12
+    (pin PS_TP14 1 0 0))
+  (image TP13
+    (pin PS_TP14 1 0 0))
+  (image TP14
+    (pin PS_TP14 1 0 0))
+  (image TP15
+    (pin PS_TP14 1 0 0))
+  (image TP16
+    (pin PS_TP14 1 0 0))
+  (image TP17
+    (pin PS_TP14 1 0 0))
+  (image TP18
+    (pin PS_TP14 1 0 0))
+  (image TP19
+    (pin PS_TP14 1 0 0))
+  (image TP2
+    (pin PS_TP14 1 0 0))
+  (image TP20
+    (pin PS_TP14 1 0 0))
+  (image TP21
+    (pin PS_TP14 1 0 0))
+  (image TP22
+    (pin PS_TP14 1 0 0))
+  (image TP23
+    (pin PS_TP14 1 0 0))
+  (image TP24
+    (pin PS_TP14 1 0 0))
+  (image TP25
+    (pin PS_TP14 1 0 0))
+  (image TP26
+    (pin PS_TP14 1 0 0))
+  (image TP27
+    (pin PS_TP14 1 0 0))
+  (image TP28
+    (pin PS_TP14 1 0 0))
+  (image TP29
+    (pin PS_TP14 1 0 0))
+  (image TP3
+    (pin PS_TP14 1 0 0))
+  (image TP30
+    (pin PS_TP14 1 0 0))
+  (image TP31
+    (pin PS_TP14 1 0 0))
+  (image TP32
+    (pin PS_TP14 1 0 0))
+  (image TP33
+    (pin PS_TP14 1 0 0))
+  (image TP34
+    (pin PS_TP14 1 0 0))
+  (image TP35
+    (pin PS_TP14 1 0 0))
+  (image TP36
+    (pin PS_TP14 1 0 0))
+  (image TP37
+    (pin PS_TP14 1 0 0))
+  (image TP38
+    (pin PS_TP14 1 0 0))
+  (image TP39
+    (pin PS_TP14 1 0 0))
+  (image TP4
+    (pin PS_TP14 1 0 0))
+  (image TP40
+    (pin PS_TP14 1 0 0))
+  (image TP41
+    (pin PS_TP14 1 0 0))
+  (image TP42
+    (pin PS_TP14 1 0 0))
+  (image TP43
+    (pin PS_TP14 1 0 0))
+  (image TP44
+    (pin PS_TP14 1 0 0))
+  (image TP45
+    (pin PS_TP14 1 0 0))
+  (image TP46
+    (pin PS_TP14 1 0 0))
+  (image TP47
+    (pin PS_TP14 1 0 0))
+  (image TP48
+    (pin PS_TP14 1 0 0))
+  (image TP49
+    (pin PS_TP14 1 0 0))
+  (image TP5
+    (pin PS_TP14 1 0 0))
+  (image TP50
+    (pin PS_TP14 1 0 0))
+  (image TP51
+    (pin PS_TP14 1 0 0))
+  (image TP6
+    (pin PS_TP14 1 0 0))
+  (image TP7
+    (pin PS_TP14 1 0 0))
+  (image TP8
+    (pin PS_TP14 1 0 0))
+  (image TP9
+    (pin PS_TP14 1 0 0))
+  (image U1
+    (pin PS_SOIC14 1 -2475 3810)
+    (pin PS_SOIC14 2 -2475 2540)
+    (pin PS_SOIC14 3 -2475 1270)
+    (pin PS_SOIC14 4 -2475 0)
+    (pin PS_SOIC14 5 -2475 -1270)
+    (pin PS_SOIC14 6 -2475 -2540)
+    (pin PS_SOIC14 7 -2475 -3810)
+    (pin PS_SOIC14 8 2475 -3810)
+    (pin PS_SOIC14 9 2475 -2540)
+    (pin PS_SOIC14 10 2475 -1270)
+    (pin PS_SOIC14 11 2475 0)
+    (pin PS_SOIC14 12 2475 1270)
+    (pin PS_SOIC14 13 2475 2540)
+    (pin PS_SOIC14 14 2475 3810))
+  (image U2
+    (pin PS_SOIC14 1 -2475 3810)
+    (pin PS_SOIC14 2 -2475 2540)
+    (pin PS_SOIC14 3 -2475 1270)
+    (pin PS_SOIC14 4 -2475 0)
+    (pin PS_SOIC14 5 -2475 -1270)
+    (pin PS_SOIC14 6 -2475 -2540)
+    (pin PS_SOIC14 7 -2475 -3810)
+    (pin PS_SOIC14 8 2475 -3810)
+    (pin PS_SOIC14 9 2475 -2540)
+    (pin PS_SOIC14 10 2475 -1270)
+    (pin PS_SOIC14 11 2475 0)
+    (pin PS_SOIC14 12 2475 1270)
+    (pin PS_SOIC14 13 2475 2540)
+    (pin PS_SOIC14 14 2475 3810))
+  (image U3
+    (pin PS_SOIC14 1 -2475 3810)
+    (pin PS_SOIC14 2 -2475 2540)
+    (pin PS_SOIC14 3 -2475 1270)
+    (pin PS_SOIC14 4 -2475 0)
+    (pin PS_SOIC14 5 -2475 -1270)
+    (pin PS_SOIC14 6 -2475 -2540)
+    (pin PS_SOIC14 7 -2475 -3810)
+    (pin PS_SOIC14 8 2475 -3810)
+    (pin PS_SOIC14 9 2475 -2540)
+    (pin PS_SOIC14 10 2475 -1270)
+    (pin PS_SOIC14 11 2475 0)
+    (pin PS_SOIC14 12 2475 1270)
+    (pin PS_SOIC14 13 2475 2540)
+    (pin PS_SOIC14 14 2475 3810))
+  (image U4
+    (pin PS_SOIC14 1 -2475 3810)
+    (pin PS_SOIC14 2 -2475 2540)
+    (pin PS_SOIC14 3 -2475 1270)
+    (pin PS_SOIC14 4 -2475 0)
+    (pin PS_SOIC14 5 -2475 -1270)
+    (pin PS_SOIC14 6 -2475 -2540)
+    (pin PS_SOIC14 7 -2475 -3810)
+    (pin PS_SOIC14 8 2475 -3810)
+    (pin PS_SOIC14 9 2475 -2540)
+    (pin PS_SOIC14 10 2475 -1270)
+    (pin PS_SOIC14 11 2475 0)
+    (pin PS_SOIC14 12 2475 1270)
+    (pin PS_SOIC14 13 2475 2540)
+    (pin PS_SOIC14 14 2475 3810))
+  (image U5
+    (pin PS_SOIC14 1 -2475 3810)
+    (pin PS_SOIC14 2 -2475 2540)
+    (pin PS_SOIC14 3 -2475 1270)
+    (pin PS_SOIC14 4 -2475 0)
+    (pin PS_SOIC14 5 -2475 -1270)
+    (pin PS_SOIC14 6 -2475 -2540)
+    (pin PS_SOIC14 7 -2475 -3810)
+    (pin PS_SOIC14 8 2475 -3810)
+    (pin PS_SOIC14 9 2475 -2540)
+    (pin PS_SOIC14 10 2475 -1270)
+    (pin PS_SOIC14 11 2475 0)
+    (pin PS_SOIC14 12 2475 1270)
+    (pin PS_SOIC14 13 2475 2540)
+    (pin PS_SOIC14 14 2475 3810))
+  (image U6
+    (pin PS_SOIC14 1 -2475 3810)
+    (pin PS_SOIC14 2 -2475 2540)
+    (pin PS_SOIC14 3 -2475 1270)
+    (pin PS_SOIC14 4 -2475 0)
+    (pin PS_SOIC14 5 -2475 -1270)
+    (pin PS_SOIC14 6 -2475 -2540)
+    (pin PS_SOIC14 7 -2475 -3810)
+    (pin PS_SOIC14 8 2475 -3810)
+    (pin PS_SOIC14 9 2475 -2540)
+    (pin PS_SOIC14 10 2475 -1270)
+    (pin PS_SOIC14 11 2475 0)
+    (pin PS_SOIC14 12 2475 1270)
+    (pin PS_SOIC14 13 2475 2540)
+    (pin PS_SOIC14 14 2475 3810)))
+  (network
+    (net A0
+      (pins JA-1 RS1-2 TP1-1))
+    (net A1
+      (pins JA-2 RS2-2 TP2-1))
+    (net A10
+      (pins JA-11 RS11-2 TP11-1))
+    (net A11
+      (pins JA-12 RS12-2 TP12-1))
+    (net A12
+      (pins JA-13 RS13-2 TP13-1))
+    (net A13
+      (pins JA-14 RS14-2 TP14-1))
+    (net A14
+      (pins JA-15 RS15-2 TP15-1))
+    (net A15
+      (pins JA-16 RS16-2 TP16-1))
+    (net A2
+      (pins JA-3 RS3-2 TP3-1))
+    (net A3
+      (pins JA-4 RS4-2 TP4-1))
+    (net A4
+      (pins JA-5 RS5-2 TP5-1))
+    (net A5
+      (pins JA-6 RS6-2 TP6-1))
+    (net A6
+      (pins JA-7 RS7-2 TP7-1))
+    (net A7
+      (pins JA-8 RS8-2 TP8-1))
+    (net A8
+      (pins JA-9 RS9-2 TP9-1))
+    (net A9
+      (pins JA-10 RS10-2 TP10-1))
+    (net ACTRL0
+      (pins J5-1 RU1-1 U1-1))
+    (net ACTRL1
+      (pins J5-2 RU2-1 U1-3))
+    (net ACTRL10
+      (pins J5-11 RU11-1 U2-11))
+    (net ACTRL11
+      (pins J5-12 RU12-1 U2-13))
+    (net ACTRL12
+      (pins J5-13 RU13-1 U3-1))
+    (net ACTRL13
+      (pins J5-14 RU14-1 U3-3))
+    (net ACTRL14
+      (pins J5-15 RU15-1 U3-5))
+    (net ACTRL15
+      (pins J5-16 RU16-1 U3-9))
+    (net ACTRL2
+      (pins J5-3 RU3-1 U1-5))
+    (net ACTRL3
+      (pins J5-4 RU4-1 U1-9))
+    (net ACTRL4
+      (pins J5-5 RU5-1 U1-11))
+    (net ACTRL5
+      (pins J5-6 RU6-1 U1-13))
+    (net ACTRL6
+      (pins J5-7 RU7-1 U2-1))
+    (net ACTRL7
+      (pins J5-8 RU8-1 U2-3))
+    (net ACTRL8
+      (pins J5-9 RU9-1 U2-5))
+    (net ACTRL9
+      (pins J5-10 RU10-1 U2-9))
+    (net ADRV0
+      (pins RS1-1 U1-2))
+    (net ADRV1
+      (pins RS2-1 U1-4))
+    (net ADRV10
+      (pins RS11-1 U2-10))
+    (net ADRV11
+      (pins RS12-1 U2-12))
+    (net ADRV12
+      (pins RS13-1 U3-2))
+    (net ADRV13
+      (pins RS14-1 U3-4))
+    (net ADRV14
+      (pins RS15-1 U3-6))
+    (net ADRV15
+      (pins RS16-1 U3-8))
+    (net ADRV2
+      (pins RS3-1 U1-6))
+    (net ADRV3
+      (pins RS4-1 U1-8))
+    (net ADRV4
+      (pins RS5-1 U1-10))
+    (net ADRV5
+      (pins RS6-1 U1-12))
+    (net ADRV6
+      (pins RS7-1 U2-2))
+    (net ADRV7
+      (pins RS8-1 U2-4))
+    (net ADRV8
+      (pins RS9-1 U2-6))
+    (net ADRV9
+      (pins RS10-1 U2-8))
+    (net B0
+      (pins JB-1 RP1-1 TP17-1 U4-1))
+    (net B1
+      (pins JB-2 RP2-1 TP18-1 U4-3))
+    (net B10
+      (pins JB-11 RP11-1 TP27-1 U5-11))
+    (net B11
+      (pins JB-12 RP12-1 TP28-1 U5-13))
+    (net B12
+      (pins JB-13 RP13-1 TP29-1 U6-1))
+    (net B13
+      (pins JB-14 RP14-1 TP30-1 U6-3))
+    (net B14
+      (pins JB-15 RP15-1 TP31-1 U6-5))
+    (net B15
+      (pins JB-16 RP16-1 TP32-1 U6-9))
+    (net B2
+      (pins JB-3 RP3-1 TP19-1 U4-5))
+    (net B3
+      (pins JB-4 RP4-1 TP20-1 U4-9))
+    (net B4
+      (pins JB-5 RP5-1 TP21-1 U4-11))
+    (net B5
+      (pins JB-6 RP6-1 TP22-1 U4-13))
+    (net B6
+      (pins JB-7 RP7-1 TP23-1 U5-1))
+    (net B7
+      (pins JB-8 RP8-1 TP24-1 U5-3))
+    (net B8
+      (pins JB-9 RP9-1 TP25-1 U5-5))
+    (net B9
+      (pins JB-10 RP10-1 TP26-1 U5-9))
+    (net BRW0
+      (pins J5-17 TP33-1 U4-2))
+    (net BRW1
+      (pins J5-18 TP34-1 U4-4))
+    (net BRW10
+      (pins J5-27 TP43-1 U5-10))
+    (net BRW11
+      (pins J5-28 TP44-1 U5-12))
+    (net BRW12
+      (pins J5-29 TP45-1 U6-2))
+    (net BRW13
+      (pins J5-30 TP46-1 U6-4))
+    (net BRW14
+      (pins J5-31 TP47-1 U6-6))
+    (net BRW15
+      (pins J5-32 TP48-1 U6-8))
+    (net BRW2
+      (pins J5-19 TP35-1 U4-6))
+    (net BRW3
+      (pins J5-20 TP36-1 U4-8))
+    (net BRW4
+      (pins J5-21 TP37-1 U4-10))
+    (net BRW5
+      (pins J5-22 TP38-1 U4-12))
+    (net BRW6
+      (pins J5-23 TP39-1 U5-2))
+    (net BRW7
+      (pins J5-24 TP40-1 U5-4))
+    (net BRW8
+      (pins J5-25 TP41-1 U5-6))
+    (net BRW9
+      (pins J5-26 TP42-1 U5-8))
+    (net GND
+      (pins C1-2 C2-2 C3-2 C4-2 C5-2 C6-2 C7-2 EXT1-2 J5-33 J5-34 TP50-1 U1-7 U2-7 U3-7 U4-7 U5-7 U6-11 U6-13 U6-7))
+    (net VCC3V3
+      (pins C1-1 C2-1 C3-1 C4-1 C5-1 C6-1 C7-1 JP1-1 RCT1-2 RP1-2 RP10-2 RP11-2 RP12-2 RP13-2 RP14-2 RP15-2 RP16-2 RP2-2 RP3-2 RP4-2 RP5-2 RP6-2 RP7-2 RP8-2 RP9-2 RU1-2 RU10-2 RU11-2 RU12-2 RU13-2 RU14-2 RU15-2 RU16-2 RU2-2 RU3-2 RU4-2 RU5-2 RU6-2 RU7-2 RU8-2 RU9-2 TP49-1 U1-14 U2-14 U3-11 U3-13 U3-14 U4-14 U5-14 U6-14))
+    (net VIN_EXT
+      (pins EXT1-1 JP1-2))
+    (net VIN_J5
+      (pins J5-35 J5-36 RCT1-1 TP51-1))
+    (class main A0 A1 A10 A11 A12 A13 A14 A15 A2 A3 A4 A5 A6 A7 A8 A9 ACTRL0 ACTRL1 ACTRL10 ACTRL11 ACTRL12 ACTRL13 ACTRL14 ACTRL15 ACTRL2 ACTRL3 ACTRL4 ACTRL5 ACTRL6 ACTRL7 ACTRL8 ACTRL9 ADRV0 ADRV1 ADRV10 ADRV11 ADRV12 ADRV13 ADRV14 ADRV15 ADRV2 ADRV3 ADRV4 ADRV5 ADRV6 ADRV7 ADRV8 ADRV9 B0 B1 B10 B11 B12 B13 B14 B15 B2 B3 B4 B5 B6 B7 B8 B9 BRW0 BRW1 BRW10 BRW11 BRW12 BRW13 BRW14 BRW15 BRW2 BRW3 BRW4 BRW5 BRW6 BRW7 BRW8 BRW9 GND VCC3V3 VIN_EXT VIN_J5
+      (rule (width 250) (clearance 270))))
+)

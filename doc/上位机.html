@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>瞬迹 XUNJI — 16 通道线束拓扑重建</title>
+<style>
+/* ============================================================
+   设计语言：深空信号台（dark signal console）
+   - 近黑底 + 全饱和信号色：琥珀=导通/信号，红=故障，绿=通过
+   - 无发光无渐变：靠实色块与高对比建立冲击力，投影/视频压缩下不糊
+   - 颜色只表达状态与品牌，其余一律近白/中性灰
+   ============================================================ */
+:root{
+  --void:#0A0B0E;       /* 页面底 */
+  --surf:#101217;       /* 面板 */
+  --surf2:#171A21;      /* 次面板 */
+  --line:#1F232B;       /* 主分隔线 */
+  --line2:#282D37;      /* 次分隔线 */
+  --ink:#F4F5F7;        /* 主文字 */
+  --ink2:#A8AEB9;       /* 次文字 */
+  --dim:#6B7280;        /* 弱化文字 */
+  --sig:#FFB01F;        /* 信号琥珀（品牌色/导通） */
+  --sigDim:#4A3410;
+  --ok:#00D96B;         /* 通过 */
+  --bad:#FF3B30;        /* 故障 */
+  --warn:#FF7A00;       /* 警示/开路 */
+  --sans:"Segoe UI","Helvetica Neue",Arial,"Microsoft YaHei",sans-serif;
+  --mono:Consolas,"Cascadia Mono","JetBrains Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased}
+body{
+  background:var(--void);color:var(--ink);font-family:var(--sans);
+  padding:0 0 40px;min-height:100vh;
+  font-size:14px;line-height:1.5;
+}
+.sheet{max-width:1360px;margin:0 auto;padding:0 44px}
+hr.rule{border:0;border-top:1px solid var(--line);margin:0}
+.hr2{border:0;border-top:1px solid var(--line2)}
+
+/* ---------- 报头 ---------- */
+header{padding:30px 0 16px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.masthead h1{
+  font-size:34px;font-weight:700;letter-spacing:-.01em;line-height:1;color:var(--ink);
+  display:flex;align-items:baseline;gap:14px
+}
+.masthead h1 em{font-style:normal;font-weight:600;letter-spacing:.3em;font-size:24px;color:var(--sig)}
+.masthead p{margin-top:9px;font-size:12px;color:var(--dim);letter-spacing:.05em}
+.tools{display:flex;align-items:center;gap:10px}
+.status-chip{
+  display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;
+  color:var(--ink2);letter-spacing:.06em;padding-right:6px
+}
+.status-chip i{width:8px;height:8px;border-radius:50%;background:#3A4049;display:block;font-style:normal}
+.status-chip i.on{background:var(--ok)}
+.status-chip i.demo{background:var(--warn)}
+button.b{
+  font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  padding:9px 16px;background:transparent;color:var(--ink2);
+  border:1px solid var(--line2);border-radius:2px;cursor:pointer;transition:.15s
+}
+button.b:hover{border-color:var(--sig);color:var(--sig)}
+button.b:disabled{opacity:.55;cursor:default;border-color:var(--line2);color:var(--dim)}
+button.b.sec{color:var(--dim)}
+button.b.sec:hover{border-color:var(--ink2);color:var(--ink)}
+#btnConn{border-color:var(--sig);color:var(--sig);font-weight:600}
+#btnConn:hover{background:var(--sig);color:var(--void)}
+#btnConn:disabled{background:transparent;color:var(--sig);opacity:.5}
+
+/* ---------- 读数带：状态词是本页最大的视觉锚点 ---------- */
+.readout{display:grid;grid-template-columns:minmax(300px,1.75fr) repeat(4,minmax(96px,.55fr));
+  border-bottom:1px solid var(--line)}
+.readout>div{padding:24px 24px 22px;background:var(--surf)}
+.readout>div+div{border-left:1px solid var(--line)}
+.state{display:flex;flex-direction:column;justify-content:center;gap:7px;position:relative}
+.state .top{display:flex;align-items:baseline;gap:13px}
+.state .word{font-size:50px;font-weight:700;letter-spacing:-.015em;line-height:.92;transition:color .2s}
+.state .no{font-family:var(--mono);font-size:12px;color:var(--dim)}
+.state .mean{font-size:13.5px;color:var(--ink2);padding-right:96px}
+.state.stopped .word{color:var(--dim)}
+.state .other{position:absolute;right:22px;bottom:14px;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.12em;color:var(--dim);font-variant-numeric:tabular-nums}
+.state .other.hot{color:var(--warn)}
+.metric{display:flex;flex-direction:column;justify-content:center;gap:8px}
+.metric .n{font-size:38px;font-weight:700;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums;color:var(--ink)}
+.metric .n s{text-decoration:none;font-size:15px;font-weight:400;color:var(--dim);margin-left:1px}
+.metric .l{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+.c-pass .word{color:var(--ok)}     .c-open .word{color:var(--warn)}
+.c-mis .word{color:var(--bad)}     .c-bridge .word{color:var(--bad)}
+.c-anom .word{color:var(--warn)}   .c-noref .word{color:var(--ink2)}
+/* 状态跳变：仅状态词本身一次极短的透明度回落（单次、无闪烁，符合克制原则） */
+@keyframes pulse{0%,100%{opacity:1}45%{opacity:.32}}
+.pulse{animation:pulse .5s ease-in-out 1}
+
+/* ---------- 实时通道数历史条：瞬态断线在这里留痕 ---------- */
+.histbar{padding:14px 24px 12px;background:var(--surf2);border-bottom:1px solid var(--line)}
+.histTop{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px}
+.histTop .t{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+.histTop .v{font-family:var(--mono);font-size:15px;font-weight:700;color:var(--sig);
+  font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.histTop .v.low{color:var(--bad)}
+svg.histSvg{width:100%;height:56px;display:block}
+
+/* ---------- 主体两栏 ---------- */
+.cols{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line)}
+.cols>section{padding:22px 24px 24px;background:var(--surf)}
+.cols>section+section{border-left:1px solid var(--line)}
+h2{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);
+   font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+h2::before{content:"";width:3px;height:11px;background:var(--sig);border-radius:1px}
+h2::after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* ---------- 矩阵 ---------- */
+/* 注意：状态类必须写成 table.mx td.xxx，否则会被 table.mx td 的背景覆盖（优先级 0,1,2 > 0,1,1） */
+.mwrap{display:flex;justify-content:center;padding-top:4px}
+table.mx{border-collapse:collapse}
+table.mx th{font-family:var(--mono);font-size:9px;color:var(--dim);font-weight:400;
+  letter-spacing:.02em;padding:0 0 6px;width:22px;height:auto}
+table.mx th.r{text-align:right;padding-right:8px;width:28px}
+table.mx td{width:20px;height:20px;padding:0;
+  border:1px solid #232833;background:#171B23;transition:background .1s,border-color .1s}
+table.mx td.diag{border-color:#2E3542}
+table.mx td.on{background:var(--sig);border-color:var(--sig)}
+table.mx td.mis{background:var(--bad);border-color:var(--bad)}
+table.mx td.dead{background:#12151A;border-color:#1A1E25}
+table.mx td.stk{background:#5A1512;border-color:#8A221C}
+
+/* ---------- 连接图 ---------- */
+/* max-height 是关键：SVG 默认按面板宽度等比放大，在 1920 下会长到 600px+ 把整页顶穿；
+   配合默认的 preserveAspectRatio="xMidYMid meet" 会等比缩小居中，不会变形 */
+svg.topo{width:100%;height:auto;max-height:300px;display:block}
+.nlabel{font-family:var(--mono);font-size:8.5px;fill:var(--dim)}
+.link{fill:none}
+.link.live{stroke:var(--sig);stroke-width:2}
+.link.ghost{stroke:#23272F;stroke-width:1;stroke-dasharray:2 5}
+.link.mis{stroke:var(--bad);stroke-width:2.2}
+
+/* ---------- 位图：实色块，视频压缩下依然锐利 ---------- */
+.lower{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line)}
+.lower>section{padding:22px 24px 24px;background:var(--surf)}
+.lower>section+section{border-left:1px solid var(--line)}
+.lab{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin:0 0 9px}
+.strip{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:16px}
+.strip:last-child{margin-bottom:0}
+.bit{width:31px;height:25px;border:1px solid #262B34;background:#14171D;
+  display:flex;align-items:center;justify-content:center;border-radius:1px;
+  font-family:var(--mono);font-size:10px;color:#4E5563;transition:.12s}
+.bit.act{background:var(--sig);border-color:var(--sig);color:var(--void);font-weight:700}
+.bit.stk{background:var(--bad);border-color:var(--bad);color:#fff;font-weight:700}
+
+/* ---------- 日志 ---------- */
+/* 底部渐隐遮罩：滚动裁切处自然淡出，避免出现"被拦腰切断"的半行 */
+.tl{height:196px;overflow:auto;font-family:var(--mono);font-size:11.5px;line-height:1.95;
+  -webkit-mask-image:linear-gradient(to bottom,#000 88%,transparent 100%);
+  mask-image:linear-gradient(to bottom,#000 88%,transparent 100%)}
+.tl .row{display:flex;gap:14px;border-bottom:1px solid #171A21;padding:0 1px}
+.tl .t{color:#4B515C;flex:0 0 88px;font-variant-numeric:tabular-nums}
+.tl .add{color:var(--ink)} .tl .del{color:var(--bad)}
+.tl .sys{color:var(--dim)} .tl .cls{color:var(--sig)}
+.tl .empty{color:#4B515C;font-family:var(--sans);font-size:12.5px;padding:6px 0;border:0}
+
+/* ---------- 图例 / 说明 ---------- */
+.legend{display:flex;gap:26px;flex-wrap:wrap;padding:16px 0 0;font-size:11.5px;color:var(--ink2)}
+.legend span{display:flex;align-items:center;gap:8px}
+.legend i{width:11px;height:11px;display:block;border:1px solid var(--line2)}
+.legend i.k1{background:var(--sig);border-color:var(--sig)}
+.legend i.k2{background:var(--bad);border-color:var(--bad)}
+.legend i.k3{background:#14171D;border-color:#262B34}
+.legend .fmt{margin-left:auto;font-family:var(--mono);font-size:10.5px;color:var(--dim)}
+.legend .keysline{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--dim)}
+.note{margin-top:14px;padding:13px 16px;background:var(--surf);border:1px solid var(--line);
+  border-radius:2px;font-size:12.5px;color:var(--ink2);line-height:1.75}
+.note b{color:var(--ink)}
+.note code{font-family:var(--mono);font-size:11.5px;background:#191D25;color:var(--sig);padding:1px 5px;border-radius:2px}
+
+/* ---------- 演示全屏（F）：为 1080p 录制设计，整屏不滚动 ---------- */
+body.present .masthead p,
+body.present .note,
+body.present .legend .fmt{display:none}
+body.present .sheet{max-width:1720px;padding:0 48px}
+body.present header{padding:16px 0 10px}
+body.present .masthead h1{font-size:34px}
+body.present .readout>div{padding:18px 26px 16px}
+body.present .state .word{font-size:62px}
+body.present .state .mean{font-size:14px}
+body.present .metric .n{font-size:42px}
+body.present #kConn{font-size:52px}
+body.present .histbar{padding:10px 26px 10px}
+body.present svg.histSvg{height:52px}
+body.present .cols{grid-template-columns:1fr 1.2fr}
+body.present .cols>section,body.present .lower>section{padding:16px 24px 18px}
+body.present h2{margin-bottom:12px}
+body.present table.mx th{font-size:10px;width:25px}
+body.present table.mx th.r{width:32px}
+body.present table.mx td{width:25px;height:25px}
+body.present svg.topo{max-height:330px}
+body.present .tl{height:118px;font-size:12px;line-height:1.8}
+body.present .bit{width:34px;height:26px;font-size:11px}
+body.present .legend{padding:10px 0 0;font-size:11px}
+body.present .legend .keysline{color:var(--ink2)}
+body.present{padding-bottom:0}
+
+/* ---------- 分辨率适配：1920×1080 投影放大一档；1366×768 收紧纵向留白 ---------- */
+@media (min-width:1700px){
+  .sheet{max-width:1640px}
+  .state .word{font-size:56px}
+  .metric .n{font-size:42px}
+  #kConn{font-size:50px}
+  table.mx th{font-size:10px;width:23px}
+  table.mx th.r{width:30px}
+  table.mx td{width:22px;height:22px}
+  svg.topo{max-height:300px}
+  .bit{width:34px;height:27px}
+  .tl{height:190px}
+  svg.histSvg{height:58px}
+}
+@media (max-height:820px){
+  header{padding:20px 0 10px}
+  .readout>div{padding:16px 22px 14px}
+  .cols>section,.lower>section{padding:18px 22px 20px}
+  .state .word{font-size:42px}
+  .metric .n{font-size:32px}
+  #kConn{font-size:38px}
+  .tl{height:170px}
+  .histbar{padding:10px 22px 10px}
+  svg.histSvg{height:44px}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<header>
+  <div class="masthead">
+    <h1>瞬迹 <em>XUNJI</em></h1>
+    <p>16 通道线束拓扑重建 · 微秒级瞬态开路诊断 · 第十届全国大学生嵌入式大赛</p>
+  </div>
+  <div class="tools">
+    <div class="status-chip"><i id="dot"></i><span id="portTxt">未连接</span></div>
+    <button class="b" id="btnConn">连接串口</button>
+    <button class="b sec" id="btnDemo">演示</button>
+    <button class="b sec" id="btnFull">全屏</button>
+    <button class="b sec" id="btnExport">导出证据</button>
+  </div>
+</header>
+</div>
+<hr class="rule">
+
+<div class="sheet">
+<div class="readout" id="readout">
+  <div class="state c-noref" id="clsCard">
+    <div class="top">
+      <span class="word" id="clsName">——</span>
+      <span class="no" id="clsCode">cls --</span>
+    </div>
+    <div class="mean" id="clsDesc">连接串口并把 SW0 拨到 ON 开始扫描</div>
+    <div class="other" id="otherBox">其它帧 <span id="otherN">0</span></div>
+  </div>
+  <div class="metric"><div class="n" id="kConn">—<s>/16</s></div><div class="l">连接数</div></div>
+  <div class="metric"><div class="n" id="kFps">0</div><div class="l">帧 / 秒</div></div>
+  <div class="metric"><div class="n" id="kSeq">0</div><div class="l">序号</div></div>
+  <div class="metric"><div class="n" id="kCrc">100<s>%</s></div><div class="l">CRC 校验</div></div>
+</div>
+<div class="histbar">
+  <div class="histTop">
+    <span class="t">实时连接数 · 近 8 秒 · 每一格 = 一帧</span>
+    <span class="v" id="histNow">—<span style="font-size:10px;color:var(--dim)"> / 16</span></span>
+  </div>
+  <svg class="histSvg" id="hist" viewBox="0 0 600 60" preserveAspectRatio="none"></svg>
+</div>
+</div>
+
+<div class="sheet">
+<div class="cols">
+  <section>
+    <h2>拓扑矩阵 · 行 A × 列 B</h2>
+    <div class="mwrap" id="mxWrap"></div>
+  </section>
+  <section>
+    <h2>线束连接图</h2>
+    <svg class="topo" id="topo" viewBox="0 0 760 340"></svg>
+  </section>
+</div>
+</div>
+
+<div class="sheet">
+<div class="lower">
+  <section>
+    <h2>通道健康</h2>
+    <div class="lab">Open — 未连接 / 开路</div>
+    <div class="strip" id="stripOpen"></div>
+    <div class="lab">Stuck — 空闲态被拉低</div>
+    <div class="strip" id="stripStuck"></div>
+  </section>
+  <section>
+    <h2>事件记录 · 捕获时刻</h2>
+    <div class="tl" id="tl"><div class="empty">暂无事件。</div></div>
+  </section>
+</div>
+</div>
+
+<div class="sheet">
+<div class="legend">
+  <span><i class="k1"></i>1:1 直通</span>
+  <span><i class="k2"></i>错接 / 交叉</span>
+  <span><i class="k3"></i>期望位（当前断开）</span>
+  <span class="fmt">55 AA · Ver · Type · Len 38B · Seq · Payload · CRC-16/CCITT-FALSE</span>
+</div>
+<div class="legend">
+  <span class="keysline">快捷键　C 串口 · D 演示 · F 全屏 · E 导出　（全屏后按 Esc 退出）</span>
+</div>
+<div class="note">
+  <b>使用</b>：用 Chrome / Edge 打开本页 → 点「连接串口」→ 选 COM4 → EGO1 的 SW0 拨到 ON。
+  无需安装驱动或软件，可直接从 U 盘运行。<br>
+  若浏览器拦截串口，改用本地服务：<code>cd 本文件所在目录 &amp;&amp; python -m http.server 8080</code>
+  → 访问 <code>http://localhost:8080/上位机.html</code>
+</div>
+</div>
+
+<script>
+"use strict";
+/* ================= 协议解析（与 protocol.py 一致） ================= */
+const N_CH = 16, PAYLOAD = 38;
+const MAX_OTHER_LEN = 256;   // 「其它帧」受检长度上限：合理长度才等待/验 CRC，离谱长度按噪声重同步
+
+function crc16(bytes){
+  let crc = 0xFFFF;
+  for (const b of bytes){
+    crc ^= b << 8;
+    for (let i=0;i<8;i++) crc = (crc & 0x8000) ? ((crc<<1)^0x1021)&0xFFFF : (crc<<1)&0xFFFF;
+  }
+  return crc & 0xFFFF;
+}
+
+// 帧布局：[0:2]SOF 55AA | [2]Ver | [3]Type | [4:6]Len(LE) | [6:8]Seq(LE) | [8:8+L]Payload | CRC(LE)
+// CRC 覆盖 Ver..Payload。返回 {frames, consumed}；残缺帧尾必须留在缓冲区。
+// 容错：未知 Type 或未知 Len 的完整帧（CRC 正确）整帧消费并计入「其它帧」，不崩、不误喂 decodeFrame。
+function parseFrames(buf){
+  const out=[]; let i=0;
+  while(i+1 < buf.length){
+    if(buf[i]!==0x55 || buf[i+1]!==0xAA){ i++; continue; }
+    if(i+10 > buf.length) break;
+    const ver=buf[i+2], type=buf[i+3];
+    const len = buf[i+4] | (buf[i+5]<<8);
+    const seq = buf[i+6] | (buf[i+7]<<8);
+    if(len !== PAYLOAD){
+      // 未知长度帧：长度合理（0<len≤256）时先等拼齐再验 CRC —— CRC 对 → 整帧消费并计入「其它帧」；
+      // CRC 错或长度离谱 → 退回原有的逐字节重同步（对垃圾字节的鲁棒性不变）。
+      if(len>0 && len<=MAX_OTHER_LEN){
+        if(i+8+len+2 > buf.length) break;               //可能的真实小帧，残缺先留在缓冲区
+        const calc2=crc16(buf.slice(i+2, i+8+len));
+        const rx2=buf[i+8+len] | (buf[i+8+len+1]<<8);
+        if(rx2===calc2){ otherFrames++; i += 8+len+2; continue; }
+      }
+      i++; continue;
+    }
+    if(i + 8 + len + 2 > buf.length) break;
+    const payload = buf.slice(i+8, i+8+len);
+    const rx = buf[i+8+len] | (buf[i+8+len+1]<<8);
+    const calc = crc16(buf.slice(i+2, i+8+len));
+    if(rx !== calc){ crcFail++; i++; continue; }
+    if(type !== 1){ otherFrames++; i += 8+len+2; continue; }   // 已知长度、未知类型：整帧消费并计数
+    out.push({ver,type,seq,payload});
+    i += 8 + len + 2;
+  }
+  if(i < buf.length && buf[i]===0x55) i--;   // 保留孤立 SOF 首字节
+  return {frames:out, consumed:Math.max(0,i)};
+}
+
+// 32 字节小端位打包：bit index = a*N_CH + b
+// 防御：非矩阵帧（type/长度不符）返回 null，由调用方跳过，绝不把未知 payload 当矩阵渲染。
+function decodeFrame(f){
+  if(!f || f.type!==1 || !f.payload || f.payload.length!==PAYLOAD){ otherFrames++; return null; }
+  const p=f.payload, mx=new Uint8Array(N_CH*N_CH);
+  for(let k=0;k<N_CH*N_CH;k++) mx[k]=(p[k>>3]>>(k&7))&1;
+  return { mx, open:p[32]|(p[33]<<8), stuck:p[34]|(p[35]<<8), cls:p[36], ts0:p[37], seq:f.seq, type:f.type };
+}
+
+/* ================= 界面状态 ================= */
+const CLS = {
+  0:["PASS","全部通道按基准拓扑导通","pass"],
+  1:["OPEN","存在通道开路（线断 / 未接）","open"],
+  2:["MISWIRE","存在错接 —— A 端接到了错误的 B 端","mis"],
+  3:["BRIDGE","存在短接 —— 多路并联","bridge"],
+  4:["ANOMALY","瞬态异常","anom"],
+  5:["NO_REF","未学习基准拓扑 —— 按 BTN1 学习","noref"],
+};
+let prev = { conn:new Set(), cls:-1 };
+let frameCnt=0, crcFail=0, otherFrames=0, fps=0, lastFpsT=performance.now(), lastFrameCnt=0;
+let lastFrameT=performance.now();   // 断线看门狗：串口已开但数据流中断
+let logRows=[]; let demoTimer=null;
+
+/* ================= 构建 ================= */
+function buildMatrix(){
+  let h='<table class="mx"><tr><th></th>';
+  for(let b=0;b<N_CH;b++) h+=`<th>B${b}</th>`;
+  h+='</tr>';
+  for(let a=0;a<N_CH;a++){
+    h+=`<tr><th class="r">A${a}</th>`;
+    for(let b=0;b<N_CH;b++) h+=`<td id="c${a}_${b}" class="${a===b?'diag':''}"></td>`;
+    h+='</tr>';
+  }
+  document.getElementById('mxWrap').innerHTML=h+'</table>';
+}
+
+function buildTopo(){
+  const x1=150, x2=610, y0=22, dy=19.4;   // 宽幅布局：限高后仍能撑满面板宽度
+  let s='';
+  s+=`<text x="${x1}" y="11" class="nlabel" text-anchor="middle">A 端</text>`;
+  s+=`<text x="${x2}" y="11" class="nlabel" text-anchor="middle">B 端</text>`;
+  for(let i=0;i<N_CH;i++){
+    const y=y0+i*dy;
+    s+=`<path id="lg${i}" class="link ghost" d="M${x1+16},${y} C${x1+70},${y} ${x2-70},${y} ${x2-16},${y}"/>`;
+    s+=`<path id="l${i}" class="link live" style="display:none" d="M${x1+16},${y} C${x1+70},${y} ${x2-70},${y} ${x2-16},${y}"/>`;
+  }
+  for(let a=0;a<N_CH;a++) for(let b=0;b<N_CH;b++){
+    if(a===b) continue;
+    const y1=y0+a*dy, y2=y0+b*dy;
+    s+=`<path id="m${a}_${b}" class="link mis" style="display:none" d="M${x1+16},${y1} C${x1+124},${y1} ${x2-124},${y2} ${x2-16},${y2}"/>`;
+  }
+  for(let i=0;i<N_CH;i++){
+    const y=y0+i*dy;
+    s+=`<circle id="da${i}" cx="${x1}" cy="${y}" r="4" fill="none" stroke="#39404B" stroke-width="1.2"/>`;
+    s+=`<circle id="db${i}" cx="${x2}" cy="${y}" r="4" fill="none" stroke="#39404B" stroke-width="1.2"/>`;
+    s+=`<text x="${x1-10}" y="${y+3}" class="nlabel" text-anchor="end">A${i}</text>`;
+    s+=`<text x="${x2+10}" y="${y+3}" class="nlabel">B${i}</text>`;
+  }
+  document.getElementById('topo').innerHTML=s;
+}
+
+function buildStrips(){
+  let a='',b='';
+  for(let i=0;i<N_CH;i++){ a+=`<div class="bit" id="o${i}">${i}</div>`; b+=`<div class="bit" id="s${i}">${i}</div>`; }
+  document.getElementById('stripOpen').innerHTML=a;
+  document.getElementById('stripStuck').innerHTML=b;
+}
+
+/* ================= 渲染 ================= */
+function render(d){
+  if(stoppedFor!==null){ stoppedFor=null; document.getElementById('clsCard').classList.remove('stopped'); }
+  const conns=[];
+  for(let a=0;a<N_CH;a++) for(let b=0;b<N_CH;b++){
+    const on=d.mx[a*N_CH+b]===1, el=document.getElementById(`c${a}_${b}`);
+    el.className=(a===b?'diag ':'')+(on?(a===b?'on':'mis'):'');
+    if(on) conns.push([a,b]);
+  }
+  for(let a=0;a<N_CH;a++){
+    const rowEmpty=!conns.some(([x])=>x===a);
+    if(rowEmpty) for(let b=0;b<N_CH;b++) document.getElementById(`c${a}_${b}`).classList.add('dead');
+    if(d.stuck&(1<<a)) for(let b=0;b<N_CH;b++) document.getElementById(`c${a}_${b}`).classList.add('stk');
+  }
+
+  const connSet=new Set(conns.map(([a])=>a));
+  const misSet=new Set(conns.filter(([a,b])=>a!==b).map(([a,b])=>`${a}_${b}`));
+  for(let i=0;i<N_CH;i++){
+    const isDiag=conns.some(([a,b])=>a===i&&b===i);
+    document.getElementById(`l${i}`).style.display=isDiag?'':'none';
+    const da=document.getElementById(`da${i}`), db=document.getElementById(`db${i}`);
+    const isStk=(d.stuck>>i)&1;
+    const on = connSet.has(i) || isDiag;
+    // 端点：卡死=红、导通=琥珀实心、断开=暗灰空心（字面色，不依赖 CSS 变量）
+    const fill  = isStk ? '#FF3B30' : (on ? '#FFB01F' : 'none');
+    const strk  = isStk ? '#FF3B30' : (on ? '#FFB01F' : '#39404B');
+    da.setAttribute('fill',fill); da.setAttribute('stroke',strk);
+    db.setAttribute('fill',fill); db.setAttribute('stroke',strk);
+  }
+  for(let a=0;a<N_CH;a++) for(let b=0;b<N_CH;b++){
+    if(a===b) continue;
+    const e=document.getElementById(`m${a}_${b}`); if(!e) continue;
+    e.style.display=misSet.has(`${a}_${b}`)?'':'none';
+  }
+
+  for(let i=0;i<N_CH;i++){
+    const o=document.getElementById(`o${i}`), s=document.getElementById(`s${i}`);
+    o.className='bit'+(((d.open>>i)&1)?'':' act');
+    s.className='bit'+(((d.stuck>>i)&1)?' stk':'');
+    o.title=(((d.open>>i)&1)?`A${i} 未连接`:`A${i} 已连接`);
+    s.title=(((d.stuck>>i)&1)?`ch${i} 空闲态被拉低`:`ch${i} 空闲态正常`);
+  }
+
+  document.getElementById('kConn').innerHTML=connSet.size+'<s>/16</s>';
+  pushHist(connSet.size);
+  updateOther();          // 演示/注入路径不经过 readLoop，这里兜一次，保证徽标状态正确
+  document.getElementById('kSeq').textContent=d.seq;
+  const tot=frameCnt+crcFail;
+  document.getElementById('kCrc').innerHTML=(tot?Math.round(frameCnt/tot*100):100)+'<s>%</s>';
+
+  const [name,desc,cls]=CLS[d.cls]||[`cls ${d.cls}`,'未知状态','noref'];
+  const card=document.getElementById('clsCard');
+  card.className='state c-'+cls;
+  document.getElementById('clsName').textContent=name;
+  document.getElementById('clsCode').textContent='cls '+d.cls;
+  document.getElementById('clsDesc').textContent=desc;
+
+  const now=new Date();
+  const ts=now.toTimeString().slice(0,8)+'.'+String(now.getMilliseconds()).padStart(3,'0');
+  for(const c of conns) if(!prev.conn.has(c[0])) addRow(ts,'add',`A${c[0]} → B${c[1]}   连接建立`);
+  for(const a of prev.conn) if(!connSet.has(a)) addRow(ts,'del',`ch ${a}   连接丢失`);
+  if(prev.cls>=0 && d.cls!==prev.cls){
+    addRow(ts,'cls',`状态   ${CLS[prev.cls]?CLS[prev.cls][0]:prev.cls} → ${name}`);
+    // 克制处理：只让状态词本身一次极短的透明度回落（单次，非闪烁）
+    const w=document.getElementById('clsName');
+    w.classList.remove('pulse'); void w.offsetWidth; w.classList.add('pulse');
+    prev.cls=d.cls;
+  } else if(prev.cls<0) prev.cls=d.cls;
+  prev.conn=connSet;
+}
+
+function addRow(ts,cls,txt){
+  const tl=document.getElementById('tl');
+  if(tl.querySelector('.empty')) tl.innerHTML='';
+  const row=document.createElement('div'); row.className='row';
+  row.innerHTML=`<span class="t">${ts}</span><span class="${cls}">${txt}</span>`;
+  tl.appendChild(row); tl.scrollTop=tl.scrollHeight;
+  logRows.push(`${ts}   ${txt}`);
+  while(tl.children.length>300) tl.removeChild(tl.firstChild);
+  while(logRows.length>3000) logRows.shift();
+}
+
+/* ---------- 实时连接数历史条 ----------
+   每帧记一个采样（限速 ~40fps），180 格 ≈ 8 秒。断线的那一帧会在条带右侧
+   留下一个橙色/红色缺口 —— 把「μs 级瞬态捕获」变成画面上看得见的东西。 */
+const HIST_MAX = 180;
+const hist = [];
+let histT = 0;
+function pushHist(n){
+  const t = performance.now();
+  if (t - histT < 25) return;          // 25ms 采样 ≈ 40fps，避免 240fps 灌满
+  histT = t;
+  hist.push(n);
+  if (hist.length > HIST_MAX) hist.shift();
+  const now = document.getElementById('histNow');
+  if (now){
+    now.innerHTML = n + '<span style="font-size:10px;color:var(--dim)"> / 16</span>';
+    now.className = 'v' + (n === 16 ? '' : ' low');
+  }
+  drawHist();
+}
+function drawHist(){
+  const svg = document.getElementById('hist');
+  if (!svg) return;
+  const W = 600, H = 60, bw = W / HIST_MAX;
+  // 满幅底轨：让条带任何时候都是完整的一条，不会因样本少而显得残缺
+  let s = `<rect x="0" y="0" width="${W}" height="${H}" fill="#14171D"/>`;
+  s += `<line x1="0" y1="${H-0.5}" x2="${W}" y2="${H-0.5}" stroke="#2A303A" stroke-width="1"/>`;
+  // 从右往左生长：最右一格 = 最新一帧
+  const n = hist.length;
+  for (let i = 0; i < n; i++){
+    const v = hist[i];
+    const h = Math.max(2, (v / 16) * (H - 4));
+    const y = H - h;
+    const x = W - (n - i) * bw;
+    // 满员=琥珀；缺路=橙；全断=红。颜色即状态，一眼看出哪里掉过
+    const col = v === 16 ? '#FFB01F' : (v > 0 ? '#FF7A00' : '#FF3B30');
+    s += `<rect x="${x.toFixed(2)}" y="${y.toFixed(2)}" width="${(bw-0.7).toFixed(2)}" height="${h.toFixed(2)}" fill="${col}"/>`;
+  }
+  svg.innerHTML = s;
+}
+
+function bumpFps(){
+  const t=performance.now();
+  if(t-lastFpsT>500){
+    fps=Math.round((frameCnt-lastFrameCnt)/((t-lastFpsT)/1000));
+    lastFrameCnt=frameCnt; lastFpsT=t;
+    document.getElementById('kFps').textContent=fps;
+  }
+}
+
+/* ================= 串口 ================= */
+let keepReading=false, userClosing=false, activeReader=null, closingNow=false;
+async function connect(){
+  if(!('serial' in navigator)){
+    alert('当前浏览器不支持 Web Serial。\n请改用 Chrome / Edge，或按页面下方说明用本地服务打开。'); return;
+  }
+  let port;
+  try{ port=await navigator.serial.requestPort(); }catch(e){ return; }
+  try{ await port.open({baudRate:115200}); }
+  catch(e){ alert('串口打开失败：'+e.message+'\n可能被其它程序占用（关掉串口助手 / XUNJI read）。'); return; }
+  const dot=document.getElementById('dot');
+  dot.classList.add('on'); dot.classList.remove('demo');
+  document.getElementById('portTxt').textContent='COM · 115200 8N1';
+  document.getElementById('btnConn').textContent='断开';
+  stoppedFor=null; document.getElementById('clsCard').classList.remove('stopped');
+  lastFrameT=performance.now();
+  stopDemo();
+  keepReading=true; userClosing=false;
+  readLoop(port);
+}
+
+async function readLoop(port){
+  let buf=new Uint8Array(0);
+  while(port.readable && keepReading){
+    const reader=port.readable.getReader();
+    activeReader=reader;                    // 供按钮 cancel，否则挂死的 read() 永远不解开
+    try{
+      while(keepReading){
+        const {value,done}=await reader.read();
+        if(done) break;
+        if(!value||!value.length) continue;
+        lastFrameT=performance.now();
+        // 数据恢复：清掉「数据已停止」提示，状态点回到在线
+        if(stoppedFor!==null){
+          stoppedFor=null;
+          document.getElementById('clsCard').classList.remove('stopped');
+          document.getElementById('dot').classList.add('on');
+          document.getElementById('portTxt').textContent='COM · 115200 8N1';
+          addRow(new Date().toTimeString().slice(0,8),'sys','数据恢复');
+        }
+        const nb=new Uint8Array(buf.length+value.length);
+        nb.set(buf,0); nb.set(value,buf.length); buf=nb;
+        const {frames,consumed}=parseFrames(buf);
+        if(consumed>0) buf=buf.slice(consumed);
+        for(const f of frames){
+          const d=decodeFrame(f);
+          if(!d) continue;            // 未知帧已在 decodeFrame 计入「其它帧」
+          frameCnt++; onFrame(d);
+        }
+        updateOther(); bumpFps();
+      }
+    }catch(e){
+      addRow(new Date().toTimeString().slice(0,8),'del','读取中断：'+e.message);
+      markStopped('读取中断 — '+e.message);
+      break;
+    }
+    finally{ activeReader=null; reader.releaseLock(); }
+  }
+  // 退出读循环后把流彻底关掉（幂等）：按钮路径可能已 cancel，也可能因 activeReader 被 finally
+  // 清空而落空，这里直接对流本身 cancel 一次，确保 close() 不会因流未关闭抛 InvalidStateError
+  try{ if(port.readable) await port.readable.cancel(); }catch(e){}
+  // cancel() 之后 readable 流已关闭，close() 才不会再抛 InvalidStateError
+  for(let i=0;i<3;i++){
+    try{ await port.close(); break; }
+    catch(e){ if(i===2) break; await new Promise(r=>setTimeout(r,60)); }
+  }
+  activeReader=null; closingNow=false;
+  keepReading=false;
+  document.getElementById('dot').classList.remove('on');
+  const bc=document.getElementById('btnConn');
+  bc.textContent='连接串口'; bc.disabled=false;
+  // 用户主动断开由按钮复位；其余情况（拔出/读取中断）若尚未提示过，给统一的「数据已停止」
+  if(userClosing){
+    userClosing=false; stoppedFor=null;
+    document.getElementById('portTxt').textContent='已断开';
+    document.getElementById('clsCard').classList.remove('stopped');
+  } else if(stoppedFor===null){
+    document.getElementById('portTxt').textContent='已停止';
+    markStopped('数据已停止 — 串口流结束，检查 USB 连接与板卡供电');
+  }
+}
+
+/* ---------- 断线提示：状态点转灰，状态词区灰字 + 一句说明（克制，无动画） ---------- */
+let stoppedFor=null;
+function markStopped(reason){
+  if(stoppedFor===reason) return;
+  stoppedFor=reason;
+  const dot=document.getElementById('dot');
+  dot.classList.remove('on','demo');
+  const card=document.getElementById('clsCard');
+  card.classList.add('stopped');
+  document.getElementById('clsName').textContent='数据已停止';
+  document.getElementById('clsCode').textContent='HALTED';
+  document.getElementById('clsDesc').textContent=reason;
+}
+
+/* ---------- 其它帧计数显示 ---------- */
+let otherShown=-1;
+function updateOther(){
+  if(otherFrames===otherShown) return;
+  otherShown=otherFrames;
+  document.getElementById('otherN').textContent=otherFrames;
+  const box=document.getElementById('otherBox');
+  box.classList.toggle('hot',otherFrames>0);
+  box.style.display = otherFrames>0 ? '' : 'none';   // 为 0 时不占位，界面更干净
+}
+
+let pending=null;
+function onFrame(d){ pending=d; requestAnimationFrame(()=>{ if(pending){ render(pending); pending=null; } }); }
+
+/* ================= 演示 ================= */
+function stopDemo(){ if(demoTimer){ clearInterval(demoTimer); demoTimer=null; } }
+function startDemo(){
+  stopDemo();
+  stoppedFor=null; document.getElementById('clsCard').classList.remove('stopped');
+  const dot=document.getElementById('dot');
+  dot.classList.add('demo'); dot.classList.remove('on');
+  document.getElementById('portTxt').textContent='演示数据 · 模拟';
+  let step=0, seq=0;
+  demoTimer=setInterval(()=>{
+    step++; seq=(seq+1)&0xFFFF;
+    const mx=new Uint8Array(N_CH*N_CH);
+    let open=(1<<N_CH)-1, stuck=0, cls=5;
+    let conns=[];
+    const alive = step<8 ? [] : [0,1,2,3,4,5,6,7];
+    alive.forEach(a=>{ mx[a*N_CH+a]=1; open&=~(1<<a); conns.push(a); });
+    if(step>22){ mx[3*N_CH+11]=1; open&=~(1<<11); }
+    if(step>34){ mx[5*N_CH+5]=0; open|=(1<<5); conns=conns.filter(a=>a!==5); }
+    if(step>46) stuck|=(1<<9);
+    cls = stuck ? 1 : (step>22&&step<34 ? 2 : (step>34 ? 1 : 5));
+    frameCnt++;
+    onFrame({mx,open,stuck,cls,ts0:seq&0xFF,seq,type:1});
+    bumpFps();
+  },50);
+}
+
+/* ================= 导出 ================= */
+function exportLog(){
+  const d=new Date(), ts=d.toISOString().slice(0,19).replace(/[:T]/g,'-');
+  const head=[
+    '瞬迹 XUNJI — 证据导出',
+    '导出时间   '+d.toLocaleString(),
+    '当前状态   cls '+document.getElementById('clsCode').textContent+'  '+document.getElementById('clsName').textContent,
+    '连接数     '+document.getElementById('kConn').textContent,
+    '其它帧     '+otherFrames+'   CRC 失败 '+crcFail,
+    ''.padEnd(46,'-'),
+  ];
+  const blob=new Blob([head.concat(logRows).join('\r\n')],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='XUNJI_证据_'+ts+'.txt'; a.click(); URL.revokeObjectURL(a.href);
+}
+
+/* ================= 演示全屏 ================= */
+function setPresent(on){
+  document.body.classList.toggle('present',on);
+  document.getElementById('btnFull').textContent=on?'退出全屏':'全屏';
+  try{
+    if(on && !document.fullscreenElement) document.documentElement.requestFullscreen().catch(()=>{});
+    if(!on && document.fullscreenElement) document.exitFullscreen().catch(()=>{});
+  }catch(e){/* 全屏 API 不可用时仅切换版式 */}
+}
+// Esc 退出：浏览器全屏由 fullscreenchange 兜底；未进入真全屏时按键直接退出版式
+document.addEventListener('fullscreenchange',()=>{
+  if(!document.fullscreenElement) setPresent(false);
+});
+
+/* ================= 快捷键：C 串口 · D 演示 · F 全屏 · E 导出 ================= */
+document.addEventListener('keydown',e=>{
+  if(e.ctrlKey||e.metaKey||e.altKey) return;          // 不劫持浏览器组合键
+  const t=e.target;
+  if(t && (t.tagName==='INPUT'||t.tagName==='TEXTAREA'||t.isContentEditable)) return;
+  const k=e.key.toLowerCase();
+  if(k==='f'){ e.preventDefault(); setPresent(!document.body.classList.contains('present')); }
+  else if(k==='escape' && document.body.classList.contains('present') && !document.fullscreenElement){ setPresent(false); }
+  else if(k==='d'){ e.preventDefault(); document.getElementById('btnDemo').click(); }
+  else if(k==='e'){ e.preventDefault(); exportLog(); }
+  else if(k==='c'){ e.preventDefault(); document.getElementById('btnConn').click(); }
+});
+
+/* ================= 断流看门狗：串口已开但 1.5 s 无字节 → 数据已停止 ================= */
+setInterval(()=>{
+  if(!keepReading || demoTimer || stoppedFor!==null) return;
+  if(performance.now()-lastFrameT > 1500){
+    markStopped('数据已停止 — 超过 1.5 秒未收到字节，检查 USB 连接与板卡供电');
+    document.getElementById('portTxt').textContent='已停止';
+    addRow(new Date().toTimeString().slice(0,8),'del','数据流停止：1.5 s 无字节');
+  }
+},500);
+
+/* ================= 启动 ================= */
+buildMatrix(); buildTopo(); buildStrips();
+document.getElementById('btnConn').onclick=async ()=>{
+  if(keepReading){
+    userClosing=true; keepReading=false; closingNow=true;
+    document.getElementById('btnConn').textContent='断开中…';
+    document.getElementById('btnConn').disabled=true;
+    document.getElementById('portTxt').textContent='正在释放串口';
+    addRow(new Date().toTimeString().slice(0,8),'sys','用户断开');
+    // 关键：cancel 让挂起的 read() 以 done:true 解开，读循环才能走到 port.close()。
+    // 必须 await —— 否则流可能尚未真正关闭，readLoop 里的 close() 会抛 InvalidStateError。
+    try{ if(activeReader) await activeReader.cancel(); }catch(e){}
+  } else if(!closingNow) await connect();
+};
+document.getElementById('btnDemo').onclick=()=>{
+  if(demoTimer){
+    stopDemo();
+    document.getElementById('portTxt').textContent='未连接';
+    document.getElementById('dot').classList.remove('demo');
+  } else startDemo();
+};
+document.getElementById('btnExport').onclick=exportLog;
+document.getElementById('btnFull').onclick=()=>setPresent(!document.body.classList.contains('present'));
+if(navigator.serial) navigator.serial.addEventListener('disconnect',()=>{
+  addRow(new Date().toTimeString().slice(0,8),'del','串口被拔出');
+  if(keepReading) markStopped('数据已停止 — 串口设备已拔出');
+});
+</script>
+</body>
+</html>

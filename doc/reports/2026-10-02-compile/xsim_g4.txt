@@ -1,0 +1,30 @@
+--- xvlog -version ---
+Vivado Simulator v2024.2.0
+version_exit=0
+
+--- xunji xsim ---
+
+****** xsim v2024.2 (64-bit)
+  **** SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+  **** IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+  **** SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+  **** Start of session at: Fri Oct  2 21:01:40 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_xj_top_snap/xsim_script.tcl
+# xsim {tb_xj_top_snap} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+=== tb_xj_top start ===
+t=495000 after start: busy=1 st=2 a=fffe
+conn_matrix = 0010100000010100
+open_flags  = 0000
+expected    = 0010100000010100
+PASS
+$finish called at time : 2645 ns : File "D:/xunjiji/sim/tb_xj_top.v" Line 105
+exit
+INFO: [Common 17-206] Exiting xsim at Fri Oct  2 21:01:42 2026...
+
+
+xsim_exit=0
